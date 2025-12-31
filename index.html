@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2054的博客 - 递归分类版</title>
+    <style>
+        :root { 
+            --primary-color: #007bff;   
+            --nav-font-size: 16px;     
+            --nav-font-weight: bold;   
+            --post-spacing: 18px;      
+            --border-color: #eee;
+            --bg-color: #f5f7f9;
+        }
+        body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; margin: 0; color: #333; background-color: var(--bg-color); }
+        .container { max-width: 960px; margin: 40px auto; padding: 40px; background: #fff; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        
+        header { text-align: center; margin-bottom: 30px; }
+        .avatar { width: 100px; height: 100px; border-radius: 50%; border: 1px solid #ddd; margin-bottom: 10px; }
+        h1 { margin: 5px 0; font-size: 32px; }
+        .subtitle { color: #888; font-size: 15px; margin-bottom: 20px; }
+
+        nav { border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); position: relative; z-index: 100; }
+        .nav-list { display: flex; justify-content: center; list-style: none; margin: 0; padding: 0; flex-wrap: wrap; }
+        .nav-item { position: relative; }
+        .nav-link { display: block; padding: 15px 22px; text-decoration: none; color: #333; cursor: pointer; font-size: var(--nav-font-size); font-weight: var(--nav-font-weight); }
+        .nav-link:hover { color: var(--primary-color); }
+
+        .dropdown { position: absolute; top: 100%; left: 0; background: rgba(255, 255, 255, 0.98); border: none; min-width: fit-content; white-space: nowrap; display: none; list-style: none; padding: 5px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .nav-item:hover > .dropdown { display: block; }
+        .dropdown a { display: block; padding: 8px 20px; text-decoration: none; color: var(--primary-color); font-size: 14px; cursor: pointer; }
+        .dropdown a:hover { background: #f0f7ff; }
+
+        .post-list-wrapper { margin-top: 30px; border: 1px solid var(--border-color); border-radius: 4px; }
+        .post-item { display: flex; justify-content: space-between; align-items: center; padding: var(--post-spacing) 20px; border-bottom: 1px solid var(--border-color); text-decoration: none; transition: 0.2s; }
+        .post-item:last-child { border-bottom: none; }
+        .post-item:hover { background: #f9fbfd; }
+        .post-title { color: var(--primary-color); font-size: 17px; flex: 1; }
+        
+        .post-meta { display: flex; align-items: center; gap: 15px; }
+        .post-cat-tag { font-size: 12px; color: #888; background: #f0f0f0; padding: 2px 8px; border-radius: 4px; }
+        .post-date { color: #999; font-size: 14px; font-family: monospace; }
+
+        .pagination { display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 30px; }
+        .page-btn { padding: 8px 20px; border: 1px solid #ddd; background: #fff; cursor: pointer; border-radius: 4px; transition: 0.3s; }
+        .page-btn:hover:not(:disabled) { border-color: var(--primary-color); color: var(--primary-color); }
+        .page-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+        /* 管理面板样式 */
+        #admin-trigger { position: fixed; bottom: 20px; right: 20px; background: #333; color: #fff; padding: 10px 15px; border-radius: 50px; cursor: pointer; font-size: 12px; z-index: 999; opacity: 0.1; transition: 0.3s; }
+        #admin-trigger:hover { opacity: 1; }
+        #admin-panel { display: none; position: fixed; top: 5%; left: 5%; width: 90%; height: 90%; background: white; border: 1px solid #ccc; box-shadow: 0 0 30px rgba(0,0,0,0.5); z-index: 1000; overflow-y: auto; padding: 25px; border-radius: 12px; }
+        .admin-section { margin-bottom: 25px; border: 1px solid #eee; padding: 20px; border-radius: 8px; background: #fafafa; }
+        .form-row { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
+        input, select { padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
+        .btn-main { color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .btn-add { background: #28a745; }
+        .btn-edit { background: #ffc107; color: #333 !important; }
+        .save-btn { background: #007bff; color: white; padding: 15px 30px; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; width: 100%; }
+        .admin-action-btn { border: none; background: none; cursor: pointer; font-size: 13px; margin-left: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header id="blog-header"></header>
+    <nav id="blog-nav"></nav>
+    <div id="blog-content-area">
+        <div class="post-list-wrapper" id="post-list"></div>
+        <div id="blog-pagination" class="pagination"></div>
+    </div>
+    <footer style="text-align: center; margin-top: 60px; color: #bbb; font-size: 12px; padding-bottom: 40px;">
+        <div id="footer-info">© 2025 我的博客 | Powered by GitHub</div>
+        <div id="website-days" style="margin-top: 8px; color: #999;"></div>
+    </footer>
+</div>
+
+<div id="admin-trigger" onclick="toggleAdmin()">⚙ 管理博客</div>
+
+<div id="admin-panel">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h2 style="margin:0">博客内容管理系统</h2>
+        <button onclick="toggleAdmin()">预览并关闭</button>
+    </div>
+    <hr style="margin:20px 0">
+    <div class="admin-section" id="admin-entry-form">
+        <h3 id="form-title">1. 录入博文</h3>
+        <div class="form-row">
+            <input type="text" id="new-p-title" placeholder="博文标题" style="flex:3">
+            <input type="date" id="new-p-date" style="flex:1">
+            <select id="new-p-cat" style="flex:1.5"></select>
+            <input type="text" id="new-p-url" placeholder="链接 (URL)" style="flex:3">
+            <button id="submit-btn" class="btn-main btn-add" onclick="handlePostSubmit()">添加文章</button>
+            <button id="cancel-edit-btn" style="display:none; padding:10px; border-radius:4px; border:1px solid #ccc; cursor:pointer;" onclick="cancelEdit()">取消</button>
+        </div>
+        <div id="admin-post-list" style="max-height: 250px; overflow-y: auto; background: #fff; border: 1px solid #ddd; margin-top:10px;"></div>
+    </div>
+    <div class="admin-section">
+        <h3>2. 导航菜单管理</h3>
+        <div id="menu-editor"></div>
+        <button onclick="addRootMenu()">+ 添加一级菜单</button>
+    </div>
+    <div class="admin-section" style="background: #e7f3ff;">
+        <button class="save-btn" onclick="exportAndSave()">保存并下载 index.html</button>
+    </div>
+</div>
+
+<script id="data-storage">
+/* 数据存储区 - 这里保留了你文件里的内容 */
+let blogConfig = { "title": "2054的博客", "subtitle": "这里是博客副标题描述", "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" };
+let menuData = [{"id":"m1","name":"日记","children":[{"id":"m1735640348731","name":"2025年12月","children":[]},{"id":"m1735640428580","name":"2024年12月","children":[]}]}];
+let postData = [{"title":"博文修改功能已找回","date":"2025-12-25","categoryId":"m1","url":"#"}];
+
+let currentEditingIndex = null;
+let blogCurrentPage = 1;
+const blogPageSize = 30;
+let currentViewCatId = 'all';
+
+function init() { 
+    renderBlog(); 
+    renderAdminPostList(); 
+    renderMenuEditor(); 
+    updateWebsiteDays();
+    document.getElementById('new-p-date').valueAsDate = new Date(); 
+}
+
+function updateWebsiteDays() {
+    const start = new Date('2024-03-15');
+    const diff = Math.floor((new Date() - start) / (1000 * 60 * 60 * 24));
+    document.getElementById('website-days').innerText = `网站已运行 ${diff} 天`;
+}
+
+function getCategoryName(catId) {
+    let name = "未分类";
+    const find = (list) => list.forEach(m => {
+        if(m.id === catId) name = m.name;
+        if(m.children) find(m.children);
+    });
+    find(menuData);
+    return name;
+}
+
+function renderBlog() {
+    document.getElementById('blog-header').innerHTML = `<img src="${blogConfig.avatar}" class="avatar"><h1>${blogConfig.title}</h1><div class="subtitle">${blogConfig.subtitle}</div>`;
+    const navHtml = `<ul class="nav-list"><li class="nav-item"><a class="nav-link" onclick="switchBlogView('all')">首页</a></li>${menuData.map(m => renderNavBranch(m)).join('')}</ul>`;
+    document.getElementById('blog-nav').innerHTML = navHtml;
+    displayBlogPosts(); 
+}
+
+function renderNavBranch(node) {
+    const hasChildren = node.children && node.children.length > 0;
+    return `<li class="nav-item"><a class="nav-link" onclick="switchBlogView('${node.id}')">${node.name}</a>${hasChildren ? `<ul class="dropdown">${node.children.map(c => renderSubNav(c)).join('')}</ul>` : ''}</li>`;
+}
+
+function renderSubNav(node) {
+    const hasChildren = node.children && node.children.length > 0;
+    // 子菜单样式微调：支持侧向弹出（可选）或垂直列表
+    return `<li><a onclick="switchBlogView('${node.id}')">${node.name}</a>${hasChildren ? `<ul class="dropdown" style="left:100%; top:0; margin-left:1px;">${node.children.map(c => renderSubNav(c)).join('')}</ul>` : ''}</li>`;
+}
+
+// 核心逻辑：获取当前分类及其所有子分类的 ID 列表
+function getAllSubCategoryIds(catId) {
+    let ids = [catId];
+    const findAndAdd = (list) => {
+        list.forEach(item => {
+            if (item.id === catId) {
+                // 找到了当前点击的分类，开始提取它下面所有的子ID
+                const collect = (children) => {
+                    children.forEach(c => {
+                        ids.push(c.id);
+                        if (c.children) collect(c.children);
+                    });
+                };
+                collect(item.children);
+            } else if (item.children) {
+                findAndAdd(item.children);
+            }
+        });
+    };
+    findAndAdd(menuData);
+    return ids;
+}
+
+function switchBlogView(catId) {
+    currentViewCatId = catId;
+    blogCurrentPage = 1;
+    displayBlogPosts();
+}
+
+function displayBlogPosts() {
+    const list = document.getElementById('post-list');
+    const sorted = [...postData].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    
+    let filtered;
+    if (currentViewCatId === 'all') {
+        filtered = sorted;
+    } else {
+        // 获取当前分类及其所有后代的 ID
+        const targetIds = getAllSubCategoryIds(currentViewCatId);
+        filtered = sorted.filter(p => targetIds.includes(p.categoryId));
+    }
+    
+    const totalPages = Math.ceil(filtered.length / blogPageSize) || 1;
+    const pageItems = filtered.slice((blogCurrentPage - 1) * blogPageSize, blogCurrentPage * blogPageSize);
+
+    list.innerHTML = pageItems.length === 0 ? `<div style="padding:40px; text-align:center; color:#999;">暂无内容</div>` : pageItems.map(p => `
+        <a href="${p.url}" target="_blank" class="post-item">
+            <span class="post-title">${p.title}</span>
+            <div class="post-meta">
+                <span class="post-cat-tag">${getCategoryName(p.categoryId)}</span>
+                <span class="post-date">${p.date}</span>
+            </div>
+        </a>`).join('');
+
+    const pg = document.getElementById('blog-pagination');
+    pg.innerHTML = filtered.length > blogPageSize ? `
+        <button class="page-btn" onclick="changeBlogPage(-1)" ${blogCurrentPage === 1 ? 'disabled' : ''}>上一页</button>
+        <span style="font-size:14px;">${blogCurrentPage} / ${totalPages}</span>
+        <button class="page-btn" onclick="changeBlogPage(1)" ${blogCurrentPage === totalPages ? 'disabled' : ''}>下一页</button>
+    ` : '';
+}
+
+function changeBlogPage(dir) { blogCurrentPage += dir; displayBlogPosts(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+// --- 管理系统逻辑保持原有功能（含修改回显） ---
+function handlePostSubmit() {
+    const title = document.getElementById('new-p-title').value;
+    const date = document.getElementById('new-p-date').value;
+    const catId = document.getElementById('new-p-cat').value;
+    const url = document.getElementById('new-p-url').value;
+    if(!title || !catId || !url) return alert("请完整填写信息");
+
+    if (currentEditingIndex !== null) {
+        postData[currentEditingIndex] = { title, date, categoryId: catId, url };
+        cancelEdit();
+    } else {
+        postData.push({ title, date, categoryId: catId, url });
+    }
+    renderAdminPostList();
+    document.getElementById('new-p-title').value = "";
+}
+
+function startEdit(idx) {
+    currentEditingIndex = idx;
+    const p = postData[idx];
+    document.getElementById('new-p-title').value = p.title;
+    document.getElementById('new-p-date').value = p.date;
+    document.getElementById('new-p-cat').value = p.categoryId;
+    document.getElementById('new-p-url').value = p.url;
+    document.getElementById('form-title').innerText = "修改博文内容";
+    const btn = document.getElementById('submit-btn');
+    btn.innerText = "完成修改"; btn.className = "btn-main btn-edit";
+    document.getElementById('cancel-edit-btn').style.display = "inline-block";
+    document.getElementById('admin-entry-form').scrollIntoView({ behavior: 'smooth' });
+}
+
+function cancelEdit() {
+    currentEditingIndex = null;
+    document.getElementById('form-title').innerText = "1. 录入博文";
+    const btn = document.getElementById('submit-btn');
+    btn.innerText = "添加文章"; btn.className = "btn-main btn-add";
+    document.getElementById('cancel-edit-btn').style.display = "none";
+    document.getElementById('new-p-title').value = "";
+}
+
+function renderAdminPostList() {
+    const sortedAdmin = [...postData].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    document.getElementById('admin-post-list').innerHTML = sortedAdmin.map((p) => {
+        const oIdx = postData.indexOf(p);
+        return `<div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
+            <span><b>[${p.date}]</b> ${p.title}</span>
+            <div>
+                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(${oIdx})">修改</button>
+                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(${oIdx},1);renderAdminPostList();}">删除</button>
+            </div>
+        </div>`
+    }).join('');
+}
+
+function toggleAdmin() { 
+    const p = document.getElementById('admin-panel'); 
+    p.style.display = p.style.display === 'block' ? 'none' : 'block'; 
+    if(p.style.display === 'none') renderBlog(); 
+}
+
+function renderMenuEditor() {
+    const select = document.getElementById('new-p-cat');
+    const editor = document.getElementById('menu-editor');
+    select.innerHTML = "";
+    const build = (list, depth = 0) => {
+        return list.map(m => {
+            select.innerHTML += `<option value="${m.id}">${"—".repeat(depth)} ${m.name}</option>`;
+            return `<div style="margin-left:${depth*20}px; margin-top:5px;"><input value="${m.name}" oninput="syncMenuName('${m.id}', this.value)"> <button onclick="addChildMenu('${m.id}')">+</button> <button onclick="deleteMenu('${m.id}')" style="color:red">x</button>${m.children ? build(m.children, depth + 1) : ''}</div>`;
+        }).join('');
+    };
+    editor.innerHTML = build(menuData);
+}
+
+function syncMenuName(id, val) { const find = (list) => list.forEach(m => { if(m.id === id) m.name = val; if(m.children) find(m.children); }); find(menuData); }
+function addRootMenu() { menuData.push({ id: "m" + Date.now(), name: "新分类", children: [] }); renderMenuEditor(); }
+function addChildMenu(pid) { const find = (list) => list.forEach(m => { if(m.id === pid) m.children.push({ id: "m" + Date.now(), name: "子分类", children: [] }); else if(m.children) find(m.children); }); find(menuData); renderMenuEditor(); }
+function deleteMenu(id) { if(!confirm("确定删除分类？")) return; const filter = (list) => list.filter(m => { if(m.id === id) return false; if(m.children) m.children = filter(m.children); return true; }); menuData = filter(menuData); renderMenuEditor(); }
+
+function exportAndSave() {
+    document.getElementById('admin-panel').style.display = 'none';
+    let currentHtml = document.documentElement.outerHTML;
+    const regex = /let blogConfig = \{[\s\S]*?\};[\s\S]*?let menuData = \[[\s\S]*?\];[\s\S]*?let postData = \[[\s\S]*?\];/;
+    const newData = `let blogConfig = ${JSON.stringify(blogConfig, null, 4)};\nlet menuData = ${JSON.stringify(menuData, null, 4)};\nlet postData = ${JSON.stringify(postData, null, 4)};`;
+    const finalContent = currentHtml.replace(regex, newData);
+    const blob = new Blob([finalContent], { type: 'text/html' });
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'index.html'; a.click();
+}
+init();
+</script>
+</body>
+</html>
