@@ -1,4 +1,6 @@
-<html lang="zh-CN"><head>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BTC2054的博客</title>
@@ -7,7 +9,7 @@
             --primary-color: #007bff;   
             --nav-font-size: 16px;     
             --nav-font-weight: bold;   
-            --post-spacing: 10px;      
+            --post-spacing: 8px; 
             --border-color: #eee;
             --bg-color: #f5f7f9;
         }
@@ -40,14 +42,14 @@
         .post-cat-tag { font-size: 12px; color: #888; background: #f0f0f0; padding: 2px 8px; border-radius: 4px; }
         .post-date { color: #999; font-size: 14px; font-family: monospace; }
 
-        .pagination { display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 30px; }
-        .page-btn { padding: 8px 20px; border: 1px solid #ddd; background: #fff; cursor: pointer; border-radius: 4px; transition: 0.3s; }
+        /* 分页样式 */
+        .pagination { display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 20px; }
+        .page-btn { padding: 6px 15px; border: 1px solid #ddd; background: #fff; cursor: pointer; border-radius: 4px; transition: 0.3s; font-size: 13px; }
         .page-btn:hover:not(:disabled) { border-color: var(--primary-color); color: var(--primary-color); }
         .page-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
         /* 管理面板样式 */
-        #admin-trigger { position: fixed; bottom: 20px; right: 20px; background: #333; color: #fff; padding: 10px 15px; border-radius: 50px; cursor: pointer; font-size: 12px; z-index: 999; opacity: 0.1; transition: 0.3s; }
-        #admin-trigger:hover { opacity: 1; }
+        #admin-trigger { position: fixed; bottom: 20px; right: 20px; background: #333; color: #fff; padding: 10px 15px; border-radius: 50px; cursor: pointer; font-size: 12px; z-index: 999; opacity: 0.1; }
         #admin-panel { display: none; position: fixed; top: 5%; left: 5%; width: 90%; height: 90%; background: white; border: 1px solid #ccc; box-shadow: 0 0 30px rgba(0,0,0,0.5); z-index: 1000; overflow-y: auto; padding: 25px; border-radius: 12px; }
         .admin-section { margin-bottom: 25px; border: 1px solid #eee; padding: 20px; border-radius: 8px; background: #fafafa; }
         .form-row { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
@@ -62,28 +64,21 @@
 <body>
 
 <div class="container">
-    <header id="blog-header"><img src="https://www.btc2054.com/IMG/90368994.jpg" class="avatar"><h1>BTC 2054</h1><div class="subtitle">Salvation lies within</div></header>
-    <nav id="blog-nav"><ul class="nav-list"><li class="nav-item"><a class="nav-link" onclick="switchBlogView('all')">首页</a></li><li class="nav-item"><a class="nav-link" onclick="switchBlogView('m1')">日记</a><ul class="dropdown"><li><a onclick="switchBlogView('m1735640348731')">2025年12月</a></li><li><a onclick="switchBlogView('m1735640428580')">2024年12月</a></li></ul></li></ul></nav>
+    <header id="blog-header"></header>
+    <nav id="blog-nav"></nav>
     <div id="blog-content-area">
-        <div class="post-list-wrapper" id="post-list">
-        <a href="#" target="_blank" class="post-item">
-            <span class="post-title">博文修改功能已找回</span>
-            <div class="post-meta">
-                <span class="post-cat-tag">日记</span>
-                <span class="post-date">2025-12-25</span>
-            </div>
-        </a></div>
+        <div class="post-list-wrapper" id="post-list"></div>
         <div id="blog-pagination" class="pagination"></div>
     </div>
     <footer style="text-align: center; margin-top: 60px; color: #bbb; font-size: 12px; padding-bottom: 40px;">
         <div id="footer-info"></div>
-        <div id="website-days" style="margin-top: 8px; color: #999;">博客已运行 656 天</div>
+        <div id="website-days" style="margin-top: 8px; color: #999;"></div>
     </footer>
 </div>
 
-<div id="admin-trigger" onclick="toggleAdmin()">⚙ 版本 V1.0</div>
+<div id="admin-trigger" onclick="toggleAdmin()">⚙ 版本 V1.0+</div>
 
-<div id="admin-panel" style="display: none;">
+<div id="admin-panel">
     <div style="display: flex; justify-content: space-between; align-items: center;">
         <h2 style="margin:0">博客内容管理系统</h2>
         <button onclick="toggleAdmin()">预览并关闭</button>
@@ -94,142 +89,19 @@
         <div class="form-row">
             <input type="text" id="new-p-title" placeholder="博文标题" style="flex:3">
             <input type="date" id="new-p-date" style="flex:1">
-            <select id="new-p-cat" style="flex:1.5"><option value="m1"> 我的计划</option><option value="m1735640348731">— 2054养老计划</option></select>
+            <select id="new-p-cat" style="flex:1.5"></select>
             <input type="text" id="new-p-url" placeholder="链接 (URL)" style="flex:3">
             <button id="submit-btn" class="btn-main btn-add" onclick="handlePostSubmit()">添加文章</button>
             <button id="cancel-edit-btn" style="display:none; padding:10px; border-radius:4px; border:1px solid #ccc; cursor:pointer;" onclick="cancelEdit()">取消</button>
         </div>
-        <div id="admin-post-list" style="max-height: 250px; overflow-y: auto; background: #fff; border: 1px solid #ddd; margin-top:10px;"><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
-            <span><b>[2025-12-31]</b> 2025年12月：定存第21/360期、+8.5%、首个里程碑</span>
-            <div>
-                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(20)">修改</button>
-                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(20,1);renderAdminPostList();}">删除</button>
-            </div>
-        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
-            <span><b>[2025-11-30]</b> 2025年11月：定存第20/360期、-0.41%</span>
-            <div>
-                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(19)">修改</button>
-                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(19,1);renderAdminPostList();}">删除</button>
-            </div>
-        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
-            <span><b>[2025-10-31]</b> 2025年10月：定存第19/360期、+0.87%、更新计划V1.1</span>
-            <div>
-                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(18)">修改</button>
-                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(18,1);renderAdminPostList();}">删除</button>
-            </div>
-        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
-            <span><b>[2025-09-30]</b> 2025年09月：定存第18/360期、+2.58%</span>
-            <div>
-                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(17)">修改</button>
-                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(17,1);renderAdminPostList();}">删除</button>
-            </div>
-        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
-            <span><b>[2025-08-31]</b> 2025年08月：定存第17/360期、+1.66%</span>
-            <div>
-                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(16)">修改</button>
-                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(16,1);renderAdminPostList();}">删除</button>
-            </div>
-        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
-            <span><b>[2025-07-31]</b> 2025年07月：定存第16/360期、+10.48%</span>
-            <div>
-                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(15)">修改</button>
-                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(15,1);renderAdminPostList();}">删除</button>
-            </div>
-        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
-            <span><b>[2025-06-30]</b> 2025年06月：定存第15/360期、+1.56%</span>
-            <div>
-                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(14)">修改</button>
-                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(14,1);renderAdminPostList();}">删除</button>
-            </div>
-        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
-            <span><b>[2025-05-31]</b> 2025年05月：定存第14/360期、+20.7%</span>
-            <div>
-                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(13)">修改</button>
-                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(13,1);renderAdminPostList();}">删除</button>
-            </div>
-        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
-            <span><b>[2025-04-30]</b> 2025年04月：定存第13/360期、-0.56%</span>
-            <div>
-                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(12)">修改</button>
-                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(12,1);renderAdminPostList();}">删除</button>
-            </div>
-        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
-            <span><b>[2025-03-31]</b> 2025年03月：定存第12/360期、+0.26%</span>
-            <div>
-                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(11)">修改</button>
-                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(11,1);renderAdminPostList();}">删除</button>
-            </div>
-        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
-            <span><b>[2025-02-28]</b> 2025年02月：定存第11/360期、-7.37%</span>
-            <div>
-                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(10)">修改</button>
-                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(10,1);renderAdminPostList();}">删除</button>
-            </div>
-        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
-            <span><b>[2025-01-31]</b> 2025年01月：定存第10/360期、+1%</span>
-            <div>
-                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(9)">修改</button>
-                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(9,1);renderAdminPostList();}">删除</button>
-            </div>
-        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
-            <span><b>[2024-12-31]</b> 2024年12月：定存第9/360期、回归定投本质？？</span>
-            <div>
-                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(8)">修改</button>
-                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(8,1);renderAdminPostList();}">删除</button>
-            </div>
-        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
-            <span><b>[2024-11-30]</b> 2024年11月：定存第8/360期、终于解套了!!!</span>
-            <div>
-                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(7)">修改</button>
-                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(7,1);renderAdminPostList();}">删除</button>
-            </div>
-        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
-            <span><b>[2024-10-31]</b> 2024年09-10月：定存第6-7/360期、持续被套中。。。</span>
-            <div>
-                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(6)">修改</button>
-                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(6,1);renderAdminPostList();}">删除</button>
-            </div>
-        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
-            <span><b>[2024-08-31]</b> 2024年08月：定存第5/360期、被套中</span>
-            <div>
-                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(5)">修改</button>
-                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(5,1);renderAdminPostList();}">删除</button>
-            </div>
-        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
-            <span><b>[2024-07-31]</b> 2024年07月：定存第4/360期、+5.18%</span>
-            <div>
-                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(4)">修改</button>
-                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(4,1);renderAdminPostList();}">删除</button>
-            </div>
-        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
-            <span><b>[2024-06-30]</b> 2024年06月：定存第3/360期、+2.97%</span>
-            <div>
-                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(3)">修改</button>
-                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(3,1);renderAdminPostList();}">删除</button>
-            </div>
-        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
-            <span><b>[2024-05-31]</b> 2024年05月：定存第2/360期、+1.10%</span>
-            <div>
-                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(2)">修改</button>
-                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(2,1);renderAdminPostList();}">删除</button>
-            </div>
-        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
-            <span><b>[2024-04-30]</b> 2024年04月：定存第1/360期、+7.04% </span>
-            <div>
-                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(1)">修改</button>
-                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(1,1);renderAdminPostList();}">删除</button>
-            </div>
-        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
-            <span><b>[2024-04-01]</b> 2024年4月：定存初始篇</span>
-            <div>
-                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(0)">修改</button>
-                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(0,1);renderAdminPostList();}">删除</button>
-            </div>
-        </div></div>
+        <div id="admin-post-list-wrapper">
+            <div id="admin-post-list" style="max-height: 400px; overflow-y: auto; background: #fff; border: 1px solid #ddd; margin-top:10px;"></div>
+            <div id="admin-pagination" class="pagination"></div>
+        </div>
     </div>
     <div class="admin-section">
         <h3>2. 导航菜单管理</h3>
-        <div id="menu-editor"><div style="margin-left:0px; margin-top:5px;"><input value="我的计划" oninput="syncMenuName('m1', this.value)"> <button onclick="addChildMenu('m1')">+</button> <button onclick="deleteMenu('m1')" style="color:red">x</button><div style="margin-left:20px; margin-top:5px;"><input value="2054养老计划" oninput="syncMenuName('m1735640348731', this.value)"> <button onclick="addChildMenu('m1735640348731')">+</button> <button onclick="deleteMenu('m1735640348731')" style="color:red">x</button></div></div></div>
+        <div id="menu-editor"></div>
         <button onclick="addRootMenu()">+ 添加一级菜单</button>
     </div>
     <div class="admin-section" style="background: #e7f3ff;">
@@ -238,354 +110,147 @@
 </div>
 
 <script id="data-storage">
-/* 数据存储区 - 这里保留了你文件里的内容 */
-let blogConfig = {
-    "title": "BTC 2054",
-    "subtitle": "Salvation lies within",
-    "avatar": "https://www.btc2054.com/IMG/90368994.jpg"
-};
-let menuData = [
-    {
-        "id": "m1",
-        "name": "我的计划",
-        "children": [
-            {
-                "id": "m1735640348731",
-                "name": "2054养老计划",
-                "children": []
-            }
-        ]
-    }
-];
+/* 数据存储区 - 已保留您的21条博文 */
+let blogConfig = {"title": "BTC 2054", "subtitle": "Salvation lies within", "avatar": "https://www.btc2054.com/IMG/90368994.jpg"};
+let menuData = [{"id": "m1", "name": "我的计划", "children": [{"id": "m1735640348731", "name": "2054养老计划", "children": []}]}];
 let postData = [
-    {
-        "title": "2024年4月：定存初始篇",
-        "date": "2024-04-01",
-        "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202404chushi/202604chushi.html"
-    },
-    {
-        "title": "2024年04月：定存第1/360期、+7.04% ",
-        "date": "2024-04-30",
-        "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202404/202404.html"
-    },
-    {
-        "title": "2024年05月：定存第2/360期、+1.10%",
-        "date": "2024-05-31",
-        "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202405/202405.html"
-    },
-    {
-        "title": "2024年06月：定存第3/360期、+2.97%",
-        "date": "2024-06-30",
-        "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202406/202406.html"
-    },
-    {
-        "title": "2024年07月：定存第4/360期、+5.18%",
-        "date": "2024-07-31",
-        "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202407/202407.html"
-    },
-    {
-        "title": "2024年08月：定存第5/360期、被套中",
-        "date": "2024-08-31",
-        "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202408/202408.html"
-    },
-    {
-        "title": "2024年09-10月：定存第6-7/360期、持续被套中。。。",
-        "date": "2024-10-31",
-        "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202409-10/202409-10.html"
-    },
-    {
-        "title": "2024年11月：定存第8/360期、终于解套了!!!",
-        "date": "2024-11-30",
-        "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202411/202411.html"
-    },
-    {
-        "title": "2024年12月：定存第9/360期、回归定投本质？？",
-        "date": "2024-12-31",
-        "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202412/202412.html"
-    },
-    {
-        "title": "2025年01月：定存第10/360期、+1%",
-        "date": "2025-01-31",
-        "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202501/202501.html"
-    },
-    {
-        "title": "2025年02月：定存第11/360期、-7.37%",
-        "date": "2025-02-28",
-        "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202502/202502.html"
-    },
-    {
-        "title": "2025年03月：定存第12/360期、+0.26%",
-        "date": "2025-03-31",
-        "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202503/202503.html"
-    },
-    {
-        "title": "2025年04月：定存第13/360期、-0.56%",
-        "date": "2025-04-30",
-        "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202504/202504.html"
-    },
-    {
-        "title": "2025年05月：定存第14/360期、+20.7%",
-        "date": "2025-05-31",
-        "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202505/202505.html"
-    },
-    {
-        "title": "2025年06月：定存第15/360期、+1.56%",
-        "date": "2025-06-30",
-        "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202506/202506.html"
-    },
-    {
-        "title": "2025年07月：定存第16/360期、+10.48%",
-        "date": "2025-07-31",
-        "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202507/202507.html"
-    },
-    {
-        "title": "2025年08月：定存第17/360期、+1.66%",
-        "date": "2025-08-31",
-        "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202508/202508.html"
-    },
-    {
-        "title": "2025年09月：定存第18/360期、+2.58%",
-        "date": "2025-09-30",
-        "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202509/202509.html"
-    },
-    {
-        "title": "2025年10月：定存第19/360期、+0.87%、更新计划V1.1",
-        "date": "2025-10-31",
-        "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202510/202510.html"
-    },
-    {
-        "title": "2025年11月：定存第20/360期、-0.41%",
-        "date": "2025-11-30",
-        "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202511/202511.html"
-    },
-    {
-        "title": "2025年12月：定存第21/360期、+8.5%、首个里程碑",
-        "date": "2025-12-31",
-        "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202512/202512.html"
-    }
+    {"title": "2024年4月：定存初始篇", "date": "2024-04-01", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202404chushi/202604chushi.html"},
+    {"title": "2024年04月：定存第1/360期、+7.04% ", "date": "2024-04-30", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202404/202404.html"},
+    {"title": "2024年05月：定存第2/360期、+1.10%", "date": "2024-05-31", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202405/202405.html"},
+    {"title": "2024年06月：定存第3/360期、+2.97%", "date": "2024-06-30", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202406/202406.html"},
+    {"title": "2024年07月：定存第4/360期、+5.18%", "date": "2024-07-31", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202407/202407.html"},
+    {"title": "2024年08月：定存第5/360期、被套中", "date": "2024-08-31", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202408/202408.html"},
+    {"title": "2024年09-10月：定存第6-7/360期、持续被套中。。。", "date": "2024-10-31", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202409-10/202409-10.html"},
+    {"title": "2024年11月：定存第8/360期、终于解套了!!!", "date": "2024-11-30", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202411/202411.html"},
+    {"title": "2024年12月：定存第9/360期、回归定投本质？？", "date": "2024-12-31", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202412/202412.html"},
+    {"title": "2025年01月：定存第10/360期、+1%", "date": "2025-01-31", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202501/202501.html"},
+    {"title": "2025年02月：定存第11/360期、-7.37%", "date": "2025-02-28", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202502/202502.html"},
+    {"title": "2025年03月：定存第12/360期、+0.26%", "date": "2025-03-31", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202503/202503.html"},
+    {"title": "2025年04月：定存第13/360期、-0.56%", "date": "2025-04-30", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202504/202504.html"},
+    {"title": "2025年05月：定存第14/360期、+20.7%", "date": "2025-05-31", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202505/202505.html"},
+    {"title": "2025年06月：定存第15/360期、+1.56%", "date": "2025-06-30", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202506/202506.html"},
+    {"title": "2025年07月：定存第16/360期、+10.48%", "date": "2025-07-31", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202507/202507.html"},
+    {"title": "2025年08月：定存第17/360期、+1.66%", "date": "2025-08-31", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202508/202508.html"},
+    {"title": "2025年09月：定存第18/360期、+2.58%", "date": "2025-09-30", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202509/202509.html"},
+    {"title": "2025年10月：定存第19/360期、+0.87%、更新计划V1.1", "date": "2025-10-31", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202510/202510.html"},
+    {"title": "2025年11月：定存第20/360期、-0.41%", "date": "2025-11-30", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202511/202511.html"},
+    {"title": "2025年12月：定存第21/360期、+8.5%、首个里程碑", "date": "2025-12-31", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202512/202512.html"}
 ];
 
+let blogPage = 1, adminPage = 1, pageSize = 20
 let currentEditingIndex = null;
-let blogCurrentPage = 1;
-const blogPageSize = 30;
 let currentViewCatId = 'all';
 
 function init() { 
     renderBlog(); 
     renderAdminPostList(); 
-    renderMenuEditor(); 
-    updateWebsiteDays();
-    document.getElementById('new-p-date').valueAsDate = new Date(); 
-}
-
-function updateWebsiteDays() {
+    renderMenuEditor();
     const start = new Date('2024-03-15');
     const diff = Math.floor((new Date() - start) / (1000 * 60 * 60 * 24));
     document.getElementById('website-days').innerText = `博客已运行 ${diff} 天`;
+    document.getElementById('new-p-date').valueAsDate = new Date();
 }
 
 function getCategoryName(catId) {
     let name = "未分类";
-    const find = (list) => list.forEach(m => {
-        if(m.id === catId) name = m.name;
-        if(m.children) find(m.children);
-    });
-    find(menuData);
-    return name;
+    const find = (list) => list.forEach(m => { if(m.id === catId) name = m.name; if(m.children) find(m.children); });
+    find(menuData); return name;
 }
 
+// 首页逻辑
 function renderBlog() {
     document.getElementById('blog-header').innerHTML = `<img src="${blogConfig.avatar}" class="avatar"><h1>${blogConfig.title}</h1><div class="subtitle">${blogConfig.subtitle}</div>`;
-    const navHtml = `<ul class="nav-list"><li class="nav-item"><a class="nav-link" onclick="switchBlogView('all')">首页</a></li>${menuData.map(m => renderNavBranch(m)).join('')}</ul>`;
-    document.getElementById('blog-nav').innerHTML = navHtml;
-    displayBlogPosts(); 
-}
-
-function renderNavBranch(node) {
-    const hasChildren = node.children && node.children.length > 0;
-    return `<li class="nav-item"><a class="nav-link" onclick="switchBlogView('${node.id}')">${node.name}</a>${hasChildren ? `<ul class="dropdown">${node.children.map(c => renderSubNav(c)).join('')}</ul>` : ''}</li>`;
-}
-
-function renderSubNav(node) {
-    const hasChildren = node.children && node.children.length > 0;
-    // 子菜单样式微调：支持侧向弹出（可选）或垂直列表
-    return `<li><a onclick="switchBlogView('${node.id}')">${node.name}</a>${hasChildren ? `<ul class="dropdown" style="left:100%; top:0; margin-left:1px;">${node.children.map(c => renderSubNav(c)).join('')}</ul>` : ''}</li>`;
-}
-
-// 核心逻辑：获取当前分类及其所有子分类的 ID 列表
-function getAllSubCategoryIds(catId) {
-    let ids = [catId];
-    const findAndAdd = (list) => {
-        list.forEach(item => {
-            if (item.id === catId) {
-                // 找到了当前点击的分类，开始提取它下面所有的子ID
-                const collect = (children) => {
-                    children.forEach(c => {
-                        ids.push(c.id);
-                        if (c.children) collect(c.children);
-                    });
-                };
-                collect(item.children);
-            } else if (item.children) {
-                findAndAdd(item.children);
-            }
-        });
-    };
-    findAndAdd(menuData);
-    return ids;
-}
-
-function switchBlogView(catId) {
-    currentViewCatId = catId;
-    blogCurrentPage = 1;
+    let navHtml = `<ul class="nav-list"><li class="nav-item"><a class="nav-link" onclick="switchView('all')">首页</a></li>`;
+    menuData.forEach(m => { navHtml += `<li class="nav-item"><a class="nav-link" onclick="switchView('${m.id}')">${m.name}</a>` + (m.children.length? `<ul class="dropdown">${m.children.map(c=>`<li><a onclick="switchView('${c.id}')">${c.name}</a></li>`).join('')}</ul>`:'') + `</li>`; });
+    document.getElementById('blog-nav').innerHTML = navHtml + `</ul>`;
     displayBlogPosts();
 }
 
+function switchView(id) { currentViewCatId = id; blogPage = 1; displayBlogPosts(); }
+
 function displayBlogPosts() {
-    const list = document.getElementById('post-list');
-    const sorted = [...postData].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-    
-    let filtered;
-    if (currentViewCatId === 'all') {
-        filtered = sorted;
-    } else {
-        // 获取当前分类及其所有后代的 ID
-        const targetIds = getAllSubCategoryIds(currentViewCatId);
-        filtered = sorted.filter(p => targetIds.includes(p.categoryId));
-    }
-    
-    const totalPages = Math.ceil(filtered.length / blogPageSize) || 1;
-    const pageItems = filtered.slice((blogCurrentPage - 1) * blogPageSize, blogCurrentPage * blogPageSize);
+    const sorted = [...postData].sort((a,b)=>new Date(b.date)-new Date(a.date));
+    const filtered = currentViewCatId === 'all' ? sorted : sorted.filter(p => {
+        let ids = [currentViewCatId];
+        const findAndAdd = (list) => list.forEach(m => { if(m.id===currentViewCatId) { const collect=(c)=>c.forEach(i=>{ids.push(i.id);if(i.children)collect(i.children)}); collect(m.children); } else if(m.children) findAndAdd(m.children); });
+        findAndAdd(menuData); return ids.includes(p.categoryId);
+    });
+    const total = Math.ceil(filtered.length/pageSize) || 1;
+    const items = filtered.slice((blogPage-1)*pageSize, blogPage*pageSize);
+    document.getElementById('post-list').innerHTML = items.map(p => `<a href="${p.url}" target="_blank" class="post-item"><span class="post-title">${p.title}</span><div class="post-meta"><span class="post-cat-tag">${getCategoryName(p.categoryId)}</span><span class="post-date">${p.date}</span></div></a>`).join('');
+    document.getElementById('blog-pagination').innerHTML = filtered.length > pageSize ? `<button class="page-btn" onclick="blogPage--;displayBlogPosts()" ${blogPage==1?'disabled':''}>上一页</button><span style="font-size:14px;">${blogPage}/${total}</span><button class="page-btn" onclick="blogPage++;displayBlogPosts()" ${blogPage==total?'disabled':''}>下一页</button>` : '';
+}
 
-    list.innerHTML = pageItems.length === 0 ? `<div style="padding:40px; text-align:center; color:#999;">暂无内容</div>` : pageItems.map(p => `
-        <a href="${p.url}" target="_blank" class="post-item">
-            <span class="post-title">${p.title}</span>
-            <div class="post-meta">
-                <span class="post-cat-tag">${getCategoryName(p.categoryId)}</span>
-                <span class="post-date">${p.date}</span>
+// 后台逻辑 (还原 V1.0 的“修改/删除”文字样式，并增加分页)
+function renderAdminPostList() {
+    const sorted = [...postData].sort((a,b)=>new Date(b.date)-new Date(a.date));
+    const total = Math.ceil(sorted.length/pageSize) || 1;
+    const items = sorted.slice((adminPage-1)*pageSize, adminPage*pageSize);
+    
+    document.getElementById('admin-post-list').innerHTML = items.map(p => {
+        const oIdx = postData.indexOf(p);
+        return `<div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px; background:#fff;">
+            <span><b>[${p.date}]</b> ${p.title}</span>
+            <div>
+                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(${oIdx})">修改</button>
+                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(${oIdx},1);renderAdminPostList();renderBlog();}">删除</button>
             </div>
-        </a>`).join('');
-
-    const pg = document.getElementById('blog-pagination');
-    pg.innerHTML = filtered.length > blogPageSize ? `
-        <button class="page-btn" onclick="changeBlogPage(-1)" ${blogCurrentPage === 1 ? 'disabled' : ''}>上一页</button>
-        <span style="font-size:14px;">${blogCurrentPage} / ${totalPages}</span>
-        <button class="page-btn" onclick="changeBlogPage(1)" ${blogCurrentPage === totalPages ? 'disabled' : ''}>下一页</button>
-    ` : '';
+        </div>`;
+    }).join('');
+    
+    document.getElementById('admin-pagination').innerHTML = sorted.length > pageSize ? `<button class="page-btn" onclick="adminPage--;renderAdminPostList()" ${adminPage==1?'disabled':''}>上一页</button><span style="font-size:13px; color:#888;">${adminPage} / ${total}</span><button class="page-btn" onclick="adminPage++;renderAdminPostList()" ${adminPage==total?'disabled':''}>下一页</button>` : '';
 }
 
-function changeBlogPage(dir) { blogCurrentPage += dir; displayBlogPosts(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
-
-// --- 管理系统逻辑保持原有功能（含修改回显） ---
 function handlePostSubmit() {
-    const title = document.getElementById('new-p-title').value;
-    const date = document.getElementById('new-p-date').value;
-    const catId = document.getElementById('new-p-cat').value;
-    const url = document.getElementById('new-p-url').value;
-    if(!title || !catId || !url) return alert("请完整填写信息");
-
-    if (currentEditingIndex !== null) {
-        postData[currentEditingIndex] = { title, date, categoryId: catId, url };
-        cancelEdit();
-    } else {
-        postData.push({ title, date, categoryId: catId, url });
-    }
-    renderAdminPostList();
-    document.getElementById('new-p-title').value = "";
+    const p = { title:document.getElementById('new-p-title').value, date:document.getElementById('new-p-date').value, categoryId:document.getElementById('new-p-cat').value, url:document.getElementById('new-p-url').value };
+    if(!p.title || !p.url) return alert("必填标题和链接");
+    if(currentEditingIndex!==null) postData[currentEditingIndex] = p; else postData.push(p);
+    cancelEdit(); renderAdminPostList(); renderBlog();
 }
 
-function startEdit(idx) {
-    currentEditingIndex = idx;
-    const p = postData[idx];
-    document.getElementById('new-p-title').value = p.title;
-    document.getElementById('new-p-date').value = p.date;
-    document.getElementById('new-p-cat').value = p.categoryId;
-    document.getElementById('new-p-url').value = p.url;
-    document.getElementById('form-title').innerText = "修改博文内容";
-    const btn = document.getElementById('submit-btn');
-    btn.innerText = "完成修改"; btn.className = "btn-main btn-edit";
+function startEdit(i) {
+    currentEditingIndex = i; const p = postData[i];
+    document.getElementById('new-p-title').value = p.title; document.getElementById('new-p-date').value = p.date;
+    document.getElementById('new-p-cat').value = p.categoryId; document.getElementById('new-p-url').value = p.url;
+    document.getElementById('form-title').innerText = "修改博文内容"; document.getElementById('submit-btn').innerText = "完成修改";
+    document.getElementById('submit-btn').className = "btn-main btn-edit";
     document.getElementById('cancel-edit-btn').style.display = "inline-block";
     document.getElementById('admin-entry-form').scrollIntoView({ behavior: 'smooth' });
 }
 
 function cancelEdit() {
-    currentEditingIndex = null;
-    document.getElementById('form-title').innerText = "1. 录入博文";
-    const btn = document.getElementById('submit-btn');
-    btn.innerText = "添加文章"; btn.className = "btn-main btn-add";
+    currentEditingIndex = null; document.getElementById('new-p-title').value = "";
+    document.getElementById('form-title').innerText = "1. 录入博文"; document.getElementById('submit-btn').innerText = "添加文章";
+    document.getElementById('submit-btn').className = "btn-main btn-add";
     document.getElementById('cancel-edit-btn').style.display = "none";
-    document.getElementById('new-p-title').value = "";
 }
 
-function renderAdminPostList() {
-    const sortedAdmin = [...postData].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-    document.getElementById('admin-post-list').innerHTML = sortedAdmin.map((p) => {
-        const oIdx = postData.indexOf(p);
-        return `<div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
-            <span><b>[${p.date}]</b> ${p.title}</span>
-            <div>
-                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(${oIdx})">修改</button>
-                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(${oIdx},1);renderAdminPostList();}">删除</button>
-            </div>
-        </div>`
-    }).join('');
-}
-
-function toggleAdmin() { 
-    const p = document.getElementById('admin-panel'); 
-    p.style.display = p.style.display === 'block' ? 'none' : 'block'; 
-    if(p.style.display === 'none') renderBlog(); 
-}
+function toggleAdmin() { const el = document.getElementById('admin-panel'); el.style.display = el.style.display==='block'?'none':'block'; }
 
 function renderMenuEditor() {
-    const select = document.getElementById('new-p-cat');
-    const editor = document.getElementById('menu-editor');
-    select.innerHTML = "";
-    const build = (list, depth = 0) => {
+    const sel = document.getElementById('new-p-cat'); sel.innerHTML = "";
+    const build = (list, d=0) => {
         return list.map(m => {
-            select.innerHTML += `<option value="${m.id}">${"—".repeat(depth)} ${m.name}</option>`;
-            return `<div style="margin-left:${depth*20}px; margin-top:5px;"><input value="${m.name}" oninput="syncMenuName('${m.id}', this.value)"> <button onclick="addChildMenu('${m.id}')">+</button> <button onclick="deleteMenu('${m.id}')" style="color:red">x</button>${m.children ? build(m.children, depth + 1) : ''}</div>`;
+            sel.innerHTML += `<option value="${m.id}">${'—'.repeat(d)} ${m.name}</option>`;
+            return `<div style="margin-left:${d*20}px;margin-top:5px;"><input value="${m.name}" oninput="mName('${m.id}',this.value)"> <button onclick="addM('${m.id}')">+</button> <button onclick="delM('${m.id}')" style="color:red">x</button>${m.children?build(m.children,d+1):''}</div>`;
         }).join('');
     };
-    editor.innerHTML = build(menuData);
+    document.getElementById('menu-editor').innerHTML = build(menuData);
 }
-
-function syncMenuName(id, val) { const find = (list) => list.forEach(m => { if(m.id === id) m.name = val; if(m.children) find(m.children); }); find(menuData); }
-function addRootMenu() { menuData.push({ id: "m" + Date.now(), name: "新分类", children: [] }); renderMenuEditor(); }
-function addChildMenu(pid) { const find = (list) => list.forEach(m => { if(m.id === pid) m.children.push({ id: "m" + Date.now(), name: "子分类", children: [] }); else if(m.children) find(m.children); }); find(menuData); renderMenuEditor(); }
-function deleteMenu(id) { if(!confirm("确定删除分类？")) return; const filter = (list) => list.filter(m => { if(m.id === id) return false; if(m.children) m.children = filter(m.children); return true; }); menuData = filter(menuData); renderMenuEditor(); }
+function mName(id,v){ const f=l=>l.forEach(m=>{if(m.id===id)m.name=v; if(m.children)f(m.children)}); f(menuData); }
+function addRootMenu(){ menuData.push({id:'m'+Date.now(),name:'新分类',children:[]}); renderMenuEditor(); }
+function addM(pid){ const f=l=>l.forEach(m=>{if(m.id===pid)m.children.push({id:'m'+Date.now(),name:'子分类',children:[]}); else if(m.children)f(m.children)}); f(menuData); renderMenuEditor(); }
+function delM(id){ if(!confirm('删分类?'))return; const f=l=>l.filter(m=>{if(m.id===id)return false; m.children=f(m.children); return true;}); menuData=f(menuData); renderMenuEditor(); }
 
 function exportAndSave() {
     document.getElementById('admin-panel').style.display = 'none';
-    let currentHtml = document.documentElement.outerHTML;
-    const regex = /let blogConfig = \{[\s\S]*?\};[\s\S]*?let menuData = \[[\s\S]*?\];[\s\S]*?let postData = \[[\s\S]*?\];/;
-    const newData = `let blogConfig = ${JSON.stringify(blogConfig, null, 4)};\nlet menuData = ${JSON.stringify(menuData, null, 4)};\nlet postData = ${JSON.stringify(postData, null, 4)};`;
-    const finalContent = currentHtml.replace(regex, newData);
-    const blob = new Blob([finalContent], { type: 'text/html' });
+    const html = document.documentElement.outerHTML;
+    const dataStr = `let blogConfig = ${JSON.stringify(blogConfig, null, 4)};\nlet menuData = ${JSON.stringify(menuData, null, 4)};\nlet postData = ${JSON.stringify(postData, null, 4)};`;
+    const final = html.replace(/let blogConfig = \{[\s\S]*?\};[\s\S]*?let menuData = \[[\\s\\S]*?\];[\s\S]*?let postData = \[[\\s\\S]*?\];/, dataStr);
+    const blob = new Blob([final], {type:'text/html'});
     const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'index.html'; a.click();
 }
 init();
 </script>
-
-</body></html>
+</body>
+</html>
