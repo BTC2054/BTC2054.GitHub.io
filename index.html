@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
+<html lang="zh-CN"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2054的博客 - 递归分类版</title>
+    <title>BTC2054的博客</title>
     <style>
         :root { 
             --primary-color: #007bff;   
@@ -64,21 +62,28 @@
 <body>
 
 <div class="container">
-    <header id="blog-header"></header>
-    <nav id="blog-nav"></nav>
+    <header id="blog-header"><img src="https://www.btc2054.com/IMG/90368994.jpg" class="avatar"><h1>BTC 2054</h1><div class="subtitle">Salvation lies within</div></header>
+    <nav id="blog-nav"><ul class="nav-list"><li class="nav-item"><a class="nav-link" onclick="switchBlogView('all')">首页</a></li><li class="nav-item"><a class="nav-link" onclick="switchBlogView('m1')">日记</a><ul class="dropdown"><li><a onclick="switchBlogView('m1735640348731')">2025年12月</a></li><li><a onclick="switchBlogView('m1735640428580')">2024年12月</a></li></ul></li></ul></nav>
     <div id="blog-content-area">
-        <div class="post-list-wrapper" id="post-list"></div>
+        <div class="post-list-wrapper" id="post-list">
+        <a href="#" target="_blank" class="post-item">
+            <span class="post-title">博文修改功能已找回</span>
+            <div class="post-meta">
+                <span class="post-cat-tag">日记</span>
+                <span class="post-date">2025-12-25</span>
+            </div>
+        </a></div>
         <div id="blog-pagination" class="pagination"></div>
     </div>
     <footer style="text-align: center; margin-top: 60px; color: #bbb; font-size: 12px; padding-bottom: 40px;">
-        <div id="footer-info">© 2025 我的博客 | Powered by GitHub</div>
-        <div id="website-days" style="margin-top: 8px; color: #999;"></div>
+        <div id="footer-info"></div>
+        <div id="website-days" style="margin-top: 8px; color: #999;">博客已运行 656 天</div>
     </footer>
 </div>
 
-<div id="admin-trigger" onclick="toggleAdmin()">⚙ 管理博客</div>
+<div id="admin-trigger" onclick="toggleAdmin()">⚙ 版本 V1.0</div>
 
-<div id="admin-panel">
+<div id="admin-panel" style="display: none;">
     <div style="display: flex; justify-content: space-between; align-items: center;">
         <h2 style="margin:0">博客内容管理系统</h2>
         <button onclick="toggleAdmin()">预览并关闭</button>
@@ -89,16 +94,142 @@
         <div class="form-row">
             <input type="text" id="new-p-title" placeholder="博文标题" style="flex:3">
             <input type="date" id="new-p-date" style="flex:1">
-            <select id="new-p-cat" style="flex:1.5"></select>
+            <select id="new-p-cat" style="flex:1.5"><option value="m1"> 我的计划</option><option value="m1735640348731">— 2054养老计划</option></select>
             <input type="text" id="new-p-url" placeholder="链接 (URL)" style="flex:3">
             <button id="submit-btn" class="btn-main btn-add" onclick="handlePostSubmit()">添加文章</button>
             <button id="cancel-edit-btn" style="display:none; padding:10px; border-radius:4px; border:1px solid #ccc; cursor:pointer;" onclick="cancelEdit()">取消</button>
         </div>
-        <div id="admin-post-list" style="max-height: 250px; overflow-y: auto; background: #fff; border: 1px solid #ddd; margin-top:10px;"></div>
+        <div id="admin-post-list" style="max-height: 250px; overflow-y: auto; background: #fff; border: 1px solid #ddd; margin-top:10px;"><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
+            <span><b>[2025-12-31]</b> 2025年12月：定存第21/360期、+8.5%、首个里程碑</span>
+            <div>
+                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(20)">修改</button>
+                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(20,1);renderAdminPostList();}">删除</button>
+            </div>
+        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
+            <span><b>[2025-11-30]</b> 2025年11月：定存第20/360期、-0.41%</span>
+            <div>
+                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(19)">修改</button>
+                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(19,1);renderAdminPostList();}">删除</button>
+            </div>
+        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
+            <span><b>[2025-10-31]</b> 2025年10月：定存第19/360期、+0.87%、更新计划V1.1</span>
+            <div>
+                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(18)">修改</button>
+                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(18,1);renderAdminPostList();}">删除</button>
+            </div>
+        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
+            <span><b>[2025-09-30]</b> 2025年09月：定存第18/360期、+2.58%</span>
+            <div>
+                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(17)">修改</button>
+                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(17,1);renderAdminPostList();}">删除</button>
+            </div>
+        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
+            <span><b>[2025-08-31]</b> 2025年08月：定存第17/360期、+1.66%</span>
+            <div>
+                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(16)">修改</button>
+                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(16,1);renderAdminPostList();}">删除</button>
+            </div>
+        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
+            <span><b>[2025-07-31]</b> 2025年07月：定存第16/360期、+10.48%</span>
+            <div>
+                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(15)">修改</button>
+                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(15,1);renderAdminPostList();}">删除</button>
+            </div>
+        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
+            <span><b>[2025-06-30]</b> 2025年06月：定存第15/360期、+1.56%</span>
+            <div>
+                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(14)">修改</button>
+                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(14,1);renderAdminPostList();}">删除</button>
+            </div>
+        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
+            <span><b>[2025-05-31]</b> 2025年05月：定存第14/360期、+20.7%</span>
+            <div>
+                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(13)">修改</button>
+                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(13,1);renderAdminPostList();}">删除</button>
+            </div>
+        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
+            <span><b>[2025-04-30]</b> 2025年04月：定存第13/360期、-0.56%</span>
+            <div>
+                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(12)">修改</button>
+                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(12,1);renderAdminPostList();}">删除</button>
+            </div>
+        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
+            <span><b>[2025-03-31]</b> 2025年03月：定存第12/360期、+0.26%</span>
+            <div>
+                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(11)">修改</button>
+                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(11,1);renderAdminPostList();}">删除</button>
+            </div>
+        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
+            <span><b>[2025-02-28]</b> 2025年02月：定存第11/360期、-7.37%</span>
+            <div>
+                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(10)">修改</button>
+                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(10,1);renderAdminPostList();}">删除</button>
+            </div>
+        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
+            <span><b>[2025-01-31]</b> 2025年01月：定存第10/360期、+1%</span>
+            <div>
+                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(9)">修改</button>
+                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(9,1);renderAdminPostList();}">删除</button>
+            </div>
+        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
+            <span><b>[2024-12-31]</b> 2024年12月：定存第9/360期、回归定投本质？？</span>
+            <div>
+                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(8)">修改</button>
+                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(8,1);renderAdminPostList();}">删除</button>
+            </div>
+        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
+            <span><b>[2024-11-30]</b> 2024年11月：定存第8/360期、终于解套了!!!</span>
+            <div>
+                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(7)">修改</button>
+                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(7,1);renderAdminPostList();}">删除</button>
+            </div>
+        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
+            <span><b>[2024-10-31]</b> 2024年09-10月：定存第6-7/360期、持续被套中。。。</span>
+            <div>
+                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(6)">修改</button>
+                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(6,1);renderAdminPostList();}">删除</button>
+            </div>
+        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
+            <span><b>[2024-08-31]</b> 2024年08月：定存第5/360期、被套中</span>
+            <div>
+                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(5)">修改</button>
+                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(5,1);renderAdminPostList();}">删除</button>
+            </div>
+        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
+            <span><b>[2024-07-31]</b> 2024年07月：定存第4/360期、+5.18%</span>
+            <div>
+                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(4)">修改</button>
+                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(4,1);renderAdminPostList();}">删除</button>
+            </div>
+        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
+            <span><b>[2024-06-30]</b> 2024年06月：定存第3/360期、+2.97%</span>
+            <div>
+                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(3)">修改</button>
+                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(3,1);renderAdminPostList();}">删除</button>
+            </div>
+        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
+            <span><b>[2024-05-31]</b> 2024年05月：定存第2/360期、+1.10%</span>
+            <div>
+                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(2)">修改</button>
+                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(2,1);renderAdminPostList();}">删除</button>
+            </div>
+        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
+            <span><b>[2024-04-30]</b> 2024年04月：定存第1/360期、+7.04% </span>
+            <div>
+                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(1)">修改</button>
+                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(1,1);renderAdminPostList();}">删除</button>
+            </div>
+        </div><div style="border-bottom:1px solid #eee; padding:8px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13px;">
+            <span><b>[2024-04-01]</b> 2024年4月：定存初始篇</span>
+            <div>
+                <button class="admin-action-btn" style="color:#007bff;" onclick="startEdit(0)">修改</button>
+                <button class="admin-action-btn" style="color:red;" onclick="if(confirm('确定删除?')){postData.splice(0,1);renderAdminPostList();}">删除</button>
+            </div>
+        </div></div>
     </div>
     <div class="admin-section">
         <h3>2. 导航菜单管理</h3>
-        <div id="menu-editor"></div>
+        <div id="menu-editor"><div style="margin-left:0px; margin-top:5px;"><input value="我的计划" oninput="syncMenuName('m1', this.value)"> <button onclick="addChildMenu('m1')">+</button> <button onclick="deleteMenu('m1')" style="color:red">x</button><div style="margin-left:20px; margin-top:5px;"><input value="2054养老计划" oninput="syncMenuName('m1735640348731', this.value)"> <button onclick="addChildMenu('m1735640348731')">+</button> <button onclick="deleteMenu('m1735640348731')" style="color:red">x</button></div></div></div>
         <button onclick="addRootMenu()">+ 添加一级菜单</button>
     </div>
     <div class="admin-section" style="background: #e7f3ff;">
@@ -108,9 +239,152 @@
 
 <script id="data-storage">
 /* 数据存储区 - 这里保留了你文件里的内容 */
-let blogConfig = { "title": "2054的博客", "subtitle": "这里是博客副标题描述", "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" };
-let menuData = [{"id":"m1","name":"日记","children":[{"id":"m1735640348731","name":"2025年12月","children":[]},{"id":"m1735640428580","name":"2024年12月","children":[]}]}];
-let postData = [{"title":"博文修改功能已找回","date":"2025-12-25","categoryId":"m1","url":"#"}];
+let blogConfig = {
+    "title": "BTC 2054",
+    "subtitle": "Salvation lies within",
+    "avatar": "https://www.btc2054.com/IMG/90368994.jpg"
+};
+let menuData = [
+    {
+        "id": "m1",
+        "name": "我的计划",
+        "children": [
+            {
+                "id": "m1735640348731",
+                "name": "2054养老计划",
+                "children": []
+            }
+        ]
+    }
+];
+let postData = [
+    {
+        "title": "2024年4月：定存初始篇",
+        "date": "2024-04-01",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202404chushi/202604chushi.html"
+    },
+    {
+        "title": "2024年04月：定存第1/360期、+7.04% ",
+        "date": "2024-04-30",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202404/202404.html"
+    },
+    {
+        "title": "2024年05月：定存第2/360期、+1.10%",
+        "date": "2024-05-31",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202405/202405.html"
+    },
+    {
+        "title": "2024年06月：定存第3/360期、+2.97%",
+        "date": "2024-06-30",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202406/202406.html"
+    },
+    {
+        "title": "2024年07月：定存第4/360期、+5.18%",
+        "date": "2024-07-31",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202407/202407.html"
+    },
+    {
+        "title": "2024年08月：定存第5/360期、被套中",
+        "date": "2024-08-31",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202408/202408.html"
+    },
+    {
+        "title": "2024年09-10月：定存第6-7/360期、持续被套中。。。",
+        "date": "2024-10-31",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202409-10/202409-10.html"
+    },
+    {
+        "title": "2024年11月：定存第8/360期、终于解套了!!!",
+        "date": "2024-11-30",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202411/202411.html"
+    },
+    {
+        "title": "2024年12月：定存第9/360期、回归定投本质？？",
+        "date": "2024-12-31",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202412/202412.html"
+    },
+    {
+        "title": "2025年01月：定存第10/360期、+1%",
+        "date": "2025-01-31",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202501/202501.html"
+    },
+    {
+        "title": "2025年02月：定存第11/360期、-7.37%",
+        "date": "2025-02-28",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202502/202502.html"
+    },
+    {
+        "title": "2025年03月：定存第12/360期、+0.26%",
+        "date": "2025-03-31",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202503/202503.html"
+    },
+    {
+        "title": "2025年04月：定存第13/360期、-0.56%",
+        "date": "2025-04-30",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202504/202504.html"
+    },
+    {
+        "title": "2025年05月：定存第14/360期、+20.7%",
+        "date": "2025-05-31",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202505/202505.html"
+    },
+    {
+        "title": "2025年06月：定存第15/360期、+1.56%",
+        "date": "2025-06-30",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202506/202506.html"
+    },
+    {
+        "title": "2025年07月：定存第16/360期、+10.48%",
+        "date": "2025-07-31",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202507/202507.html"
+    },
+    {
+        "title": "2025年08月：定存第17/360期、+1.66%",
+        "date": "2025-08-31",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202508/202508.html"
+    },
+    {
+        "title": "2025年09月：定存第18/360期、+2.58%",
+        "date": "2025-09-30",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202509/202509.html"
+    },
+    {
+        "title": "2025年10月：定存第19/360期、+0.87%、更新计划V1.1",
+        "date": "2025-10-31",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202510/202510.html"
+    },
+    {
+        "title": "2025年11月：定存第20/360期、-0.41%",
+        "date": "2025-11-30",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202511/202511.html"
+    },
+    {
+        "title": "2025年12月：定存第21/360期、+8.5%、首个里程碑",
+        "date": "2025-12-31",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202512/202512.html"
+    }
+];
 
 let currentEditingIndex = null;
 let blogCurrentPage = 1;
@@ -128,7 +402,7 @@ function init() {
 function updateWebsiteDays() {
     const start = new Date('2024-03-15');
     const diff = Math.floor((new Date() - start) / (1000 * 60 * 60 * 24));
-    document.getElementById('website-days').innerText = `网站已运行 ${diff} 天`;
+    document.getElementById('website-days').innerText = `博客已运行 ${diff} 天`;
 }
 
 function getCategoryName(catId) {
@@ -313,5 +587,5 @@ function exportAndSave() {
 }
 init();
 </script>
-</body>
-</html>
+
+</body></html>
