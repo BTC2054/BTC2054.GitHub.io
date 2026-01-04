@@ -1,3 +1,6 @@
+**[博客更新纪要](https://www.btc2054.com/Blog/JishuFenxiang/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%BB%88%E6%9E%81%E5%BD%A2%E6%80%81/23746f9b8afe80289ea5c008e1ddfa5d.html)**
+
+
 1、纯技术小白、零基础   
 
 2、所有代码全部基于AI生成、初稿仅耗时10min    
