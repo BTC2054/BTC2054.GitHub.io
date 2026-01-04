@@ -17,7 +17,7 @@
         homeLink.id = "side-home-link";
         homeLink.href = "https://www.btc2054.com";
         homeLink.innerHTML = `
-            <span style="margin-right:8px;">←</span>返回首页
+            <span style="margin-right:8px;">←</span>首页
         `;
 
         // 4. 注入样式：去掉大背景，改用文字链接风格
@@ -50,4 +50,5 @@
     } else {
         window.addEventListener("load", addHomeLink);
     }
+
 })();
