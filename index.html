@@ -26,12 +26,11 @@
         .avatar { width: 108px; height: 108px; border-radius: 50%; border: 2px solid var(--border-color); margin-bottom: 8px; object-fit: cover; }
         h1 { margin: 3px 0; font-size: 34px; font-weight: 800; letter-spacing: 1px; }
         .subtitle { color: var(--text-gray); font-size: 15px; margin-bottom: 10px; }
-
         /* ✅ 核心优化：导航栏添加同款高亮背景色+圆角 */
         nav { 
-            background: var(--highlight-bg); border-radius: 8px;
+            background: var(--highlight-bg); border-radius: 6px;
             position: relative; z-index: 100; padding: 0 20px; 
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
         .nav-list { display: flex; justify-content: center; list-style: none; gap: 8px; padding: 8px 0; flex-wrap: wrap; }
         .nav-item { position: relative; }
@@ -39,12 +38,10 @@
         .nav-link:hover { color: var(--primary-color); background: rgba(255,255,255,0.6); }
         .nav-link.active { color: var(--primary-color); background: rgba(255,255,255,0.8); }
         .nav-link::after { display: none; }
-
         .dropdown { position: absolute; top: 100%; left: 0; background: #fff; min-width: 180px; white-space: nowrap; display: none; list-style: none; padding: 8px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-radius: 8px; margin-top: 4px; z-index: 99; }
         .nav-item:hover > .dropdown { display: block; }
         .dropdown a { display: block; padding: 10px 20px; text-decoration: none; color: var(--text-dark); font-size: 14px; cursor: pointer; border-radius: 4px; }
         .dropdown a:hover { background: var(--highlight-bg); color: var(--primary-color); padding-left: 20px; }
-
         .post-count { text-align: center; font-size: 14px; color: var(--text-gray); margin-bottom: 20px; padding: 8px; background: var(--highlight-bg); border-radius: 8px; }
         .post-list-wrapper { margin-top: 0; border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; }
         .post-item { display: flex; justify-content: space-between; align-items: center; padding: var(--post-spacing) 34px; border-bottom: 1px solid var(--border-color); text-decoration: none; color: inherit; }
@@ -55,16 +52,29 @@
         .post-meta { display: flex; align-items: center; gap: 15px; flex-shrink: 0; }
         .post-cat-tag { font-size: 12px; color: var(--text-gray); background: #f3f4f6; padding: 3px 10px; border-radius: 12px; }
         .post-date { color: var(--text-gray); font-size: 14px; font-family: monospace; }
-
         /* 分页样式 */
         .pagination { display: flex; justify-content: center; align-items: center; gap: 12px; margin-top: 25px; }
         .page-btn { padding: 8px 16px; border: 1px solid var(--border-color); background: #fff; cursor: pointer; border-radius: 8px; font-size: 14px; }
         .page-btn:hover:not(:disabled) { border-color: var(--primary-color); color: var(--primary-color); background: var(--primary-light); }
         .page-btn:disabled { opacity: 0.4; cursor: not-allowed; background: #f9fafb; }
-
         /* 管理面板样式 */
-        #admin-trigger { position: fixed; bottom: 25px; right: 25px; background: #1f2937; color: #fff; padding: 12px 18px; border-radius: 50px; cursor: pointer; font-size: 13px; z-index: 999; opacity: 0.6; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
-        #admin-trigger:hover { opacity: 1; transform: scale(1.05); }
+        #admin-trigger { 
+            position: fixed; bottom: 25px; right: 25px; 
+            /* 新增：默认隐身样式 */
+            background: var(--bg-color); color: transparent;
+            padding: 12px 18px; border-radius: 50px; cursor: pointer; font-size: 13px; z-index: 999; 
+            opacity: 0; box-shadow: none;
+            /* 优化过渡效果 */
+            transition: all 0.3s ease;
+        }
+        /* 新增：鼠标悬浮时显示 */
+        #admin-trigger:hover { 
+            opacity: 1; 
+            background: #1f2937; 
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transform: scale(1.05);
+        }
         #admin-panel { display: none; position: fixed; top: 2%; left: 2%; width: 96%; height: 96%; background: white; border: 1px solid var(--border-color); box-shadow: 0 0 40px rgba(0,0,0,0.15); z-index: 1000; overflow-y: auto; padding: 30px; border-radius: 12px; }
         .admin-section { margin-bottom: 20px; border: 1px solid var(--border-color); padding: 20px; border-radius: 12px; background: #f9fafb; }
         input, select { padding: 12px 14px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 14px; outline: none; }
@@ -79,11 +89,9 @@
         .save-btn:hover { background: var(--primary-hover); }
         .admin-action-btn { border: none; background: none; cursor: pointer; font-size: 14px; margin-left: 12px; padding: 4px 8px; border-radius: 4px; }
         .admin-action-btn:hover { background: #f3f4f6; }
-
         /* 博客配置编辑区 */
         .blog-config-form { display: flex; gap:12px; flex-wrap: wrap; margin-bottom:10px; }
         .blog-config-form input { flex:1; min-width:200px; }
-
         /* 空数据占位 */
         .empty-tip { text-align: center; padding: 40px 20px; color: var(--text-gray); font-size:15px; }
         
@@ -94,7 +102,6 @@
         #menu-editor button[style*="red"] { border-color:#f00; color:#f00; }
         #add-root-menu-btn { padding:6px 12px; border:1px solid #ddd; border-radius:4px; background:#fff; cursor:pointer; font-size:12px; margin-top:8px; }
         #menu-editor .code-input { width:60px; text-align:center; margin-right:8px; }
-
         /* ✅ 核心优化：录入博文表单 - 极致紧凑+必填贴右侧 */
         .post-form-row { display: flex; align-items: center; gap: 3px; margin-bottom: 8px !important; width: 100%; }
         .post-form-full { width: 100%; flex: unset !important; }
@@ -103,10 +110,40 @@
         /* ✅ 新增检索样式：和原有表单样式统一 */
         .search-input { flex: 0 0 220px; max-width: 220px; padding:12px 14px; border-radius:8px; border:1px solid var(--border-color); font-size:14px; }
         .search-select { flex: 0 0 180px; max-width: 180px; padding:12px 14px; border-radius:8px; border:1px solid var(--border-color); font-size:14px; }
+        
+        /* 新增：一键返回顶部按钮样式 */
+        #back-to-top {
+            position: fixed;
+            bottom: 80px; /* 位于管理按钮上方 */
+            right: 25px;
+            background: var(--primary-color);
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            font-size: 20px;
+        }
+        /* 滚动后显示返回顶部按钮 */
+        #back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        #back-to-top:hover {
+            background: var(--primary-hover);
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
-
 <div class="container">
     <header id="blog-header"></header>
     <!-- ✅ 带高亮背景的导航栏 -->
@@ -117,13 +154,14 @@
         <div id="blog-pagination" class="pagination"></div>
     </div>
     <footer style="text-align: center; margin-top: 60px; color: #9ca3af; font-size: 13px; padding-bottom: 20px;">
-        <div id="footer-info">© 2024-2025 BTC2054 版权所有 | 保留所有权利</div>
+        <div id="footer-info"> BTC 2054  | Salvation lies within</div>
         <div id="website-days" style="margin-top: 8px; color: #9ca3af;"></div>
     </footer>
 </div>
+<!-- 新增：一键返回顶部按钮 -->
+<div id="back-to-top" onclick="scrollToTop()">↑</div>
 
 <div id="admin-trigger" onclick="toggleAdmin()">⚙ 博客管理 V1.1</div>
-
 <div id="admin-panel">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom:20px;">
         <h2 style="margin:0; color:var(--text-dark);">博客后台管理</h2>
@@ -141,7 +179,6 @@
             <button class="btn-main btn-add" onclick="saveBlogConfig()">保存配置</button>
         </div>
     </div>
-
     <!-- ✅ 极致紧凑版录入博文表单 + 新增检索功能 -->
     <div class="admin-section" id="admin-entry-form">
         <h3 id="form-title" style="margin-bottom:12px;">📝 录入博文</h3>
@@ -188,7 +225,6 @@
         <button class="save-btn" onclick="exportAndSave()">💾 保存所有数据并下载 index.html</button>
     </div>
 </div>
-
 <script id="data-storage">
 /* 数据存储区 - 编码式菜单数据 */
 let blogConfig = {"title": "BTC 2054", "subtitle": "Salvation lies within", "avatar": "https://www.btc2054.com/IMG/90368994.jpg"};
@@ -221,11 +257,10 @@ let postData = [
     {"title": "2025年11月：定存第20/360期、-0.41%", "date": "2025-11-30", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202511/202511.html"},
     {"title": "2025年12月：定存第21/360期、+8.5%、首个里程碑", "date": "2025-12-31", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202512/202512.html"}
 ];
-
-let blogPage = 1, adminPage = 1, pageSize = 20
+let blogPage = 1, adminPage = 1, pageSize = 20; // 后台分页大小保持20不变
+const blogPageSize = 50; // 新增：前台分页大小设置为50
 let currentEditingIndex = null;
 let currentViewCatId = 'all';
-
 // 初始化入口
 function init() { 
     renderBlog(); 
@@ -234,10 +269,11 @@ function init() {
     initBlogConfigForm();
     const start = new Date('2024-03-15');
     const diff = Math.floor((new Date() - start) / (1000 * 60 * 60 * 24));
-    document.getElementById('website-days').innerText = `博客已稳定运行 ${diff} 天 ✨`;
+    document.getElementById('website-days').innerText = `博客已运行 ${diff} 天 ✨`;
     document.getElementById('new-p-date').valueAsDate = new Date();
+    // 新增：初始化返回顶部按钮监听
+    initBackToTop();
 }
-
 // 根据分类ID获取分类名称
 function getCategoryName(catId) {
     let name = "未分类";
@@ -248,7 +284,6 @@ function getCategoryName(catId) {
     find(menuData); 
     return name;
 }
-
 // ========== 前台博客核心逻辑 ==========
 function renderBlog() {
     document.getElementById('blog-header').innerHTML = `
@@ -279,13 +314,11 @@ function renderChildMenu(list) {
         </li>
     `).join('');
 }
-
 function switchView(id) { 
     currentViewCatId = id; 
     blogPage = 1; 
     renderBlog();
 }
-
 function displayBlogPosts() {
     const sortedPosts = [...postData].sort((a,b)=>new Date(b.date)-new Date(a.date));
     const filteredPosts = currentViewCatId === 'all' ? sortedPosts : sortedPosts.filter(p => {
@@ -305,9 +338,9 @@ function displayBlogPosts() {
     const totalCount = filteredPosts.length;
     const catName = currentViewCatId === 'all' ? '全站' : getCategoryName(currentViewCatId);
     document.getElementById('post-count').innerText = `${catName}共收录 ${totalCount} 篇文章 | 按发布时间倒序排列`;
-    const totalPages = Math.ceil(totalCount / pageSize) || 1;
-    const paginatedPosts = filteredPosts.slice((blogPage-1)*pageSize, blogPage*pageSize);
-
+    // 修改：前台使用50条分页，后台保持20条不变
+    const totalPages = Math.ceil(totalCount / blogPageSize) || 1;
+    const paginatedPosts = filteredPosts.slice((blogPage-1)*blogPageSize, blogPage*blogPageSize);
     if (totalCount === 0) {
         document.getElementById('post-list').innerHTML = `<div class="empty-tip">📂 暂无文章数据，敬请期待</div>`;
     } else {
@@ -321,20 +354,19 @@ function displayBlogPosts() {
             </a>
         `).join('');
     }
-    document.getElementById('blog-pagination').innerHTML = totalCount > pageSize ? `
+    // 修改：前台分页逻辑使用blogPageSize判断
+    document.getElementById('blog-pagination').innerHTML = totalCount > blogPageSize ? `
         <button class="page-btn" onclick="blogPage--;displayBlogPosts()" ${blogPage===1?'disabled':''}>← 上一页</button>
         <span style="font-size:14px; color:var(--text-gray);">${blogPage}/${totalPages}</span>
         <button class="page-btn" onclick="blogPage++;displayBlogPosts()" ${blogPage===totalPages?'disabled':''}>下一页 →</button>
     ` : '';
 }
-
 // ========== 后台管理核心逻辑 + ✅ 新增检索功能 ==========
 // ✅ 核心新增：检索博文（标题模糊+分类筛选）
 function searchPosts() {
     adminPage = 1; // 检索时重置页码到第一页
     renderAdminPostList(true); // 传入true表示执行检索
 }
-
 function renderAdminPostList(isSearch = false) {
     let sortedPosts = [...postData].sort((a,b)=>new Date(b.date)-new Date(a.date));
     
@@ -352,11 +384,10 @@ function renderAdminPostList(isSearch = false) {
             sortedPosts = sortedPosts.filter(post => post.categoryId === searchCatId);
         }
     }
-
     const totalCount = sortedPosts.length;
+    // 后台保持20条分页不变
     const totalPages = Math.ceil(totalCount / pageSize) || 1;
     const paginatedPosts = sortedPosts.slice((adminPage-1)*pageSize, adminPage*pageSize);
-
     if (totalCount === 0) {
         document.getElementById('admin-post-list').innerHTML = `<div class="empty-tip">🔍 未检索到匹配的博文</div>`;
     } else {
@@ -378,7 +409,6 @@ function renderAdminPostList(isSearch = false) {
         <button class="page-btn" onclick="adminPage++;renderAdminPostList(true)" ${adminPage===totalPages?'disabled':''}>下一页</button>
     ` : '';
 }
-
 function deletePost(index) {
     if(confirm('⚠️ 确定要删除这篇文章吗？删除后无法恢复！')){
         postData.splice(index,1);
@@ -387,7 +417,6 @@ function deletePost(index) {
         alert('✅ 文章删除成功');
     }
 }
-
 function handlePostSubmit() {
     const title = document.getElementById('new-p-title').value.trim();
     const date = document.getElementById('new-p-date').value;
@@ -408,7 +437,6 @@ function handlePostSubmit() {
     renderAdminPostList(true); 
     renderBlog();
 }
-
 function startEdit(index) {
     currentEditingIndex = index; 
     const post = postData[index];
@@ -421,7 +449,6 @@ function startEdit(index) {
     document.getElementById('submit-btn').className = "btn-main btn-edit";
     document.getElementById('cancel-edit-btn').style.display = "block";
 }
-
 function cancelEdit() {
     currentEditingIndex = null; 
     document.getElementById('new-p-title').value = "";
@@ -432,12 +459,10 @@ function cancelEdit() {
     document.getElementById('submit-btn').className = "btn-main btn-add";
     document.getElementById('cancel-edit-btn').style.display = "none";
 }
-
 function toggleAdmin() { 
     const panel = document.getElementById('admin-panel');
     panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
 }
-
 // ========== 编码式菜单管理核心逻辑 ==========
 function renderMenuEditor() {
     const sel = document.getElementById('new-p-cat'); sel.innerHTML = "";
@@ -460,7 +485,6 @@ function renderMenuEditor() {
     };
     document.getElementById('menu-editor').innerHTML = build(menuData);
 }
-
 function mName(id,v){ const f=l=>l.forEach(m=>{if(m.id===id)m.name=v; if(m.children)f(m.children)}); f(menuData); renderBlog();}
 function addRootMenu(){ 
     const maxCode = menuData.length > 0 ? Math.max(...menuData.map(m => parseInt(m.code))) : 0;
@@ -479,7 +503,6 @@ function addM(pid){
     renderMenuEditor(); 
 }
 function delM(id){ if(!confirm('删分类?'))return; const f=l=>l.filter(m=>{if(m.id===id)return false; m.children=f(m.children); return true;}); menuData=f(menuData); renderMenuEditor(); renderBlog(); }
-
 function updateMenuCode(menuId, newCode) {
     if(!newCode) return alert('❌ 编码不能为空');
     const findMenu = (list) => list.forEach(m => {
@@ -490,7 +513,6 @@ function updateMenuCode(menuId, newCode) {
     resetMenuStructureByCode();
     alert('✅ 编码修改成功，菜单层级已自动更新');
 }
-
 function resetMenuStructureByCode() {
     const allMenus = [];
     const flattenMenus = (list) => list.forEach(m => {
@@ -498,10 +520,8 @@ function resetMenuStructureByCode() {
         if(m.children) flattenMenus(m.children);
     });
     flattenMenus(menuData);
-
     menuData.forEach(m => m.children = []);
     const rootMenus = [];
-
     allMenus.forEach(menu => {
         const codeArr = menu.code.split('-');
         if(codeArr.length === 1) {
@@ -520,13 +540,11 @@ function resetMenuStructureByCode() {
             }
         }
     });
-
     menuData.length = 0;
     menuData.push(...sortMenusByCode(rootMenus));
     renderMenuEditor();
     renderBlog();
 }
-
 function sortMenusByCode(menuList) {
     return [...menuList].sort((a, b) => {
         const aCodes = a.code.split('-').map(Number);
@@ -540,7 +558,6 @@ function sortMenusByCode(menuList) {
         return 0;
     });
 }
-
 // ========== 博客配置管理 ==========
 function initBlogConfigForm() {
     document.getElementById('config-title').value = blogConfig.title;
@@ -555,13 +572,12 @@ function saveBlogConfig() {
     renderBlog();
     alert('✅ 博客基础信息修改成功！');
 }
-
 // ========== 导出保存逻辑 ==========
 function exportAndSave() {
     document.getElementById('admin-panel').style.display = 'none';
     const htmlContent = document.documentElement.outerHTML;
-    const dataString = `let blogConfig = ${JSON.stringify(blogConfig, null, 4)};\nlet menuData = ${JSON.stringify(menuData, null, 4)};\nlet postData = ${JSON.stringify(postData, null, 4)};`;
-    const finalHtml = htmlContent.replace(/let blogConfig = \{[\s\S]*?\};[\s\S]*?let menuData = \[[\s\S]*?\];[\s\S]*?let postData = \[[\s\S]*?\];/, dataString);
+    const dataString = `let blogConfig = ${JSON.stringify(blogConfig, null, 4)};\nlet menuData = ${JSON.stringify(menuData, null, 4)};\nlet postData = ${JSON.stringify(postData, null, 4)};\nlet blogPage = 1, adminPage = 1, pageSize = 20;\nconst blogPageSize = 50;\nlet currentEditingIndex = null;\nlet currentViewCatId = 'all';`;
+    const finalHtml = htmlContent.replace(/let blogConfig = \{[\s\S]*?\};[\s\S]*?let menuData = \[[\s\S]*?\];[\s\S]*?let postData = \[[\s\S]*?\];[\s\S]*?let blogPage = 1, adminPage = 1, pageSize = 20[\s\S]*?let currentEditingIndex = null;[\s\S]*?let currentViewCatId = 'all';/, dataString);
     const blob = new Blob([finalHtml], {type: 'text/html; charset=utf-8'});
     const downloadLink = document.createElement('a'); 
     downloadLink.href = URL.createObjectURL(blob); 
@@ -570,7 +586,25 @@ function exportAndSave() {
     URL.revokeObjectURL(downloadLink.href);
     alert(`✅ 数据保存成功！\n文件名：${downloadLink.download}\n已自动下载到本地，请妥善备份`);
 }
-
+// ========== 新增：一键返回顶部功能 ==========
+function initBackToTop() {
+    const backToTopBtn = document.getElementById('back-to-top');
+    // 监听滚动事件，控制按钮显示/隐藏
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) { // 滚动超过300px时显示
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    });
+}
+// 平滑滚动到顶部
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
 window.onload = init;
 </script>
 </body>
