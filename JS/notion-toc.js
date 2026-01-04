@@ -1,48 +1,80 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // 1. 抓取页面中所有的 h1, h2, h3 标题
-    // 注意：排除掉页面最顶部的标题 .page-title
-    const allHeadings = Array.from(document.querySelectorAll("h1, h2, h3"))
-                             .filter(h => !h.classList.contains('page-title'));
-    
-    if (allHeadings.length === 0) return;
+(function() {
+    // 1. 打印日志方便在 F12 控制台确认脚本是否加载
+    console.log("Notion-TOC 脚本已启动...");
 
-    // 2. 创建 TOC 容器（参考 Notion 的结构）
-    const tocBlock = document.createElement("div");
-    tocBlock.className = "notion-table_of_contents-block";
-    tocBlock.style.margin = "20px 0";
-    tocBlock.innerHTML = '<div style="font-weight:600; margin-bottom:8px; opacity:0.6;">目录</div>';
+    function createSideTOC() {
+        // 如果已经存在目录，就不重复创建
+        if (document.getElementById("custom-side-toc")) return;
 
-    // 3. 循环标题生成链接
-    allHeadings.forEach((heading) => {
-        // 如果标题没有 ID，动态生成一个（Notion 导出通常都有 ID）
-        if (!heading.id) {
-            heading.id = encodeURIComponent(heading.innerText);
-        }
-
-        const level = heading.tagName.toLowerCase(); // h1, h2, h3
-        const indentLevel = level === 'h1' ? 0 : (level === 'h2' ? 1 : 2);
+        // 2. 这里的选择器增加了对 Notion 结构的兼容
+        // 抓取所有标题，排除掉页面大标题
+        const headings = Array.from(document.querySelectorAll("h1, h2, h3"))
+                              .filter(h => h.innerText.trim() !== "" && !h.classList.contains('page-title'));
         
-        // 创建 Notion 样式的目录项
-        const item = document.createElement("div");
-        item.className = `table_of_contents-item table_of_contents-indent-${indentLevel}`;
-        
-        const link = document.createElement("a");
-        link.className = "table_of_contents-link";
-        link.href = "#" + heading.id;
-        link.innerText = heading.innerText;
-        
-        item.appendChild(link);
-        tocBlock.appendChild(item);
-    });
+        console.log("扫描到的标题数量:", headings.length);
+        if (headings.length === 0) return;
 
-    // 4. 插入到页面合适的位置
-    // 根据你的源码，插入在第一个 <hr> 分割线前面效果最好
-    const firstHr = document.querySelector("hr");
-    const header = document.querySelector("header");
-    
-    if (firstHr) {
-        firstHr.parentNode.insertBefore(tocBlock, firstHr);
-    } else if (header) {
-        header.after(tocBlock);
+        // 3. 创建目录容器
+        const tocSideBar = document.createElement("div");
+        tocSideBar.id = "custom-side-toc";
+        
+        // 4. 样式注入
+        const style = document.createElement("style");
+        style.innerHTML = `
+            #custom-side-toc {
+                position: fixed;
+                top: 100px;
+                left: calc(50% + 480px); /* 在 900px 正文右侧 */
+                width: 240px;
+                max-height: 80vh;
+                overflow-y: auto;
+                padding: 15px;
+                background: white;
+                border-left: 1px solid #eee;
+                font-family: sans-serif;
+                z-index: 9999;
+                text-align: left;
+            }
+            .toc-item {
+                display: block;
+                color: #555;
+                text-decoration: none;
+                font-size: 14px;
+                padding: 4px 0;
+                line-height: 1.4;
+                border-bottom: 1px solid #f9f9f9;
+            }
+            .toc-item:hover { color: #2eaadc; background: #fcfcfc; }
+            .toc-h2 { padding-left: 15px; font-size: 13px; }
+            .toc-h3 { padding-left: 30px; font-size: 12px; }
+            
+            @media (max-width: 1400px) {
+                #custom-side-toc { display: none; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // 5. 组装 HTML
+        let html = '<div style="font-weight:bold;margin-bottom:10px;color:#888;">目录</div>';
+        headings.forEach(h => {
+            // 如果标题没 ID，随机给一个
+            if (!h.id) h.id = "h-" + Math.random().toString(36).substring(2, 7);
+            const level = h.tagName.toLowerCase();
+            html += `<a href="#${h.id}" class="toc-item toc-${level}">${h.innerText.trim()}</a>`;
+        });
+        
+        tocSideBar.innerHTML = html;
+        document.body.appendChild(tocSideBar);
+        console.log("目录渲染完成！");
     }
-});
+
+    // 6. 执行时机：尝试多次执行，防止因加载慢导致抓不到标题
+    if (document.readyState === "complete") {
+        createSideTOC();
+    } else {
+        window.addEventListener("load", createSideTOC);
+    }
+    
+    // 兜底方案：2秒后再运行一次（应对部分异步内容）
+    setTimeout(createSideTOC, 2000);
+})();
