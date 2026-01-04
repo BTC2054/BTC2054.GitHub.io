@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
+<html lang="zh-CN"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BTC2054的博客</title>
@@ -145,24 +143,227 @@
 </head>
 <body>
 <div class="container">
-    <header id="blog-header"></header>
+    <header id="blog-header">
+        <img src="https://www.btc2054.com/IMG/90368994.jpg" class="avatar">
+        <h1>BTC 2054</h1>
+        <div class="subtitle">Salvation lies within</div>
+    </header>
     <!-- ✅ 带高亮背景的导航栏 -->
-    <nav id="blog-nav"></nav>
-    <div id="post-count" class="post-count"></div>
+    <nav id="blog-nav"><ul class="nav-list"><li class="nav-item">
+            <a class="nav-link " onclick="currentViewCatId='all';blogPage=1;renderBlog()">首页</a></li><li class="nav-item">
+            <a class="nav-link " onclick="switchView('m2')">我的计划</a><ul class="dropdown">
+        <li><a class="" onclick="switchView('m1735640348731')">2054养老计划</a>
+            
+        </li>
+    </ul></li><li class="nav-item">
+            <a class="nav-link " onclick="switchView('m1767531461774')">技术分享</a></li></ul></nav>
+    <div id="post-count" class="post-count">全站共收录 24 篇文章 | 按发布时间倒序排列</div>
     <div id="blog-content-area">
-        <div class="post-list-wrapper" id="post-list"></div>
+        <div class="post-list-wrapper" id="post-list">
+            <a href="https://www.btc2054.com/Blog/JishuFenxiang/Notion%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%86%E5%89%B2%E7%BA%BF/22a46f9b8afe80bab60be71911afd6fa.html" target="_blank" class="post-item">
+                <span class="post-title" title="Notion自定义分割线颜色、长短、粗细">Notion自定义分割线颜色、长短、粗细</span>
+                <div class="post-meta">
+                    <span class="post-cat-tag">技术分享</span>
+                    <span class="post-date">2026-01-04</span>
+                </div>
+            </a>
+        
+            <a href="https://www.btc2054.com/Blog/JishuFenxiang/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%BB%88%E6%9E%81%E5%BD%A2%E6%80%81/23746f9b8afe80289ea5c008e1ddfa5d.html" target="_blank" class="post-item">
+                <span class="post-title" title="个人博客的终极形态？">个人博客的终极形态？</span>
+                <div class="post-meta">
+                    <span class="post-cat-tag">技术分享</span>
+                    <span class="post-date">2026-01-04</span>
+                </div>
+            </a>
+        
+            <a href="https://www.btc2054.com/Blog/JishuFenxiang/Notion%E6%96%87%E6%9C%AC%E5%AD%97%E4%BD%93%E5%B1%85%E4%B8%AD/22746f9b8afe8011b2a8da44520ac9e1.html" target="_blank" class="post-item">
+                <span class="post-title" title="Notion文本字体居中">Notion文本字体居中</span>
+                <div class="post-meta">
+                    <span class="post-cat-tag">技术分享</span>
+                    <span class="post-date">2026-01-04</span>
+                </div>
+            </a>
+        
+            <a href="https://www.btc2054.com/Blog/2054YangLao/202512/202512.html" target="_blank" class="post-item">
+                <span class="post-title" title="2025年12月：定存第21/360期、+8.5%、首个里程碑">2025年12月：定存第21/360期、+8.5%、首个里程碑</span>
+                <div class="post-meta">
+                    <span class="post-cat-tag">2054养老计划</span>
+                    <span class="post-date">2025-12-31</span>
+                </div>
+            </a>
+        
+            <a href="https://www.btc2054.com/Blog/2054YangLao/202511/202511.html" target="_blank" class="post-item">
+                <span class="post-title" title="2025年11月：定存第20/360期、-0.41%">2025年11月：定存第20/360期、-0.41%</span>
+                <div class="post-meta">
+                    <span class="post-cat-tag">2054养老计划</span>
+                    <span class="post-date">2025-11-30</span>
+                </div>
+            </a>
+        
+            <a href="https://www.btc2054.com/Blog/2054YangLao/202510/202510.html" target="_blank" class="post-item">
+                <span class="post-title" title="2025年10月：定存第19/360期、+0.87%、更新计划V1.1">2025年10月：定存第19/360期、+0.87%、更新计划V1.1</span>
+                <div class="post-meta">
+                    <span class="post-cat-tag">2054养老计划</span>
+                    <span class="post-date">2025-10-31</span>
+                </div>
+            </a>
+        
+            <a href="https://www.btc2054.com/Blog/2054YangLao/202509/202509.html" target="_blank" class="post-item">
+                <span class="post-title" title="2025年09月：定存第18/360期、+2.58%">2025年09月：定存第18/360期、+2.58%</span>
+                <div class="post-meta">
+                    <span class="post-cat-tag">2054养老计划</span>
+                    <span class="post-date">2025-09-30</span>
+                </div>
+            </a>
+        
+            <a href="https://www.btc2054.com/Blog/2054YangLao/202508/202508.html" target="_blank" class="post-item">
+                <span class="post-title" title="2025年08月：定存第17/360期、+1.66%">2025年08月：定存第17/360期、+1.66%</span>
+                <div class="post-meta">
+                    <span class="post-cat-tag">2054养老计划</span>
+                    <span class="post-date">2025-08-31</span>
+                </div>
+            </a>
+        
+            <a href="https://www.btc2054.com/Blog/2054YangLao/202507/202507.html" target="_blank" class="post-item">
+                <span class="post-title" title="2025年07月：定存第16/360期、+10.48%">2025年07月：定存第16/360期、+10.48%</span>
+                <div class="post-meta">
+                    <span class="post-cat-tag">2054养老计划</span>
+                    <span class="post-date">2025-07-31</span>
+                </div>
+            </a>
+        
+            <a href="https://www.btc2054.com/Blog/2054YangLao/202506/202506.html" target="_blank" class="post-item">
+                <span class="post-title" title="2025年06月：定存第15/360期、+1.56%">2025年06月：定存第15/360期、+1.56%</span>
+                <div class="post-meta">
+                    <span class="post-cat-tag">2054养老计划</span>
+                    <span class="post-date">2025-06-30</span>
+                </div>
+            </a>
+        
+            <a href="https://www.btc2054.com/Blog/2054YangLao/202505/202505.html" target="_blank" class="post-item">
+                <span class="post-title" title="2025年05月：定存第14/360期、+20.7%">2025年05月：定存第14/360期、+20.7%</span>
+                <div class="post-meta">
+                    <span class="post-cat-tag">2054养老计划</span>
+                    <span class="post-date">2025-05-31</span>
+                </div>
+            </a>
+        
+            <a href="https://www.btc2054.com/Blog/2054YangLao/202504/202504.html" target="_blank" class="post-item">
+                <span class="post-title" title="2025年04月：定存第13/360期、-0.56%">2025年04月：定存第13/360期、-0.56%</span>
+                <div class="post-meta">
+                    <span class="post-cat-tag">2054养老计划</span>
+                    <span class="post-date">2025-04-30</span>
+                </div>
+            </a>
+        
+            <a href="https://www.btc2054.com/Blog/2054YangLao/202503/202503.html" target="_blank" class="post-item">
+                <span class="post-title" title="2025年03月：定存第12/360期、+0.26%">2025年03月：定存第12/360期、+0.26%</span>
+                <div class="post-meta">
+                    <span class="post-cat-tag">2054养老计划</span>
+                    <span class="post-date">2025-03-31</span>
+                </div>
+            </a>
+        
+            <a href="https://www.btc2054.com/Blog/2054YangLao/202502/202502.html" target="_blank" class="post-item">
+                <span class="post-title" title="2025年02月：定存第11/360期、-7.37%">2025年02月：定存第11/360期、-7.37%</span>
+                <div class="post-meta">
+                    <span class="post-cat-tag">2054养老计划</span>
+                    <span class="post-date">2025-02-28</span>
+                </div>
+            </a>
+        
+            <a href="https://www.btc2054.com/Blog/2054YangLao/202501/202501.html" target="_blank" class="post-item">
+                <span class="post-title" title="2025年01月：定存第10/360期、+1%">2025年01月：定存第10/360期、+1%</span>
+                <div class="post-meta">
+                    <span class="post-cat-tag">2054养老计划</span>
+                    <span class="post-date">2025-01-31</span>
+                </div>
+            </a>
+        
+            <a href="https://www.btc2054.com/Blog/2054YangLao/202412/202412.html" target="_blank" class="post-item">
+                <span class="post-title" title="2024年12月：定存第9/360期、回归定投本质？？">2024年12月：定存第9/360期、回归定投本质？？</span>
+                <div class="post-meta">
+                    <span class="post-cat-tag">2054养老计划</span>
+                    <span class="post-date">2024-12-31</span>
+                </div>
+            </a>
+        
+            <a href="https://www.btc2054.com/Blog/2054YangLao/202411/202411.html" target="_blank" class="post-item">
+                <span class="post-title" title="2024年11月：定存第8/360期、终于解套了!!!">2024年11月：定存第8/360期、终于解套了!!!</span>
+                <div class="post-meta">
+                    <span class="post-cat-tag">2054养老计划</span>
+                    <span class="post-date">2024-11-30</span>
+                </div>
+            </a>
+        
+            <a href="https://www.btc2054.com/Blog/2054YangLao/202409-10/202409-10.html" target="_blank" class="post-item">
+                <span class="post-title" title="2024年09-10月：定存第6-7/360期、持续被套中。。。">2024年09-10月：定存第6-7/360期、持续被套中。。。</span>
+                <div class="post-meta">
+                    <span class="post-cat-tag">2054养老计划</span>
+                    <span class="post-date">2024-10-31</span>
+                </div>
+            </a>
+        
+            <a href="https://www.btc2054.com/Blog/2054YangLao/202408/202408.html" target="_blank" class="post-item">
+                <span class="post-title" title="2024年08月：定存第5/360期、被套中">2024年08月：定存第5/360期、被套中</span>
+                <div class="post-meta">
+                    <span class="post-cat-tag">2054养老计划</span>
+                    <span class="post-date">2024-08-31</span>
+                </div>
+            </a>
+        
+            <a href="https://www.btc2054.com/Blog/2054YangLao/202407/202407.html" target="_blank" class="post-item">
+                <span class="post-title" title="2024年07月：定存第4/360期、+5.18%">2024年07月：定存第4/360期、+5.18%</span>
+                <div class="post-meta">
+                    <span class="post-cat-tag">2054养老计划</span>
+                    <span class="post-date">2024-07-31</span>
+                </div>
+            </a>
+        
+            <a href="https://www.btc2054.com/Blog/2054YangLao/202406/202406.html" target="_blank" class="post-item">
+                <span class="post-title" title="2024年06月：定存第3/360期、+2.97%">2024年06月：定存第3/360期、+2.97%</span>
+                <div class="post-meta">
+                    <span class="post-cat-tag">2054养老计划</span>
+                    <span class="post-date">2024-06-30</span>
+                </div>
+            </a>
+        
+            <a href="https://www.btc2054.com/Blog/2054YangLao/202405/202405.html" target="_blank" class="post-item">
+                <span class="post-title" title="2024年05月：定存第2/360期、+1.10%">2024年05月：定存第2/360期、+1.10%</span>
+                <div class="post-meta">
+                    <span class="post-cat-tag">2054养老计划</span>
+                    <span class="post-date">2024-05-31</span>
+                </div>
+            </a>
+        
+            <a href="https://www.btc2054.com/Blog/2054YangLao/202404/202404.html" target="_blank" class="post-item">
+                <span class="post-title" title="2024年04月：定存第1/360期、+7.04% ">2024年04月：定存第1/360期、+7.04% </span>
+                <div class="post-meta">
+                    <span class="post-cat-tag">2054养老计划</span>
+                    <span class="post-date">2024-04-30</span>
+                </div>
+            </a>
+        
+            <a href="https://www.btc2054.com/Blog/2054YangLao/202404chushi/202604chushi.html" target="_blank" class="post-item">
+                <span class="post-title" title="2024年4月：定存初始篇">2024年4月：定存初始篇</span>
+                <div class="post-meta">
+                    <span class="post-cat-tag">2054养老计划</span>
+                    <span class="post-date">2024-04-01</span>
+                </div>
+            </a>
+        </div>
         <div id="blog-pagination" class="pagination"></div>
     </div>
     <footer style="text-align: center; margin-top: 60px; color: #9ca3af; font-size: 13px; padding-bottom: 20px;">
         <div id="footer-info"> BTC 2054  | Salvation lies within</div>
-        <div id="website-days" style="margin-top: 8px; color: #9ca3af;"></div>
+        <div id="website-days" style="margin-top: 8px; color: #9ca3af;">博客已运行 660 天 ✨</div>
     </footer>
 </div>
 <!-- 新增：一键返回顶部按钮 -->
-<div id="back-to-top" onclick="scrollToTop()">↑</div>
+<div id="back-to-top" onclick="scrollToTop()" class="visible">↑</div>
 
 <div id="admin-trigger" onclick="toggleAdmin()">⚙ 博客管理 V3.2</div>
-<div id="admin-panel">
+<div id="admin-panel" style="display: none;">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom:20px;">
         <h2 style="margin:0; color:var(--text-dark);">博客后台管理</h2>
         <button class="page-btn" onclick="toggleAdmin()">✕ 关闭面板</button>
@@ -184,23 +385,21 @@
         <h3 id="form-title" style="margin-bottom:12px;">📝 录入博文</h3>
         <!-- 标题行：必填贴右侧，无换行 -->
         <div class="post-form-row">
-            <input type="text" id="new-p-title" placeholder="博文标题" required class="post-form-full">
+            <input type="text" id="new-p-title" placeholder="博文标题" required="" class="post-form-full">
             <span class="required-tip">*</span>
         </div>
         <!-- 链接行：必填贴右侧，无换行 -->
         <div class="post-form-row">
-            <input type="text" id="new-p-url" placeholder="博文链接URL" required class="post-form-full">
+            <input type="text" id="new-p-url" placeholder="博文链接URL" required="" class="post-form-full">
             <span class="required-tip">*</span>
         </div>
         <!-- 时间分类行：极致紧凑 + ✅ 新增检索栏（发布按钮左侧） -->
         <div class="post-form-row">
             <input type="date" id="new-p-date" class="post-form-short">
-            <select id="new-p-cat" class="post-form-short"></select>
+            <select id="new-p-cat" class="post-form-short"><option value="m1"> 首页</option><option value="m2"> 我的计划</option><option value="m1735640348731">— 2054养老计划</option><option value="m1767531461774"> 新分类</option></select>
             <!-- ✅ 核心新增：检索栏 - 标题检索 + 分类筛选，放在发布按钮左侧 -->
             <input type="text" id="search-title" class="search-input" placeholder="🔍 检索博文标题" oninput="searchPosts()">
-            <select id="search-cat" class="search-select" onchange="searchPosts()">
-                <option value="all">📂 全部分类</option>
-            </select>
+            <select id="search-cat" class="search-select" onchange="searchPosts()"><option value="all">📂 全部分类</option><option value="m1"> 首页</option><option value="m2"> 我的计划</option><option value="m1735640348731">— 2054养老计划</option><option value="m1767531461774"> 新分类</option></select>
             <div class="post-form-btn-group">
                 <button id="submit-btn" class="btn-main btn-add" onclick="handlePostSubmit()">✅ 发布</button>
                 <button id="cancel-edit-btn" style="display:none; padding:12px 22px; border-radius:8px; border:1px solid var(--border-color); cursor:pointer;" onclick="cancelEdit()">❌ 取消</button>
@@ -208,8 +407,152 @@
         </div>
         
         <div id="admin-post-list-wrapper">
-            <div id="admin-post-list" style="max-height: 400px; overflow-y: auto; background: #fff; border: 1px solid var(--border-color); border-radius:8px; margin-top:10px;"></div>
-            <div id="admin-pagination" class="pagination"></div>
+            <div id="admin-post-list" style="max-height: 400px; overflow-y: auto; background: #fff; border: 1px solid var(--border-color); border-radius:8px; margin-top:10px;"><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
+                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="Notion自定义分割线颜色、长短、粗细"><b>[2026-01-04]</b> Notion自定义分割线颜色、长短、粗细</span>
+                <div style="flex: 0 0 30%; text-align:right;">
+                    <span style="color:#666; font-size:12px;">技术分享</span>
+                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(21)">✏️</button>
+                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(21)">🗑️</button>
+                </div>
+            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
+                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="个人博客的终极形态？"><b>[2026-01-04]</b> 个人博客的终极形态？</span>
+                <div style="flex: 0 0 30%; text-align:right;">
+                    <span style="color:#666; font-size:12px;">技术分享</span>
+                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(22)">✏️</button>
+                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(22)">🗑️</button>
+                </div>
+            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
+                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="Notion文本字体居中"><b>[2026-01-04]</b> Notion文本字体居中</span>
+                <div style="flex: 0 0 30%; text-align:right;">
+                    <span style="color:#666; font-size:12px;">技术分享</span>
+                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(23)">✏️</button>
+                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(23)">🗑️</button>
+                </div>
+            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
+                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2025年12月：定存第21/360期、+8.5%、首个里程碑"><b>[2025-12-31]</b> 2025年12月：定存第21/360期、+8.5%、首个里程碑</span>
+                <div style="flex: 0 0 30%; text-align:right;">
+                    <span style="color:#666; font-size:12px;">2054养老计划</span>
+                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(20)">✏️</button>
+                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(20)">🗑️</button>
+                </div>
+            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
+                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2025年11月：定存第20/360期、-0.41%"><b>[2025-11-30]</b> 2025年11月：定存第20/360期、-0.41%</span>
+                <div style="flex: 0 0 30%; text-align:right;">
+                    <span style="color:#666; font-size:12px;">2054养老计划</span>
+                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(19)">✏️</button>
+                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(19)">🗑️</button>
+                </div>
+            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
+                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2025年10月：定存第19/360期、+0.87%、更新计划V1.1"><b>[2025-10-31]</b> 2025年10月：定存第19/360期、+0.87%、更新计划V1.1</span>
+                <div style="flex: 0 0 30%; text-align:right;">
+                    <span style="color:#666; font-size:12px;">2054养老计划</span>
+                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(18)">✏️</button>
+                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(18)">🗑️</button>
+                </div>
+            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
+                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2025年09月：定存第18/360期、+2.58%"><b>[2025-09-30]</b> 2025年09月：定存第18/360期、+2.58%</span>
+                <div style="flex: 0 0 30%; text-align:right;">
+                    <span style="color:#666; font-size:12px;">2054养老计划</span>
+                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(17)">✏️</button>
+                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(17)">🗑️</button>
+                </div>
+            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
+                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2025年08月：定存第17/360期、+1.66%"><b>[2025-08-31]</b> 2025年08月：定存第17/360期、+1.66%</span>
+                <div style="flex: 0 0 30%; text-align:right;">
+                    <span style="color:#666; font-size:12px;">2054养老计划</span>
+                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(16)">✏️</button>
+                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(16)">🗑️</button>
+                </div>
+            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
+                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2025年07月：定存第16/360期、+10.48%"><b>[2025-07-31]</b> 2025年07月：定存第16/360期、+10.48%</span>
+                <div style="flex: 0 0 30%; text-align:right;">
+                    <span style="color:#666; font-size:12px;">2054养老计划</span>
+                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(15)">✏️</button>
+                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(15)">🗑️</button>
+                </div>
+            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
+                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2025年06月：定存第15/360期、+1.56%"><b>[2025-06-30]</b> 2025年06月：定存第15/360期、+1.56%</span>
+                <div style="flex: 0 0 30%; text-align:right;">
+                    <span style="color:#666; font-size:12px;">2054养老计划</span>
+                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(14)">✏️</button>
+                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(14)">🗑️</button>
+                </div>
+            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
+                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2025年05月：定存第14/360期、+20.7%"><b>[2025-05-31]</b> 2025年05月：定存第14/360期、+20.7%</span>
+                <div style="flex: 0 0 30%; text-align:right;">
+                    <span style="color:#666; font-size:12px;">2054养老计划</span>
+                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(13)">✏️</button>
+                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(13)">🗑️</button>
+                </div>
+            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
+                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2025年04月：定存第13/360期、-0.56%"><b>[2025-04-30]</b> 2025年04月：定存第13/360期、-0.56%</span>
+                <div style="flex: 0 0 30%; text-align:right;">
+                    <span style="color:#666; font-size:12px;">2054养老计划</span>
+                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(12)">✏️</button>
+                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(12)">🗑️</button>
+                </div>
+            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
+                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2025年03月：定存第12/360期、+0.26%"><b>[2025-03-31]</b> 2025年03月：定存第12/360期、+0.26%</span>
+                <div style="flex: 0 0 30%; text-align:right;">
+                    <span style="color:#666; font-size:12px;">2054养老计划</span>
+                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(11)">✏️</button>
+                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(11)">🗑️</button>
+                </div>
+            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
+                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2025年02月：定存第11/360期、-7.37%"><b>[2025-02-28]</b> 2025年02月：定存第11/360期、-7.37%</span>
+                <div style="flex: 0 0 30%; text-align:right;">
+                    <span style="color:#666; font-size:12px;">2054养老计划</span>
+                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(10)">✏️</button>
+                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(10)">🗑️</button>
+                </div>
+            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
+                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2025年01月：定存第10/360期、+1%"><b>[2025-01-31]</b> 2025年01月：定存第10/360期、+1%</span>
+                <div style="flex: 0 0 30%; text-align:right;">
+                    <span style="color:#666; font-size:12px;">2054养老计划</span>
+                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(9)">✏️</button>
+                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(9)">🗑️</button>
+                </div>
+            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
+                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2024年12月：定存第9/360期、回归定投本质？？"><b>[2024-12-31]</b> 2024年12月：定存第9/360期、回归定投本质？？</span>
+                <div style="flex: 0 0 30%; text-align:right;">
+                    <span style="color:#666; font-size:12px;">2054养老计划</span>
+                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(8)">✏️</button>
+                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(8)">🗑️</button>
+                </div>
+            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
+                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2024年11月：定存第8/360期、终于解套了!!!"><b>[2024-11-30]</b> 2024年11月：定存第8/360期、终于解套了!!!</span>
+                <div style="flex: 0 0 30%; text-align:right;">
+                    <span style="color:#666; font-size:12px;">2054养老计划</span>
+                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(7)">✏️</button>
+                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(7)">🗑️</button>
+                </div>
+            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
+                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2024年09-10月：定存第6-7/360期、持续被套中。。。"><b>[2024-10-31]</b> 2024年09-10月：定存第6-7/360期、持续被套中。。。</span>
+                <div style="flex: 0 0 30%; text-align:right;">
+                    <span style="color:#666; font-size:12px;">2054养老计划</span>
+                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(6)">✏️</button>
+                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(6)">🗑️</button>
+                </div>
+            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
+                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2024年08月：定存第5/360期、被套中"><b>[2024-08-31]</b> 2024年08月：定存第5/360期、被套中</span>
+                <div style="flex: 0 0 30%; text-align:right;">
+                    <span style="color:#666; font-size:12px;">2054养老计划</span>
+                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(5)">✏️</button>
+                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(5)">🗑️</button>
+                </div>
+            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
+                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2024年07月：定存第4/360期、+5.18%"><b>[2024-07-31]</b> 2024年07月：定存第4/360期、+5.18%</span>
+                <div style="flex: 0 0 30%; text-align:right;">
+                    <span style="color:#666; font-size:12px;">2054养老计划</span>
+                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(4)">✏️</button>
+                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(4)">🗑️</button>
+                </div>
+            </div></div>
+            <div id="admin-pagination" class="pagination">
+        <button class="page-btn" onclick="adminPage--;renderAdminPostList(true)" disabled="">上一页</button>
+        <span style="font-size:13px; color:var(--text-gray);">1/2</span>
+        <button class="page-btn" onclick="adminPage++;renderAdminPostList(true)">下一页</button>
+    </div>
         </div>
     </div>
     
@@ -217,7 +560,31 @@
     <div class="admin-section">
         <h3 style="margin-bottom:8px;">2. 导航菜单管理</h3>
         <div style="font-size:12px; color:#666; margin-bottom:6px;">💡 编码规则：<br> 一级=纯数字(1、2、3) <br> 二级=父编码-序号(2-1)<br> 三级=父编码-序号(2-1-1)<br> 调整对应的序号即可自动调整归属关系 <br> <br></div>
-        <div id="menu-editor"></div>
+        <div id="menu-editor"><div style="margin-left:0px;margin-top:5px;">
+                <input type="text" class="code-input" value="1" onblur="updateMenuCode('m1', this.value)" placeholder="编码">
+                <input value="首页" oninput="mName('m1',this.value)"> 
+                <button onclick="addM('m1')">+</button> 
+                <button onclick="delM('m1')" style="color:red">x</button>
+                
+            </div><div style="margin-left:0px;margin-top:5px;">
+                <input type="text" class="code-input" value="2" onblur="updateMenuCode('m2', this.value)" placeholder="编码">
+                <input value="我的计划" oninput="mName('m2',this.value)"> 
+                <button onclick="addM('m2')">+</button> 
+                <button onclick="delM('m2')" style="color:red">x</button>
+                <div style="margin-left:20px;margin-top:5px;">
+                <input type="text" class="code-input" value="2-1" onblur="updateMenuCode('m1735640348731', this.value)" placeholder="编码">
+                <input value="2054养老计划" oninput="mName('m1735640348731',this.value)"> 
+                <button onclick="addM('m1735640348731')">+</button> 
+                <button onclick="delM('m1735640348731')" style="color:red">x</button>
+                
+            </div>
+            </div><div style="margin-left:0px;margin-top:5px;">
+                <input type="text" class="code-input" value="3" onblur="updateMenuCode('m1767531461774', this.value)" placeholder="编码">
+                <input value="新分类" oninput="mName('m1767531461774',this.value)"> 
+                <button onclick="addM('m1767531461774')">+</button> 
+                <button onclick="delM('m1767531461774')" style="color:red">x</button>
+                
+            </div></div>
         <button id="add-root-menu-btn" onclick="addRootMenu()">+ 添加一个导航菜单</button>
     </div>
     
@@ -227,38 +594,186 @@
 </div>
 <script id="data-storage">
 /* 数据存储区 - 编码式菜单数据 */
-let blogConfig = {"title": "BTC 2054", "subtitle": "Salvation lies within", "avatar": "https://www.btc2054.com/IMG/90368994.jpg"};
+let blogConfig = {
+    "title": "BTC 2054",
+    "subtitle": "Salvation lies within",
+    "avatar": "https://www.btc2054.com/IMG/90368994.jpg"
+};
 let menuData = [
-    {"id": "m1", "code": "1", "name": "首页", "children": []},
-    {"id": "m2", "code": "2", "name": "我的计划", "children": [
-        {"id": "m1735640348731", "code": "2-1", "name": "2054养老计划", "children": []}
-    ]}
+    {
+        "id": "m1",
+        "code": "1",
+        "name": "首页",
+        "children": []
+    },
+    {
+        "id": "m2",
+        "code": "2",
+        "name": "我的计划",
+        "children": [
+            {
+                "id": "m1735640348731",
+                "code": "2-1",
+                "name": "2054养老计划",
+                "children": []
+            }
+        ]
+    },
+    {
+        "id": "m1767531461774",
+        "code": "3",
+        "name": "技术分享",
+        "children": []
+    }
 ];
 let postData = [
-    {"title": "2024年4月：定存初始篇", "date": "2024-04-01", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202404chushi/202604chushi.html"},
-    {"title": "2024年04月：定存第1/360期、+7.04% ", "date": "2024-04-30", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202404/202404.html"},
-    {"title": "2024年05月：定存第2/360期、+1.10%", "date": "2024-05-31", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202405/202405.html"},
-    {"title": "2024年06月：定存第3/360期、+2.97%", "date": "2024-06-30", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202406/202406.html"},
-    {"title": "2024年07月：定存第4/360期、+5.18%", "date": "2024-07-31", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202407/202407.html"},
-    {"title": "2024年08月：定存第5/360期、被套中", "date": "2024-08-31", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202408/202408.html"},
-    {"title": "2024年09-10月：定存第6-7/360期、持续被套中。。。", "date": "2024-10-31", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202409-10/202409-10.html"},
-    {"title": "2024年11月：定存第8/360期、终于解套了!!!", "date": "2024-11-30", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202411/202411.html"},
-    {"title": "2024年12月：定存第9/360期、回归定投本质？？", "date": "2024-12-31", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202412/202412.html"},
-    {"title": "2025年01月：定存第10/360期、+1%", "date": "2025-01-31", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202501/202501.html"},
-    {"title": "2025年02月：定存第11/360期、-7.37%", "date": "2025-02-28", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202502/202502.html"},
-    {"title": "2025年03月：定存第12/360期、+0.26%", "date": "2025-03-31", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202503/202503.html"},
-    {"title": "2025年04月：定存第13/360期、-0.56%", "date": "2025-04-30", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202504/202504.html"},
-    {"title": "2025年05月：定存第14/360期、+20.7%", "date": "2025-05-31", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202505/202505.html"},
-    {"title": "2025年06月：定存第15/360期、+1.56%", "date": "2025-06-30", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202506/202506.html"},
-    {"title": "2025年07月：定存第16/360期、+10.48%", "date": "2025-07-31", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202507/202507.html"},
-    {"title": "2025年08月：定存第17/360期、+1.66%", "date": "2025-08-31", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202508/202508.html"},
-    {"title": "2025年09月：定存第18/360期、+2.58%", "date": "2025-09-30", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202509/202509.html"},
-    {"title": "2025年10月：定存第19/360期、+0.87%、更新计划V1.1", "date": "2025-10-31", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202510/202510.html"},
-    {"title": "2025年11月：定存第20/360期、-0.41%", "date": "2025-11-30", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202511/202511.html"},
-    {"title": "2025年12月：定存第21/360期、+8.5%、首个里程碑", "date": "2025-12-31", "categoryId": "m1735640348731", "url": "https://www.btc2054.com/Blog/2054YangLao/202512/202512.html"}
+    {
+        "title": "2024年4月：定存初始篇",
+        "date": "2024-04-01",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202404chushi/202604chushi.html"
+    },
+    {
+        "title": "2024年04月：定存第1/360期、+7.04% ",
+        "date": "2024-04-30",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202404/202404.html"
+    },
+    {
+        "title": "2024年05月：定存第2/360期、+1.10%",
+        "date": "2024-05-31",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202405/202405.html"
+    },
+    {
+        "title": "2024年06月：定存第3/360期、+2.97%",
+        "date": "2024-06-30",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202406/202406.html"
+    },
+    {
+        "title": "2024年07月：定存第4/360期、+5.18%",
+        "date": "2024-07-31",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202407/202407.html"
+    },
+    {
+        "title": "2024年08月：定存第5/360期、被套中",
+        "date": "2024-08-31",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202408/202408.html"
+    },
+    {
+        "title": "2024年09-10月：定存第6-7/360期、持续被套中。。。",
+        "date": "2024-10-31",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202409-10/202409-10.html"
+    },
+    {
+        "title": "2024年11月：定存第8/360期、终于解套了!!!",
+        "date": "2024-11-30",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202411/202411.html"
+    },
+    {
+        "title": "2024年12月：定存第9/360期、回归定投本质？？",
+        "date": "2024-12-31",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202412/202412.html"
+    },
+    {
+        "title": "2025年01月：定存第10/360期、+1%",
+        "date": "2025-01-31",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202501/202501.html"
+    },
+    {
+        "title": "2025年02月：定存第11/360期、-7.37%",
+        "date": "2025-02-28",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202502/202502.html"
+    },
+    {
+        "title": "2025年03月：定存第12/360期、+0.26%",
+        "date": "2025-03-31",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202503/202503.html"
+    },
+    {
+        "title": "2025年04月：定存第13/360期、-0.56%",
+        "date": "2025-04-30",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202504/202504.html"
+    },
+    {
+        "title": "2025年05月：定存第14/360期、+20.7%",
+        "date": "2025-05-31",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202505/202505.html"
+    },
+    {
+        "title": "2025年06月：定存第15/360期、+1.56%",
+        "date": "2025-06-30",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202506/202506.html"
+    },
+    {
+        "title": "2025年07月：定存第16/360期、+10.48%",
+        "date": "2025-07-31",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202507/202507.html"
+    },
+    {
+        "title": "2025年08月：定存第17/360期、+1.66%",
+        "date": "2025-08-31",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202508/202508.html"
+    },
+    {
+        "title": "2025年09月：定存第18/360期、+2.58%",
+        "date": "2025-09-30",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202509/202509.html"
+    },
+    {
+        "title": "2025年10月：定存第19/360期、+0.87%、更新计划V1.1",
+        "date": "2025-10-31",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202510/202510.html"
+    },
+    {
+        "title": "2025年11月：定存第20/360期、-0.41%",
+        "date": "2025-11-30",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202511/202511.html"
+    },
+    {
+        "title": "2025年12月：定存第21/360期、+8.5%、首个里程碑",
+        "date": "2025-12-31",
+        "categoryId": "m1735640348731",
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202512/202512.html"
+    },
+    {
+        "title": "Notion自定义分割线颜色、长短、粗细",
+        "date": "2026-01-04",
+        "categoryId": "m1767531461774",
+        "url": "https://www.btc2054.com/Blog/JishuFenxiang/Notion%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%86%E5%89%B2%E7%BA%BF/22a46f9b8afe80bab60be71911afd6fa.html"
+    },
+    {
+        "title": "个人博客的终极形态？",
+        "date": "2026-01-04",
+        "categoryId": "m1767531461774",
+        "url": "https://www.btc2054.com/Blog/JishuFenxiang/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%BB%88%E6%9E%81%E5%BD%A2%E6%80%81/23746f9b8afe80289ea5c008e1ddfa5d.html"
+    },
+    {
+        "title": "Notion文本字体居中",
+        "date": "2026-01-04",
+        "categoryId": "m1767531461774",
+        "url": "https://www.btc2054.com/Blog/JishuFenxiang/Notion%E6%96%87%E6%9C%AC%E5%AD%97%E4%BD%93%E5%B1%85%E4%B8%AD/22746f9b8afe8011b2a8da44520ac9e1.html"
+    }
 ];
-let blogPage = 1, adminPage = 1, pageSize = 20; // 后台分页大小保持20不变
-const blogPageSize = 50; // 新增：前台分页大小设置为50
+let blogPage = 1, adminPage = 1, pageSize = 20;
+const blogPageSize = 50;
 let currentEditingIndex = null;
 let currentViewCatId = 'all';
 // 初始化入口
@@ -607,5 +1122,5 @@ function scrollToTop() {
 }
 window.onload = init;
 </script>
-</body>
-</html>
+
+</body></html>
