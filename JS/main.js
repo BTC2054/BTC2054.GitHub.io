@@ -1,14 +1,13 @@
 (function() {
-    // 这里列出你所有想要运行的功能文件路径
-    const modules = [
-        '/JS/notion-toc.js' // 目前只有这一个功能
+    const scripts = [
+        '/JS/notion-toc.js',
+        '/JS/back-to-home.js'  // 只需要加这一行！
     ];
 
-    modules.forEach(src => {
-        const script = document.createElement('script');
-        script.src = src;
-        script.async = true; 
-        document.body.appendChild(script);
+    scripts.forEach(src => {
+        const s = document.createElement('script');
+        s.src = src;
+        s.async = true; 
+        document.body.appendChild(s);
     });
-    console.log("loader: 所有功能模块已加载");
 })();
