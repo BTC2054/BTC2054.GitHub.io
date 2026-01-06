@@ -1,7 +1,7 @@
 (function() {
     const scripts = [
-        '/JS/notion-toc.js',
-        '/JS/back-to-home.js'  // 只需要加这一行！
+        '/JS/TOC-and-Home.js',
+        '/JS/Fuzhi-Daima.js',
     ];
 
     scripts.forEach(src => {
@@ -10,4 +10,5 @@
         s.async = true; 
         document.body.appendChild(s);
     });
+
 })();
