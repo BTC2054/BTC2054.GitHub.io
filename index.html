@@ -88,8 +88,10 @@
         .admin-action-btn { border: none; background: none; cursor: pointer; font-size: 14px; margin-left: 12px; padding: 4px 8px; border-radius: 4px; }
         .admin-action-btn:hover { background: #f3f4f6; }
         /* 博客配置编辑区 */
-        .blog-config-form { display: flex; gap:12px; flex-wrap: wrap; margin-bottom:10px; }
-        .blog-config-form input { flex:1; min-width:200px; }
+        .blog-config-form { display: block; margin-bottom:10px; }
+        .blog-config-form .config-row { display: flex; align-items: center; margin-bottom: 10px; gap: 10px; }
+        .blog-config-form .config-label { min-width: 100px; text-align: right; }
+        .blog-config-form input { flex: 1; }
         /* 空数据占位 */
         .empty-tip { text-align: center; padding: 40px 20px; color: var(--text-gray); font-size:15px; }
         
@@ -101,10 +103,10 @@
         #add-root-menu-btn { padding:6px 12px; border:1px solid #ddd; border-radius:4px; background:#fff; cursor:pointer; font-size:12px; margin-top:8px; }
         #menu-editor .code-input { width:60px; text-align:center; margin-right:8px; }
         /* ✅ 核心优化：录入博文表单 - 极致紧凑+必填贴右侧 */
-        .post-form-row { display: flex; align-items: center; gap: 3px; margin-bottom: 8px !important; width: 100%; }
-        .post-form-full { width: 100%; flex: unset !important; }
+        .post-form-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px !important; width: 100%; flex-wrap: wrap; }
+        .post-form-full { flex: 1; min-width: 200px; }
         .post-form-short { flex: 0 0 200px; max-width: 200px; }
-        .post-form-btn-group { margin-left: auto; flex-shrink: 0; display: flex; gap: 8px; align-items: center; }
+        .post-form-btn-group { flex-shrink: 0; display: flex; gap: 8px; align-items: center; }
         /* ✅ 新增检索样式：和原有表单样式统一 */
         .search-input { flex: 0 0 220px; max-width: 220px; padding:12px 14px; border-radius:8px; border:1px solid var(--border-color); font-size:14px; }
         .search-select { flex: 0 0 180px; max-width: 180px; padding:12px 14px; border-radius:8px; border:1px solid var(--border-color); font-size:14px; }
@@ -139,6 +141,26 @@
             background: var(--primary-hover);
             transform: scale(1.1);
         }
+        /* 置顶选择框进行放大代码 */
+        #global-top, #category-top {
+            width: 18px;  /* 设置宽度 */
+            height: 18px; /* 设置高度 */
+            cursor: pointer; /* 鼠标悬停变为手指形状，更符合使用逻辑 */
+            vertical-align: middle; /* 让框和文字对齐 */
+        }
+        /* 新增：前端置顶标签样式 */
+        .post-top-tag { font-size: 12px; color: #dc2626; background: #fee2e2; padding: 3px 10px; border-radius: 12px; margin-left: 10px; }
+
+        /* 新增：后台管理两列布局样式 */
+        .admin-layout { display: flex; gap: 20px; height: calc(100% - 60px); } /* 减去顶部高度 */
+        #admin-sidebar { width: 220px; background: #f9fafb; border-right: 1px solid var(--border-color); padding: 20px 0; overflow-y: auto; }
+        .admin-nav-list { list-style: none; }
+        .admin-nav-item { padding: 12px 20px; cursor: pointer; font-size: 14px; color: var(--text-dark); border-left: 4px solid transparent; }
+        .admin-nav-item:hover { background: var(--highlight-bg); color: var(--primary-color); }
+        .admin-nav-item.active { border-left: 4px solid var(--primary-color); background: var(--highlight-bg); color: var(--primary-color); font-weight: bold; }
+        #admin-content { flex: 1; overflow-y: auto; padding: 0 20px; }
+        .admin-section { display: none; } /* 初始隐藏所有section */
+        .admin-section.active { display: block; } /* 显示当前active的section */
     </style>
 </head>
 <body>
@@ -355,243 +377,113 @@
         <div id="blog-pagination" class="pagination"></div>
     </div>
     <footer style="text-align: center; margin-top: 60px; color: #9ca3af; font-size: 13px; padding-bottom: 20px;">
-        <div id="footer-info"> BTC 2054  | Salvation lies within</div>
+        <div id="footer-info">使用Notion编写博文、导出html格式后部署在<a href="https://github.com/BTC2054/BTC2054.github.io" target="_blank">GitHub</a></div>
         <div id="website-days" style="margin-top: 8px; color: #9ca3af;">博客已运行 660 天 ✨</div>
     </footer>
 </div>
 <!-- 新增：一键返回顶部按钮 -->
 <div id="back-to-top" onclick="scrollToTop()" class="visible">↑</div>
 
-<div id="admin-trigger" onclick="toggleAdmin()">⚙ 博客管理 V3.2.1</div>
+<div id="admin-trigger" onclick="toggleAdmin()">⚙ 博客管理 V3.2.2</div>
 <div id="admin-panel" style="display: none;">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom:20px;">
         <h2 style="margin:0; color:var(--text-dark);">博客后台管理</h2>
         <button class="page-btn" onclick="toggleAdmin()">✕ 关闭面板</button>
-    </div>
+    </div>  
     <hr style="margin:0 0 20px 0; border-color:var(--border-color);">
-    
-    <!-- 博客基础信息编辑区 -->
-    <div class="admin-section">
-        <h3>📌 博客基础信息设置</h3>
-        <div class="blog-config-form">
-            <input type="text" id="config-title" placeholder="博客标题" value="">
-            <input type="text" id="config-subtitle" placeholder="博客副标题" value="">
-            <input type="text" id="config-avatar" placeholder="头像图片URL" value="">
-            <button class="btn-main btn-add" onclick="saveBlogConfig()">保存配置</button>
+
+    <!-- 新增：两列布局 -->
+    <div class="admin-layout">
+        <!-- 左侧导航栏 -->
+        <div id="admin-sidebar">
+            <ul class="admin-nav-list">
+                <li class="admin-nav-item active" data-section="config" onclick="showSection('config')">📝 基本信息管理</li>
+                <li class="admin-nav-item" data-section="posts" onclick="showSection('posts')">📝 博文管理</li>
+                <li class="admin-nav-item" data-section="menu" onclick="showSection('menu')">📝 导航菜单管理</li>
+            </ul>
         </div>
-    </div>
-    <!-- ✅ 极致紧凑版录入博文表单 + 新增检索功能 -->
-    <div class="admin-section" id="admin-entry-form">
-        <h3 id="form-title" style="margin-bottom:12px;">📝 录入博文</h3>
-        <!-- 标题行：必填贴右侧，无换行 -->
-        <div class="post-form-row">
-            <input type="text" id="new-p-title" placeholder="博文标题" required="" class="post-form-full">
-            <span class="required-tip">*</span>
-        </div>
-        <!-- 链接行：必填贴右侧，无换行 -->
-        <div class="post-form-row">
-            <input type="text" id="new-p-url" placeholder="博文链接URL" required="" class="post-form-full">
-            <span class="required-tip">*</span>
-        </div>
-        <!-- 时间分类行：极致紧凑 + ✅ 新增检索栏（发布按钮左侧） -->
-        <div class="post-form-row">
-            <input type="date" id="new-p-date" class="post-form-short">
-            <select id="new-p-cat" class="post-form-short"><option value="m1"> 首页</option><option value="m2"> 我的计划</option><option value="m1735640348731">— 2054养老计划</option><option value="m1767531461774"> 新分类</option></select>
-            <!-- ✅ 核心新增：检索栏 - 标题检索 + 分类筛选，放在发布按钮左侧 -->
-            <input type="text" id="search-title" class="search-input" placeholder="🔍 检索博文标题" oninput="searchPosts()">
-            <select id="search-cat" class="search-select" onchange="searchPosts()"><option value="all">📂 全部分类</option><option value="m1"> 首页</option><option value="m2"> 我的计划</option><option value="m1735640348731">— 2054养老计划</option><option value="m1767531461774"> 新分类</option></select>
-            <div class="post-form-btn-group">
-                <button id="submit-btn" class="btn-main btn-add" onclick="handlePostSubmit()">✅ 发布</button>
-                <button id="cancel-edit-btn" style="display:none; padding:12px 22px; border-radius:8px; border:1px solid var(--border-color); cursor:pointer;" onclick="cancelEdit()">❌ 取消</button>
+        <!-- 右侧内容区 -->
+        <div id="admin-content">
+            <!-- 博客基础信息编辑区 -->
+            <div id="section-config" class="admin-section active">
+                <h3>📝 基本信息管理</h3>
+                <div class="blog-config-form">
+                    <div class="config-row">
+                        <span class="config-label">博客标题：</span>
+                        <input type="text" id="config-title" placeholder="博客标题" value="">
+                    </div>
+                    <div class="config-row">
+                        <span class="config-label">博客副标题：</span>
+                        <input type="text" id="config-subtitle" placeholder="博客副标题" value="">
+                    </div>
+                    <div class="config-row">
+                        <span class="config-label">头像链接：</span>
+                        <input type="text" id="config-avatar" placeholder="头像图片URL" value="">
+                    </div>
+                    <button class="btn-main btn-add" onclick="saveBlogConfig()">保存配置</button>
+                </div>
             </div>
-        </div>
-        
-        <div id="admin-post-list-wrapper">
-            <div id="admin-post-list" style="max-height: 400px; overflow-y: auto; background: #fff; border: 1px solid var(--border-color); border-radius:8px; margin-top:10px;"><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
-                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="Notion自定义分割线颜色、长短、粗细"><b>[2026-01-04]</b> Notion自定义分割线颜色、长短、粗细</span>
-                <div style="flex: 0 0 30%; text-align:right;">
-                    <span style="color:#666; font-size:12px;">技术分享</span>
-                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(21)">✏️</button>
-                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(21)">🗑️</button>
+            <!-- ✅ 极致紧凑版录入博文表单 + 新增检索功能 -->
+            <div id="section-posts" class="admin-section">
+                <h3 id="form-title" style="margin-bottom:12px;">📝 博文管理</h3>
+                <!-- 标题行：必填贴右侧，无换行 -->
+                <div class="post-form-row">
+                    <input type="text" id="new-p-title" placeholder="博文标题" required="" class="post-form-full">
+                    <span class="required-tip">*</span>
                 </div>
-            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
-                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="个人博客的终极形态？"><b>[2026-01-04]</b> 个人博客的终极形态？</span>
-                <div style="flex: 0 0 30%; text-align:right;">
-                    <span style="color:#666; font-size:12px;">技术分享</span>
-                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(22)">✏️</button>
-                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(22)">🗑️</button>
+                <!-- 链接行：必填贴右侧，无换行 -->
+                <div class="post-form-row">
+                    <input type="text" id="new-p-url" placeholder="博文链接URL" required="" class="post-form-full">
+                    <span class="required-tip">*</span>
                 </div>
-            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
-                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="Notion文本字体居中"><b>[2026-01-04]</b> Notion文本字体居中</span>
-                <div style="flex: 0 0 30%; text-align:right;">
-                    <span style="color:#666; font-size:12px;">技术分享</span>
-                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(23)">✏️</button>
-                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(23)">🗑️</button>
+                <!-- 时间分类行：极致紧凑 + ✅ 新增检索栏（发布按钮左侧） -->
+                <div class="post-form-row">
+                    <input type="date" id="new-p-date" class="post-form-short">
+                    <select id="new-p-cat" class="post-form-short"></select>
+                    <!-- ✅ 核心新增：检索栏 - 标题检索 + 分类筛选，放在发布按钮左侧 -->
+                    <input type="text" id="search-title" class="search-input" placeholder="🔍 检索博文标题" oninput="searchPosts()">
+                    <select id="search-cat" class="search-select" onchange="searchPosts()"></select>
                 </div>
-            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
-                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2025年12月：定存第21/360期、+8.5%、首个里程碑"><b>[2025-12-31]</b> 2025年12月：定存第21/360期、+8.5%、首个里程碑</span>
-                <div style="flex: 0 0 30%; text-align:right;">
-                    <span style="color:#666; font-size:12px;">2054养老计划</span>
-                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(20)">✏️</button>
-                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(20)">🗑️</button>
+                <!-- 置顶行 -->
+                <div class="post-form-row">
+                    <label style="margin-right: 20px; flex-shrink: 0;"><input type="checkbox" id="global-top"> 全站置顶</label>
+                    <label style="flex-shrink: 0;"><input type="checkbox" id="category-top"> 分类置顶</label>
                 </div>
-            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
-                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2025年11月：定存第20/360期、-0.41%"><b>[2025-11-30]</b> 2025年11月：定存第20/360期、-0.41%</span>
-                <div style="flex: 0 0 30%; text-align:right;">
-                    <span style="color:#666; font-size:12px;">2054养老计划</span>
-                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(19)">✏️</button>
-                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(19)">🗑️</button>
+                <!-- 按钮行 -->
+                <div class="post-form-row">
+                    <div class="post-form-btn-group">
+                        <button id="submit-btn" class="btn-main btn-add" onclick="handlePostSubmit()">✅ 发布</button>
+                        <button id="cancel-edit-btn" style="display:none; padding:12px 22px; border-radius:8px; border:1px solid var(--border-color); cursor:pointer;" onclick="cancelEdit()">❌ 取消</button>
+                    </div>
                 </div>
-            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
-                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2025年10月：定存第19/360期、+0.87%、更新计划V1.1"><b>[2025-10-31]</b> 2025年10月：定存第19/360期、+0.87%、更新计划V1.1</span>
-                <div style="flex: 0 0 30%; text-align:right;">
-                    <span style="color:#666; font-size:12px;">2054养老计划</span>
-                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(18)">✏️</button>
-                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(18)">🗑️</button>
-                </div>
-            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
-                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2025年09月：定存第18/360期、+2.58%"><b>[2025-09-30]</b> 2025年09月：定存第18/360期、+2.58%</span>
-                <div style="flex: 0 0 30%; text-align:right;">
-                    <span style="color:#666; font-size:12px;">2054养老计划</span>
-                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(17)">✏️</button>
-                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(17)">🗑️</button>
-                </div>
-            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
-                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2025年08月：定存第17/360期、+1.66%"><b>[2025-08-31]</b> 2025年08月：定存第17/360期、+1.66%</span>
-                <div style="flex: 0 0 30%; text-align:right;">
-                    <span style="color:#666; font-size:12px;">2054养老计划</span>
-                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(16)">✏️</button>
-                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(16)">🗑️</button>
-                </div>
-            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
-                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2025年07月：定存第16/360期、+10.48%"><b>[2025-07-31]</b> 2025年07月：定存第16/360期、+10.48%</span>
-                <div style="flex: 0 0 30%; text-align:right;">
-                    <span style="color:#666; font-size:12px;">2054养老计划</span>
-                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(15)">✏️</button>
-                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(15)">🗑️</button>
-                </div>
-            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
-                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2025年06月：定存第15/360期、+1.56%"><b>[2025-06-30]</b> 2025年06月：定存第15/360期、+1.56%</span>
-                <div style="flex: 0 0 30%; text-align:right;">
-                    <span style="color:#666; font-size:12px;">2054养老计划</span>
-                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(14)">✏️</button>
-                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(14)">🗑️</button>
-                </div>
-            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
-                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2025年05月：定存第14/360期、+20.7%"><b>[2025-05-31]</b> 2025年05月：定存第14/360期、+20.7%</span>
-                <div style="flex: 0 0 30%; text-align:right;">
-                    <span style="color:#666; font-size:12px;">2054养老计划</span>
-                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(13)">✏️</button>
-                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(13)">🗑️</button>
-                </div>
-            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
-                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2025年04月：定存第13/360期、-0.56%"><b>[2025-04-30]</b> 2025年04月：定存第13/360期、-0.56%</span>
-                <div style="flex: 0 0 30%; text-align:right;">
-                    <span style="color:#666; font-size:12px;">2054养老计划</span>
-                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(12)">✏️</button>
-                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(12)">🗑️</button>
-                </div>
-            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
-                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2025年03月：定存第12/360期、+0.26%"><b>[2025-03-31]</b> 2025年03月：定存第12/360期、+0.26%</span>
-                <div style="flex: 0 0 30%; text-align:right;">
-                    <span style="color:#666; font-size:12px;">2054养老计划</span>
-                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(11)">✏️</button>
-                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(11)">🗑️</button>
-                </div>
-            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
-                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2025年02月：定存第11/360期、-7.37%"><b>[2025-02-28]</b> 2025年02月：定存第11/360期、-7.37%</span>
-                <div style="flex: 0 0 30%; text-align:right;">
-                    <span style="color:#666; font-size:12px;">2054养老计划</span>
-                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(10)">✏️</button>
-                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(10)">🗑️</button>
-                </div>
-            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
-                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2025年01月：定存第10/360期、+1%"><b>[2025-01-31]</b> 2025年01月：定存第10/360期、+1%</span>
-                <div style="flex: 0 0 30%; text-align:right;">
-                    <span style="color:#666; font-size:12px;">2054养老计划</span>
-                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(9)">✏️</button>
-                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(9)">🗑️</button>
-                </div>
-            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
-                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2024年12月：定存第9/360期、回归定投本质？？"><b>[2024-12-31]</b> 2024年12月：定存第9/360期、回归定投本质？？</span>
-                <div style="flex: 0 0 30%; text-align:right;">
-                    <span style="color:#666; font-size:12px;">2054养老计划</span>
-                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(8)">✏️</button>
-                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(8)">🗑️</button>
-                </div>
-            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
-                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2024年11月：定存第8/360期、终于解套了!!!"><b>[2024-11-30]</b> 2024年11月：定存第8/360期、终于解套了!!!</span>
-                <div style="flex: 0 0 30%; text-align:right;">
-                    <span style="color:#666; font-size:12px;">2054养老计划</span>
-                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(7)">✏️</button>
-                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(7)">🗑️</button>
-                </div>
-            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
-                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2024年09-10月：定存第6-7/360期、持续被套中。。。"><b>[2024-10-31]</b> 2024年09-10月：定存第6-7/360期、持续被套中。。。</span>
-                <div style="flex: 0 0 30%; text-align:right;">
-                    <span style="color:#666; font-size:12px;">2054养老计划</span>
-                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(6)">✏️</button>
-                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(6)">🗑️</button>
-                </div>
-            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
-                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2024年08月：定存第5/360期、被套中"><b>[2024-08-31]</b> 2024年08月：定存第5/360期、被套中</span>
-                <div style="flex: 0 0 30%; text-align:right;">
-                    <span style="color:#666; font-size:12px;">2054养老计划</span>
-                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(5)">✏️</button>
-                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(5)">🗑️</button>
-                </div>
-            </div><div style="border-bottom:1px solid var(--border-color); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px;">
-                <span style="flex: 1 1 60%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-right:15px;" title="2024年07月：定存第4/360期、+5.18%"><b>[2024-07-31]</b> 2024年07月：定存第4/360期、+5.18%</span>
-                <div style="flex: 0 0 30%; text-align:right;">
-                    <span style="color:#666; font-size:12px;">2054养老计划</span>
-                    <button class="admin-action-btn" style="color:var(--primary-color);" onclick="startEdit(4)">✏️</button>
-                    <button class="admin-action-btn" style="color:#dc2626;" onclick="deletePost(4)">🗑️</button>
-                </div>
-            </div></div>
-            <div id="admin-pagination" class="pagination">
-        <button class="page-btn" onclick="adminPage--;renderAdminPostList(true)" disabled="">上一页</button>
-        <span style="font-size:13px; color:var(--text-gray);">1/2</span>
-        <button class="page-btn" onclick="adminPage++;renderAdminPostList(true)">下一页</button>
-    </div>
-        </div>
-    </div>
-    
-    <!-- 编码式导航菜单管理 -->
-    <div class="admin-section">
-        <h3 style="margin-bottom:8px;">2. 导航菜单管理</h3>
-        <div style="font-size:12px; color:#666; margin-bottom:6px;">💡 编码规则：<br> 一级=纯数字(1、2、3) <br> 二级=父编码-序号(2-1)<br> 三级=父编码-序号(2-1-1)<br> 调整对应的序号即可自动调整归属关系 <br> <br></div>
-        <div id="menu-editor"><div style="margin-left:0px;margin-top:5px;">
-                <input type="text" class="code-input" value="1" onblur="updateMenuCode('m1', this.value)" placeholder="编码">
-                <input value="首页" oninput="mName('m1',this.value)"> 
-                <button onclick="addM('m1')">+</button> 
-                <button onclick="delM('m1')" style="color:red">x</button>
                 
-            </div><div style="margin-left:0px;margin-top:5px;">
-                <input type="text" class="code-input" value="2" onblur="updateMenuCode('m2', this.value)" placeholder="编码">
-                <input value="我的计划" oninput="mName('m2',this.value)"> 
-                <button onclick="addM('m2')">+</button> 
-                <button onclick="delM('m2')" style="color:red">x</button>
-                <div style="margin-left:20px;margin-top:5px;">
-                <input type="text" class="code-input" value="2-1" onblur="updateMenuCode('m1735640348731', this.value)" placeholder="编码">
-                <input value="2054养老计划" oninput="mName('m1735640348731',this.value)"> 
-                <button onclick="addM('m1735640348731')">+</button> 
-                <button onclick="delM('m1735640348731')" style="color:red">x</button>
-                
+                <div id="admin-post-list-wrapper">
+                    <div id="admin-post-list" style="max-height: 400px; overflow-y: auto; background: #fff; border: 1px solid var(--border-color); border-radius:8px; margin-top:10px;"></div>
+                    <div id="admin-pagination" class="pagination"></div>
+                </div>
             </div>
-            </div><div style="margin-left:0px;margin-top:5px;">
-                <input type="text" class="code-input" value="3" onblur="updateMenuCode('m1767531461774', this.value)" placeholder="编码">
-                <input value="新分类" oninput="mName('m1767531461774',this.value)"> 
-                <button onclick="addM('m1767531461774')">+</button> 
-                <button onclick="delM('m1767531461774')" style="color:red">x</button>
-                
-            </div></div>
-        <button id="add-root-menu-btn" onclick="addRootMenu()">+ 添加一个导航菜单</button>
-    </div>
     
-    <div class="admin-section" style="background: var(--highlight-bg);">
-        <button class="save-btn" onclick="exportAndSave()">💾 保存所有数据并下载 index.html</button>
+            <!-- 编码式导航菜单管理 -->
+            <div id="section-menu" class="admin-section">
+                <h3 style="margin-bottom:8px;">📝 导航菜单管理</h3>
+                <div style="font-size:12px; color:#666; margin-bottom:6px;">💡 编码规则：<br> 一级 = 纯数字(1、2、3) <br> 二级 = 父编码-序号(2-1)<br> 三级 = 父编码-序号(2-1-1)<br> 调整对应的序号即可自动调整归属关系 <br> <br></div>
+                <div id="menu-editor"></div>
+                <button id="add-root-menu-btn" onclick="addRootMenu()">+ 添加一个导航菜单</button>
+            </div> 
+        </div> 
+    </div> 
+    <!-- 保存按鈕 - 放在整個後台最下方，獨立一行 -->
+<div style="margin: 40px auto 20px; text-align: center; max-width: 500px;">
+    <button onclick="exportAndSave()"
+            style="background: var(--primary-color); color: white; padding: 16px 40px; border: none; border-radius: 10px; cursor: pointer; font-size: 16px; font-weight: bold; box-shadow: 0 4px 12px rgba(0,123,255,0.3); transition: all 0.2s;">
+        💾 保存并下载新HTML文件
+    </button>
+    <div style="margin-top: 8px; font-size: 13px; color: var(--text-gray);">
     </div>
+</div>                 
 </div>
+
+
 <script id="data-storage">
 /* 数据存储区 - 编码式菜单数据 */
 let blogConfig = {
@@ -631,145 +523,241 @@ let postData = [
         "title": "2024年4月：定存初始篇",
         "date": "2024-04-01",
         "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202404chushi/202604chushi.html"
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202404chushi/202604chushi.html",
+        "globalTop": false,
+        "categoryTop": false,
+        "globalTopTime": null,
+        "categoryTopTime": null
     },
     {
         "title": "2024年04月：定存第1/360期、+7.04% ",
         "date": "2024-04-30",
         "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202404/202404.html"
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202404/202404.html",
+        "globalTop": false,
+        "categoryTop": false,
+        "globalTopTime": null,
+        "categoryTopTime": null
     },
     {
         "title": "2024年05月：定存第2/360期、+1.10%",
         "date": "2024-05-31",
         "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202405/202405.html"
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202405/202405.html",
+        "globalTop": false,
+        "categoryTop": false,
+        "globalTopTime": null,
+        "categoryTopTime": null
     },
     {
         "title": "2024年06月：定存第3/360期、+2.97%",
         "date": "2024-06-30",
         "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202406/202406.html"
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202406/202406.html",
+        "globalTop": false,
+        "categoryTop": false,
+        "globalTopTime": null,
+        "categoryTopTime": null
     },
     {
         "title": "2024年07月：定存第4/360期、+5.18%",
         "date": "2024-07-31",
         "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202407/202407.html"
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202407/202407.html",
+        "globalTop": false,
+        "categoryTop": false,
+        "globalTopTime": null,
+        "categoryTopTime": null
     },
     {
         "title": "2024年08月：定存第5/360期、被套中",
         "date": "2024-08-31",
         "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202408/202408.html"
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202408/202408.html",
+        "globalTop": false,
+        "categoryTop": false,
+        "globalTopTime": null,
+        "categoryTopTime": null
     },
     {
         "title": "2024年09-10月：定存第6-7/360期、持续被套中。。。",
         "date": "2024-10-31",
         "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202409-10/202409-10.html"
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202409-10/202409-10.html",
+        "globalTop": false,
+        "categoryTop": false,
+        "globalTopTime": null,
+        "categoryTopTime": null
     },
     {
         "title": "2024年11月：定存第8/360期、终于解套了!!!",
         "date": "2024-11-30",
         "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202411/202411.html"
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202411/202411.html",
+        "globalTop": false,
+        "categoryTop": false,
+        "globalTopTime": null,
+        "categoryTopTime": null
     },
     {
         "title": "2024年12月：定存第9/360期、回归定投本质？？",
         "date": "2024-12-31",
         "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202412/202412.html"
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202412/202412.html",
+        "globalTop": false,
+        "categoryTop": false,
+        "globalTopTime": null,
+        "categoryTopTime": null
     },
     {
         "title": "2025年01月：定存第10/360期、+1%",
         "date": "2025-01-31",
         "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202501/202501.html"
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202501/202501.html",
+        "globalTop": false,
+        "categoryTop": false,
+        "globalTopTime": null,
+        "categoryTopTime": null
     },
     {
         "title": "2025年02月：定存第11/360期、-7.37%",
         "date": "2025-02-28",
         "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202502/202502.html"
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202502/202502.html",
+        "globalTop": false,
+        "categoryTop": false,
+        "globalTopTime": null,
+        "categoryTopTime": null
     },
     {
         "title": "2025年03月：定存第12/360期、+0.26%",
         "date": "2025-03-31",
         "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202503/202503.html"
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202503/202503.html",
+        "globalTop": false,
+        "categoryTop": false,
+        "globalTopTime": null,
+        "categoryTopTime": null
     },
     {
         "title": "2025年04月：定存第13/360期、-0.56%",
         "date": "2025-04-30",
         "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202504/202504.html"
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202504/202504.html",
+        "globalTop": false,
+        "categoryTop": false,
+        "globalTopTime": null,
+        "categoryTopTime": null
     },
     {
         "title": "2025年05月：定存第14/360期、+20.7%",
         "date": "2025-05-31",
         "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202505/202505.html"
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202505/202505.html",
+        "globalTop": false,
+        "categoryTop": false,
+        "globalTopTime": null,
+        "categoryTopTime": null
     },
     {
         "title": "2025年06月：定存第15/360期、+1.56%",
         "date": "2025-06-30",
         "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202506/202506.html"
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202506/202506.html",
+        "globalTop": false,
+        "categoryTop": false,
+        "globalTopTime": null,
+        "categoryTopTime": null
     },
     {
         "title": "2025年07月：定存第16/360期、+10.48%",
         "date": "2025-07-31",
         "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202507/202507.html"
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202507/202507.html",
+        "globalTop": false,
+        "categoryTop": false,
+        "globalTopTime": null,
+        "categoryTopTime": null
     },
     {
         "title": "2025年08月：定存第17/360期、+1.66%",
         "date": "2025-08-31",
         "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202508/202508.html"
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202508/202508.html",
+        "globalTop": false,
+        "categoryTop": false,
+        "globalTopTime": null,
+        "categoryTopTime": null
     },
     {
         "title": "2025年09月：定存第18/360期、+2.58%",
         "date": "2025-09-30",
         "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202509/202509.html"
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202509/202509.html",
+        "globalTop": false,
+        "categoryTop": false,
+        "globalTopTime": null,
+        "categoryTopTime": null
     },
     {
         "title": "2025年10月：定存第19/360期、+0.87%、更新计划V1.1",
         "date": "2025-10-31",
         "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202510/202510.html"
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202510/202510.html",
+        "globalTop": false,
+        "categoryTop": false,
+        "globalTopTime": null,
+        "categoryTopTime": null
     },
     {
         "title": "2025年11月：定存第20/360期、-0.41%",
         "date": "2025-11-30",
         "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202511/202511.html"
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202511/202511.html",
+        "globalTop": false,
+        "categoryTop": false,
+        "globalTopTime": null,
+        "categoryTopTime": null
     },
     {
         "title": "2025年12月：定存第21/360期、+8.5%、首个里程碑",
         "date": "2025-12-31",
         "categoryId": "m1735640348731",
-        "url": "https://www.btc2054.com/Blog/2054YangLao/202512/202512.html"
+        "url": "https://www.btc2054.com/Blog/2054YangLao/202512/202512.html",
+        "globalTop": false,
+        "categoryTop": false,
+        "globalTopTime": null,
+        "categoryTopTime": null
     },
     {
         "title": "Notion自定义分割线颜色、长短、粗细",
         "date": "2026-01-04",
         "categoryId": "m1767531461774",
-        "url": "https://www.btc2054.com/Blog/JishuFenxiang/Notion%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%86%E5%89%B2%E7%BA%BF/22a46f9b8afe80bab60be71911afd6fa.html"
+        "url": "https://www.btc2054.com/Blog/JishuFenxiang/Notion%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%86%E5%89%B2%E7%BA%BF/22a46f9b8afe80bab60be71911afd6fa.html",
+        "globalTop": false,
+        "categoryTop": false,
+        "globalTopTime": null,
+        "categoryTopTime": null
     },
     {
         "title": "个人博客的终极形态？",
         "date": "2026-01-04",
         "categoryId": "m1767531461774",
-        "url": "https://www.btc2054.com/Blog/JishuFenxiang/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%BB%88%E6%9E%81%E5%BD%A2%E6%80%81/23746f9b8afe80289ea5c008e1ddfa5d.html"
+        "url": "https://www.btc2054.com/Blog/JishuFenxiang/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%BB%88%E6%9E%81%E5%BD%A2%E6%80%81/23746f9b8afe80289ea5c008e1ddfa5d.html",
+        "globalTop": false,
+        "categoryTop": false,
+        "globalTopTime": null,
+        "categoryTopTime": null
     },
     {
         "title": "Notion文本字体居中",
         "date": "2026-01-04",
         "categoryId": "m1767531461774",
-        "url": "https://www.btc2054.com/Blog/JishuFenxiang/Notion%E6%96%87%E6%9C%AC%E5%AD%97%E4%BD%93%E5%B1%85%E4%B8%AD/22746f9b8afe8011b2a8da44520ac9e1.html"
+        "url": "https://www.btc2054.com/Blog/JishuFenxiang/Notion%E6%96%87%E6%9C%AC%E5%AD%97%E4%BD%93%E5%B1%85%E4%B8%AD/22746f9b8afe8011b2a8da44520ac9e1.html",
+        "globalTop": false,
+        "categoryTop": false,
+        "globalTopTime": null,
+        "categoryTopTime": null
     }
 ];
 let blogPage = 1, adminPage = 1, pageSize = 20;
@@ -835,8 +823,7 @@ function switchView(id) {
     renderBlog();
 }
 function displayBlogPosts() {
-    const sortedPosts = [...postData].sort((a,b)=>new Date(b.date)-new Date(a.date));
-    const filteredPosts = currentViewCatId === 'all' ? sortedPosts : sortedPosts.filter(p => {
+    const filteredPosts = currentViewCatId === 'all' ? postData : postData.filter(p => {
         let targetIds = [currentViewCatId];
         const collectChildIds = (list) => list.forEach(m => { 
             if(m.id === currentViewCatId) {
@@ -848,20 +835,37 @@ function displayBlogPosts() {
             } else if(m.children) collectChildIds(m.children); 
         });
         collectChildIds(menuData);
-        return targetIds.includes(p.categoryId);
+        return targetIds.includes(p.categoryId) || p.globalTop;
     });
-    const totalCount = filteredPosts.length;
+    const sortedPosts = filteredPosts.sort((a, b) => {
+        const aPri = a.globalTop ? 2 : a.categoryTop ? 1 : 0;
+        const bPri = b.globalTop ? 2 : b.categoryTop ? 1 : 0;
+        if (aPri !== bPri) return bPri - aPri; // 高优先级先（降序）
+        let aTime, bTime;
+        if (aPri === 2) { // globalTop
+            aTime = a.globalTopTime || Infinity;
+            bTime = b.globalTopTime || Infinity;
+        } else if (aPri === 1) { // categoryTop
+            aTime = a.categoryTopTime || Infinity;
+            bTime = b.categoryTopTime || Infinity;
+        }
+        if (aTime !== bTime && aPri > 0) return aTime - bTime; // 同类型，按设置时间升序（早的先）
+        return new Date(b.date) - new Date(a.date); // 默认按日期降序
+    });
+    const totalCount = sortedPosts.length;
     const catName = currentViewCatId === 'all' ? '全站' : getCategoryName(currentViewCatId);
     document.getElementById('post-count').innerText = `${catName}共收录 ${totalCount} 篇文章 | 按发布时间倒序排列`;
     // 修改：前台使用50条分页，后台保持20条不变
     const totalPages = Math.ceil(totalCount / blogPageSize) || 1;
-    const paginatedPosts = filteredPosts.slice((blogPage-1)*blogPageSize, blogPage*blogPageSize);
+    const paginatedPosts = sortedPosts.slice((blogPage-1)*blogPageSize, blogPage*blogPageSize);
     if (totalCount === 0) {
         document.getElementById('post-list').innerHTML = `<div class="empty-tip">📂 暂无文章数据，敬请期待</div>`;
     } else {
         document.getElementById('post-list').innerHTML = paginatedPosts.map(p => `
             <a href="${p.url}" target="_blank" class="post-item">
                 <span class="post-title" title="${p.title}">${p.title}</span>
+                ${p.globalTop ? '<span class="post-top-tag">全站置顶</span>' : ''}
+                ${p.categoryTop ? '<span class="post-top-tag">分类置顶</span>' : ''}
                 <div class="post-meta">
                     <span class="post-cat-tag">${getCategoryName(p.categoryId)}</span>
                     <span class="post-date">${p.date}</span>
@@ -875,6 +879,22 @@ function displayBlogPosts() {
         <span style="font-size:14px; color:var(--text-gray);">${blogPage}/${totalPages}</span>
         <button class="page-btn" onclick="blogPage++;displayBlogPosts()" ${blogPage===totalPages?'disabled':''}>下一页 →</button>
     ` : '';
+}
+// 新增：检查帖子是否在当前视图分类下（用于分类置顶）
+function isPostInCurrentView(catId) {
+    if (currentViewCatId === 'all') return false; // 全站视图下分类置顶不生效
+    let targetIds = [currentViewCatId];
+    const collectChildIds = (list) => list.forEach(m => { 
+        if(m.id === currentViewCatId) {
+            const getChildren = (cList) => cList.forEach(i => {
+                targetIds.push(i.id);
+                if(i.children) getChildren(i.children);
+            });
+            getChildren(m.children);
+        } else if(m.children) collectChildIds(m.children); 
+    });
+    collectChildIds(menuData);
+    return targetIds.includes(catId);
 }
 // ========== 后台管理核心逻辑 + ✅ 新增检索功能 ==========
 // ✅ 核心新增：检索博文（标题模糊+分类筛选）
@@ -937,10 +957,17 @@ function handlePostSubmit() {
     const date = document.getElementById('new-p-date').value;
     const catId = document.getElementById('new-p-cat').value;
     const url = document.getElementById('new-p-url').value.trim();
+    const globalTop = document.getElementById('global-top').checked;
+    const categoryTop = document.getElementById('category-top').checked;
     if(!title) return alert('❌ 请填写博文标题');
     if(!url) return alert('❌ 请填写博文链接');
     if(!date) return alert('❌ 请选择发布日期');
-    const postDataItem = { title, date, categoryId: catId, url };
+    const oldPost = currentEditingIndex !== null ? postData[currentEditingIndex] : {};
+    const postDataItem = { ...oldPost, title, date, categoryId: catId, url, globalTop, categoryTop };
+    if (globalTop && !oldPost.globalTop) postDataItem.globalTopTime = Date.now();
+    if (!globalTop) postDataItem.globalTopTime = null;
+    if (categoryTop && !oldPost.categoryTop) postDataItem.categoryTopTime = Date.now();
+    if (!categoryTop) postDataItem.categoryTopTime = null;
     if(currentEditingIndex!==null) {
         postData[currentEditingIndex] = postDataItem;
         alert('✅ 文章修改成功');
@@ -959,6 +986,8 @@ function startEdit(index) {
     document.getElementById('new-p-date').value = post.date;
     document.getElementById('new-p-cat').value = post.categoryId; 
     document.getElementById('new-p-url').value = post.url;
+    document.getElementById('global-top').checked = post.globalTop || false;
+    document.getElementById('category-top').checked = post.categoryTop || false;
     document.getElementById('form-title').innerText = "✏️ 修改博文"; 
     document.getElementById('submit-btn').innerText = "✅ 保存";
     document.getElementById('submit-btn').className = "btn-main btn-edit";
@@ -969,6 +998,8 @@ function cancelEdit() {
     document.getElementById('new-p-title').value = "";
     document.getElementById('new-p-date').valueAsDate = new Date();
     document.getElementById('new-p-url').value = "";
+    document.getElementById('global-top').checked = false;
+    document.getElementById('category-top').checked = false;
     document.getElementById('form-title').innerText = "📝 录入博文"; 
     document.getElementById('submit-btn').innerText = "✅ 发布";
     document.getElementById('submit-btn').className = "btn-main btn-add";
@@ -1120,7 +1151,18 @@ function scrollToTop() {
         behavior: 'smooth'
     });
 }
+// 新增：切换后台管理section
+function showSection(sectionId) {
+    // 移除所有active类
+    document.querySelectorAll('.admin-nav-item').forEach(item => item.classList.remove('active'));
+    document.querySelectorAll('.admin-section').forEach(section => section.classList.remove('active'));
+    
+    // 添加active到当前项
+    document.querySelector(`.admin-nav-item[data-section="${sectionId}"]`).classList.add('active');
+    document.getElementById(`section-${sectionId}`).classList.add('active');
+}
 window.onload = init;
 </script>
+
 
 </body></html>
