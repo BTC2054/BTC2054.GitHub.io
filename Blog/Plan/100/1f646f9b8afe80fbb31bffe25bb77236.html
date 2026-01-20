@@ -1,0 +1,719 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>《100单》</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1f646f9b-8afe-80fb-b31b-ffe25bb77236" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/nasa_space_shuttle_challenger.jpg" style="object-position:center 46.62%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">💯</span></div><h1 class="page-title" dir="auto">《100单》</h1><p class="page-description" dir="auto"></p><table class="properties"><tbody><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/clock_gray.svg" style="width:14px;height:14px;display:block"/></span>创建时间</th><td><time>@2025年5月17日 21:49</time></td></tr></tbody></table></header><div class="page-body"><div style="display:contents" dir="auto"><h1 id="1f646f9b-8afe-80bf-8768-cc526d255b32" class="block-color-red"><strong>计划来源</strong></h1></div><div style="display:contents" dir="auto"><p id="1f646f9b-8afe-8073-b140-d23a01a0057d" class=""><mark class="highlight-red">       </mark><mark class="highlight-red"><a href="https://www.notion.so/2025-05-1e546f9b8afe8020b457d2b36dbc24fe?pvs=21">2025年5月17日生活日记</a></mark><mark class="highlight-default">，现在最缺的就是时间，从平常日记中也有体现，白天基本都是12小时左右的上班时间，晚上回来也不一定能够遇到行情开单，考虑到自己目前的情况，但也没得办法、只能咬牙坚持，原本100单预计是100天左右，但实际我觉得够呛，因为不太可能每天晚上下班都有信号，走一步算一步吧，如果这次的系统反馈还不错的话，我就不用在坚持一年多的快递小哥生活了，可以早日脱离苦海，上班太累了，</mark></p></div><div style="display:contents" dir="auto"><p id="1f646f9b-8afe-80ce-ba06-c12dfad7d127" class="">      这100单赚钱不是目的（说的我自己听起来都很假），一是检验自己的系统成果、二是锻炼自己的经验，并不是说这100单要赚多少多少钱，当然了如果真赚了我是很开心的哈哈哈哈哈哈，而是通过这次有计划性的安排来看看自己能否真正做到知行合一，计划你的交易，交易你的计划！做了计划能够100%坚持去做和做到，如果出现没做到的情况就找出问题出在哪？先记录总结然后再慢慢改，争取最终折腾出一套适合自己的日内高频策略。</p></div><div style="display:contents" dir="auto"><p id="1f646f9b-8afe-8068-a8a4-c7eedb5c54d6" class="">
+</p></div><div style="display:contents" dir="auto"><hr id="1f646f9b-8afe-80c6-9d5d-d1ebea74a509"/></div><div style="display:contents" dir="auto"><h1 id="1f646f9b-8afe-80a3-a187-cf140f2efef2" class="block-color-red">计划实录</h1></div><div style="display:contents" dir="ltr"><div id="1f646f9b-8afe-8060-89e5-c70879fe8479" class="collection-content"><h4 class="collection-title">100次实盘清单</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><img src="https://www.notion.so/icons/font_gray.svg" style="width:14px;height:14px;display:block"/></span>实盘次数</th><th><span class="icon property-icon"><img src="https://www.notion.so/icons/calendar_gray.svg" style="width:14px;height:14px;display:block"/></span>开仓时间</th><th><span class="icon property-icon"><img src="https://www.notion.so/icons/arrow-circle-down_gray.svg" style="width:14px;height:14px;display:block"/></span>交易模式</th><th><span class="icon property-icon"><img src="https://www.notion.so/icons/arrow-circle-down_gray.svg" style="width:14px;height:14px;display:block"/></span>实盘结局</th><th><span class="icon property-icon"><img src="https://www.notion.so/icons/description_gray.svg" style="width:14px;height:14px;display:block"/></span>备注</th></tr></thead><tbody><tr id="1f646f9b-8afe-80f1-a0c5-e24bbd9b425c"><td class="cell-title"><a href="https://www.notion.so/No-1-1f646f9b8afe80f1a0c5e24bbd9b425c?pvs=21">                       No.1</a></td><td class="cell-AcGw"><time>@2025/05/17</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-blue">隔日</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K">1、大周期趋势压制、没有盈利空间<br/>2、前面这位置震荡时间长、需要较大买盘才能消化<br/>3、太晚了熬不住、明天要早上班，定好止盈止损睡觉。</td></tr><tr id="1f646f9b-8afe-80e8-9c56-f0f7ed7bac4a"><td class="cell-title"><a href="https://www.notion.so/No-2-1f646f9b8afe80e89c56f0f7ed7bac4a?pvs=21">No.2</a></td><td class="cell-AcGw"><time>@2025/05/18</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="1f746f9b-8afe-8015-abeb-f8c674166c48"><td class="cell-title"><a href="https://www.notion.so/No-3-1f746f9b8afe8015abebf8c674166c48?pvs=21"><span class="icon">📝</span>No.3</a></td><td class="cell-AcGw"><time>@2025/05/18</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K">1、虽然盈利了但有点着急、属于左侧交易、这单违反了纪律，这单积累的经验就是一定要耐心等信号，不要慌、没有信号就别动，纪律第一，继续磨练，还好运气好盈利了，万一亏了呢？万一是大资金进入亏了呢？左侧那位置连个止损都不好挂，失败。</td></tr><tr id="1f746f9b-8afe-80ab-9e2f-d9b406ba5900"><td class="cell-title"><a href="https://www.notion.so/No-4-1f746f9b8afe80ab9e2fd9b406ba5900?pvs=21">No.4</a></td><td class="cell-AcGw"><time>@2025/05/19</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="1f746f9b-8afe-8021-8988-ecf2195ada68"><td class="cell-title"><a href="https://www.notion.so/No-5-1f746f9b8afe80218988ecf2195ada68?pvs=21">No.5</a></td><td class="cell-AcGw"><time>@2025/05/19</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="1f746f9b-8afe-80e3-a951-f0bbb6da4fbc"><td class="cell-title"><a href="https://www.notion.so/No-6-1f746f9b8afe80e3a951f0bbb6da4fbc?pvs=21">No.6</a></td><td class="cell-AcGw"><time>@2025/05/21</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K">1、大周期4H压制</td></tr><tr id="1f746f9b-8afe-8056-97a5-f61d47e29ec0"><td class="cell-title"><a href="https://www.notion.so/No-7-1f746f9b8afe805697a5f61d47e29ec0?pvs=21">No.7</a></td><td class="cell-AcGw"><time>@2025/05/21</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K">1、不但把上一单的亏损补齐、而且还多赚了</td></tr><tr id="1f746f9b-8afe-8044-85b0-faece4f12ea2"><td class="cell-title"><a href="https://www.notion.so/No-8-1f746f9b8afe804485b0faece4f12ea2?pvs=21">No.8</a></td><td class="cell-AcGw"><time>@2025/05/22</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K"></td></tr><tr id="1f746f9b-8afe-80fe-9707-e0c36cf71f45"><td class="cell-title"><a href="https://www.notion.so/No-9-1f746f9b8afe80fe9707e0c36cf71f45?pvs=21">No.9</a></td><td class="cell-AcGw"><time>@2025/05/24</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-yellow">保本止损</span></td><td class="cell-[;&gt;K">1、这一空单本来是可以盈利的，晚上太晚了不想过夜，所以设了一个保本损，第二天醒来发行行情下跌、但是回调已经保本损了</td></tr><tr id="1f746f9b-8afe-808f-b17a-fa859d55a085"><td class="cell-title"><a href="https://www.notion.so/No-10-1f746f9b8afe808fb17afa859d55a085?pvs=21"><span class="icon">📝</span>No.10</a></td><td class="cell-AcGw"><time>@2025/05/25</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K">完美一单，空在高点、平在低点</td></tr><tr id="1f746f9b-8afe-80dc-8592-ce2a35487f5b"><td class="cell-title"><a href="https://www.notion.so/No-11-1f746f9b8afe80dc8592ce2a35487f5b?pvs=21">No.11</a></td><td class="cell-AcGw"><time>@2025/05/26</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="1fd46f9b-8afe-8060-a42c-d5576135905e"><td class="cell-title"><a href="https://www.notion.so/No-12-1fd46f9b8afe8060a42cd5576135905e?pvs=21">No.12</a></td><td class="cell-AcGw"><time>@2025/05/28</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K">1、可惜了、刚止损就跌下去了，不过不后悔、得坚持自己得模式。</td></tr><tr id="1fe46f9b-8afe-8085-a658-e8cff5782c22"><td class="cell-title"><a href="https://www.notion.so/No-13-1fe46f9b8afe8085a658e8cff5782c22?pvs=21">No.13</a></td><td class="cell-AcGw"><time>@2025/05/28</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K">信号来了就开、没啥犹豫</td></tr><tr id="1ff46f9b-8afe-801b-9bd6-dcdd08319fa9"><td class="cell-title"><a href="https://www.notion.so/No-14-1ff46f9b8afe801b9bd6dcdd08319fa9?pvs=21">No.14</a></td><td class="cell-AcGw"><time>@2025/05/29</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K">运气好得很，刚开电脑就来信号。</td></tr><tr id="1ff46f9b-8afe-805e-a8d3-d21d9fad5a9c"><td class="cell-title"><a href="https://www.notion.so/No-15-1ff46f9b8afe805ea8d3d21d9fad5a9c?pvs=21">No.15</a></td><td class="cell-AcGw"><time>@2025/05/30</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K">运气单</td></tr><tr id="1ff46f9b-8afe-804a-ac19-c4316074b897"><td class="cell-title"><a href="https://www.notion.so/No-16-1ff46f9b8afe804aac19c4316074b897?pvs=21">No.16</a></td><td class="cell-AcGw"><time>@2025/06/01</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K"></td></tr><tr id="1ff46f9b-8afe-8009-b716-ce9eef0e27cd"><td class="cell-title"><a href="https://www.notion.so/No-17-1ff46f9b8afe8009b716ce9eef0e27cd?pvs=21">No.17</a></td><td class="cell-AcGw"><time>@2025/06/01</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K">连损两单、这单虽然形态上是要大跌的节奏，心里也在犹豫要不要撤掉止损，<br/>要是刚止损完就开始大跌？岂不亏大发了，但理性和计划告诉自己不能依靠运气，<br/>必须要坚定的做好止损。</td></tr><tr id="1ff46f9b-8afe-80e6-97c5-d52e9ba7f116"><td class="cell-title"><a href="https://www.notion.so/No-18-1ff46f9b8afe80e697c5d52e9ba7f116?pvs=21">No.18</a></td><td class="cell-AcGw"><time>@2025/06/01</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-blue">隔日</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="1ff46f9b-8afe-80ef-ac05-db4f146395f4"><td class="cell-title"><a href="https://www.notion.so/No-19-1ff46f9b8afe80efac05db4f146395f4?pvs=21">No.19</a></td><td class="cell-AcGw"><time>@2025/06/03</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K">没有警报好烦啊，本来可以多赚一点，这单是二次机会才进场，错过最佳机会，不过好在刚止盈就反弹也算有点成就感。</td></tr><tr id="20246f9b-8afe-8076-afd2-e165dea978c5"><td class="cell-title"><a href="https://www.notion.so/No-20-20246f9b8afe8076afd2e165dea978c5?pvs=21">No.20</a></td><td class="cell-AcGw"><time>@2025/06/03</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K"></td></tr><tr id="20246f9b-8afe-807d-8695-c9d51c0f5ad2"><td class="cell-title"><a href="https://www.notion.so/No-21-20246f9b8afe807d8695c9d51c0f5ad2?pvs=21">No.21</a></td><td class="cell-AcGw"><time>@2025/06/03</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-yellow">保本止损</span></td><td class="cell-[;&gt;K">方向错了、回调自动止损</td></tr><tr id="20246f9b-8afe-8023-81b6-ce60b19bf0c0"><td class="cell-title"><a href="https://www.notion.so/No-22-20246f9b8afe802381b6ce60b19bf0c0?pvs=21">No.22</a></td><td class="cell-AcGw"><time>@2025/06/08</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K"></td></tr><tr id="20246f9b-8afe-8099-ab22-e8765140feca"><td class="cell-title"><a href="https://www.notion.so/No-23-20246f9b8afe8099ab22e8765140feca?pvs=21">No.23</a></td><td class="cell-AcGw"><time>@2025/06/08</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K"></td></tr><tr id="20546f9b-8afe-80e3-9d4b-ed648ebd0db4"><td class="cell-title"><a href="https://www.notion.so/No-24-20546f9b8afe80e39d4bed648ebd0db4?pvs=21">No.24</a></td><td class="cell-AcGw"><time>@2025/06/08</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K"></td></tr><tr id="20546f9b-8afe-801f-8a77-c45acc3a65fe"><td class="cell-title"><a href="https://www.notion.so/No-25-20546f9b8afe801f8a77c45acc3a65fe?pvs=21">No.25</a></td><td class="cell-AcGw"><time>@2025/06/09</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K"></td></tr><tr id="20546f9b-8afe-80e7-8fab-cfa549a5fe11"><td class="cell-title"><a href="https://www.notion.so/No-26-20546f9b8afe80e78fabcfa549a5fe11?pvs=21">No.26</a></td><td class="cell-AcGw"><time>@2025/06/10</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K">一把就把前面的损失全部赚回</td></tr><tr id="20646f9b-8afe-80de-8c68-d03c026fdc8b"><td class="cell-title"><a href="https://www.notion.so/No-27-20646f9b8afe80de8c68d03c026fdc8b?pvs=21">No.27</a></td><td class="cell-AcGw"><time>@2025/06/10</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="20646f9b-8afe-8096-b4ec-d11872092b8e"><td class="cell-title"><a href="https://www.notion.so/No-28-20646f9b8afe8096b4ecd11872092b8e?pvs=21">No.28</a></td><td class="cell-AcGw"><time>@2025/06/11</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K"></td></tr><tr id="20646f9b-8afe-8005-98d4-fd644acf4524"><td class="cell-title"><a href="https://www.notion.so/No-29-20646f9b8afe800598d4fd644acf4524?pvs=21">No.29</a></td><td class="cell-AcGw"><time>@2025/06/11</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K"></td></tr><tr id="20e46f9b-8afe-8004-b3d3-f1cc6caf04c9"><td class="cell-title"><a href="https://www.notion.so/No-30-20e46f9b8afe8004b3d3f1cc6caf04c9?pvs=21">No.30</a></td><td class="cell-AcGw"><time>@2025/06/11</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="20e46f9b-8afe-80ce-bcc1-e04c62c093c5"><td class="cell-title"><a href="https://www.notion.so/No-31-20e46f9b8afe80cebcc1e04c62c093c5?pvs=21">No.31</a></td><td class="cell-AcGw"><time>@2025/06/11</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K"></td></tr><tr id="20e46f9b-8afe-802d-b711-eb28753da1b0"><td class="cell-title"><a href="https://www.notion.so/No-32-20e46f9b8afe802db711eb28753da1b0?pvs=21">No.32</a></td><td class="cell-AcGw"><time>@2025/06/11</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="20e46f9b-8afe-809c-9f63-eb21206cb929"><td class="cell-title"><a href="https://www.notion.so/No-33-20e46f9b8afe809c9f63eb21206cb929?pvs=21">No.33</a></td><td class="cell-AcGw"><time>@2025/06/15</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K"></td></tr><tr id="20e46f9b-8afe-80ae-ab68-e425c34160a5"><td class="cell-title"><a href="https://www.notion.so/No-34-20e46f9b8afe80aeab68e425c34160a5?pvs=21">No.34</a></td><td class="cell-AcGw"><time>@2025/06/16</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K">这么低的胜率、居然还有钱赚？</td></tr><tr id="20e46f9b-8afe-8070-953d-db31d610fbef"><td class="cell-title"><a href="https://www.notion.so/No-35-20e46f9b8afe8070953ddb31d610fbef?pvs=21">No.35</a></td><td class="cell-AcGw"><time>@2025/06/19</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-yellow">保本止损</span></td><td class="cell-[;&gt;K"></td></tr><tr id="20f46f9b-8afe-8061-a24e-e4c5f4dfb93e"><td class="cell-title"><a href="https://www.notion.so/No-36-20f46f9b8afe8061a24ee4c5f4dfb93e?pvs=21">No.36</a></td><td class="cell-AcGw"><time>@2025/06/21</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-yellow">保本止损</span></td><td class="cell-[;&gt;K"></td></tr><tr id="20f46f9b-8afe-805f-9a33-cad093987bd4"><td class="cell-title"><a href="https://www.notion.so/No-37-20f46f9b8afe805f9a33cad093987bd4?pvs=21">No.37</a></td><td class="cell-AcGw"><time>@2025/06/22</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="20f46f9b-8afe-8068-92c6-f1769f85f829"><td class="cell-title"><a href="https://www.notion.so/No-38-20f46f9b8afe806892c6f1769f85f829?pvs=21">No.38</a></td><td class="cell-AcGw"><time>@2025/06/25</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K"></td></tr><tr id="20f46f9b-8afe-8033-ae61-e0b9436efc87"><td class="cell-title"><a href="https://www.notion.so/No-39-20f46f9b8afe8033ae61e0b9436efc87?pvs=21">No.39</a></td><td class="cell-AcGw"><time>@2025/06/25</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-blue">隔日</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="21446f9b-8afe-804a-ac9e-c84ba59c7b41"><td class="cell-title"><a href="https://www.notion.so/No-40-21446f9b8afe804aac9ec84ba59c7b41?pvs=21">No.40</a></td><td class="cell-AcGw"><time>@2025/07/02</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K">资金创下新高</td></tr><tr id="21446f9b-8afe-80cb-a3dd-f3448fcc15e0"><td class="cell-title"><a href="https://www.notion.so/No-41-21446f9b8afe80cba3ddf3448fcc15e0?pvs=21">No.41</a></td><td class="cell-AcGw"><time>@2025/07/05</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K">ETH差0.5止损，惊险</td></tr><tr id="21446f9b-8afe-8020-b10d-d3ad78eb5fbf"><td class="cell-title"><a href="https://www.notion.so/No-42-21446f9b8afe8020b10dd3ad78eb5fbf?pvs=21">No.42</a></td><td class="cell-AcGw"><time>@2025/07/13</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K"></td></tr><tr id="21446f9b-8afe-80f1-85fd-db5c257ce34f"><td class="cell-title"><a href="https://www.notion.so/No-43-21446f9b8afe80f185fddb5c257ce34f?pvs=21">No.43</a></td><td class="cell-AcGw"><time>@2025/07/13</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K"></td></tr><tr id="21446f9b-8afe-8050-a0f5-c65144ef20b6"><td class="cell-title"><a href="https://www.notion.so/No-44-21446f9b8afe8050a0f5c65144ef20b6?pvs=21">No.44</a></td><td class="cell-AcGw"><time>@2025/07/14</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="21446f9b-8afe-8062-af3c-c0bc8d22dea8"><td class="cell-title"><a href="https://www.notion.so/No-45-21446f9b8afe8062af3cc0bc8d22dea8?pvs=21">No.45</a></td><td class="cell-AcGw"><time>@2025/07/16</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K">资金继续新高</td></tr><tr id="21446f9b-8afe-805e-8299-f7451d3daabd"><td class="cell-title"><a href="https://www.notion.so/No-46-21446f9b8afe805e8299f7451d3daabd?pvs=21">No.46</a></td><td class="cell-AcGw"><time>@2025/07/19</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="22446f9b-8afe-8049-a8ad-ce26d1fd3245"><td class="cell-title"><a href="https://www.notion.so/No-47-22446f9b8afe8049a8adce26d1fd3245?pvs=21">No.47</a></td><td class="cell-AcGw"><time>@2025/07/21</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K">运气单</td></tr><tr id="22446f9b-8afe-8020-bc3c-eec2fc4168a5"><td class="cell-title"><a href="https://www.notion.so/No-48-22446f9b8afe8020bc3ceec2fc4168a5?pvs=21">No.48</a></td><td class="cell-AcGw"><time>@2025/07/21</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K">空单平在最低点</td></tr><tr id="22446f9b-8afe-8032-a686-c22c2f11d372"><td class="cell-title"><a href="https://www.notion.so/No-49-22446f9b8afe8032a686c22c2f11d372?pvs=21">No.49</a></td><td class="cell-AcGw"><time>@2025/07/21</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K">今天三单全部盈利</td></tr><tr id="22446f9b-8afe-809a-9742-eeac77fef96c"><td class="cell-title"><a href="https://www.notion.so/No-50-22446f9b8afe809a9742eeac77fef96c?pvs=21">No.50</a></td><td class="cell-AcGw"><time>@2025/07/22</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K">扛单罪该万死，虽然这一单是利润最多的一单。</td></tr><tr id="23746f9b-8afe-809c-abe4-cb045605af16"><td class="cell-title"><a href="https://www.notion.so/No-51-23746f9b8afe809cabe4cb045605af16?pvs=21">No.51</a></td><td class="cell-AcGw"><time>@2025/08/01</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-blue">隔日</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="23746f9b-8afe-802f-8725-ebe762ff8bd2"><td class="cell-title"><a href="https://www.notion.so/No-52-23746f9b8afe802f8725ebe762ff8bd2?pvs=21">No.52</a></td><td class="cell-AcGw"><time>@2025/08/02</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-blue">隔日</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K">就差一丝丝就打损了</td></tr><tr id="23746f9b-8afe-806a-b54c-e3a85902d73a"><td class="cell-title"><a href="https://www.notion.so/No-53-23746f9b8afe806ab54ce3a85902d73a?pvs=21">No.53</a></td><td class="cell-AcGw"><time>@2025/08/06</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K">连赢十单、换做以前我会很兴奋，现在我反而有危机感，不符合数学规律。</td></tr><tr id="23746f9b-8afe-80af-985f-d4bfacf1fe60"><td class="cell-title"><a href="https://www.notion.so/No-54-23746f9b8afe80af985fd4bfacf1fe60?pvs=21">No.54</a></td><td class="cell-AcGw"><time>@2025/08/06</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K">打损后又回来了后悔不？100%不后悔！！！损了就是损了，等下一单就行</td></tr><tr id="23746f9b-8afe-8094-9325-fd3a33be82d4"><td class="cell-title"><a href="https://www.notion.so/No-55-23746f9b8afe80949325fd3a33be82d4?pvs=21">No.55</a></td><td class="cell-AcGw"><time>@2025/08/07</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="23746f9b-8afe-802a-8186-dc8355a14339"><td class="cell-title"><a href="https://www.notion.so/No-56-23746f9b8afe802a8186dc8355a14339?pvs=21">No.56</a></td><td class="cell-AcGw"><time>@2025/08/07</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K"></td></tr><tr id="23746f9b-8afe-8034-b59a-c5b7470db885"><td class="cell-title"><a href="https://www.notion.so/No-57-23746f9b8afe8034b59ac5b7470db885?pvs=21">No.57</a></td><td class="cell-AcGw"><time>@2025/08/09</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="23746f9b-8afe-8056-9212-f558c392146d"><td class="cell-title"><a href="https://www.notion.so/No-58-23746f9b8afe80569212f558c392146d?pvs=21">No.58</a></td><td class="cell-AcGw"><time>@2025/08/10</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K"></td></tr><tr id="23746f9b-8afe-8085-a922-e6dfc27a9f6c"><td class="cell-title"><a href="https://www.notion.so/No-59-23746f9b8afe8085a922e6dfc27a9f6c?pvs=21">No.59</a></td><td class="cell-AcGw"><time>@2025/08/11</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="23746f9b-8afe-805b-ae4c-c44bbd011cd7"><td class="cell-title"><a href="https://www.notion.so/No-60-23746f9b8afe805bae4cc44bbd011cd7?pvs=21">No.60</a></td><td class="cell-AcGw"><time>@2025/08/13</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="23746f9b-8afe-8092-aaa2-db3427a35408"><td class="cell-title"><a href="https://www.notion.so/No-61-23746f9b8afe8092aaa2db3427a35408?pvs=21">No.61</a></td><td class="cell-AcGw"><time>@2025/08/14</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K">这套策略真实的极限啊，每次都是空单平在最低点，看来以后这套打法更要严格执行纪律。</td></tr><tr id="23746f9b-8afe-80b6-87fa-fc76b7822bfd"><td class="cell-title"><a href="https://www.notion.so/No-62-23746f9b8afe80b687fafc76b7822bfd?pvs=21">No.62</a></td><td class="cell-AcGw"><time>@2025/08/15</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="23746f9b-8afe-80d9-b0cf-ecd94639ca49"><td class="cell-title"><a href="https://www.notion.so/No-63-23746f9b8afe80d9b0cfecd94639ca49?pvs=21">No.63</a></td><td class="cell-AcGw"><time>@2025/08/16</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K"></td></tr><tr id="24b46f9b-8afe-80a8-a3c2-fb838e3c7c90"><td class="cell-title"><a href="https://www.notion.so/No-64-24b46f9b8afe80a8a3c2fb838e3c7c90?pvs=21">No.64</a></td><td class="cell-AcGw"><time>@2025/08/17</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="24b46f9b-8afe-8098-9a96-e0c0924aeedf"><td class="cell-title"><a href="https://www.notion.so/No-65-24b46f9b8afe80989a96e0c0924aeedf?pvs=21">No.65</a></td><td class="cell-AcGw"><time>@2025/08/17</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K"></td></tr><tr id="24b46f9b-8afe-80cd-8ab4-c9a433229a82"><td class="cell-title"><a href="https://www.notion.so/No-66-24b46f9b8afe80cd8ab4c9a433229a82?pvs=21">No.66</a></td><td class="cell-AcGw"><time>@2025/08/17</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="24b46f9b-8afe-806c-93f1-edc641f9ea07"><td class="cell-title"><a href="https://www.notion.so/No-67-24b46f9b8afe806c93f1edc641f9ea07?pvs=21">No.67</a></td><td class="cell-AcGw"><time>@2025/08/18</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="24b46f9b-8afe-8000-ab00-d04e573f35d1"><td class="cell-title"><a href="https://www.notion.so/No-68-24b46f9b8afe8000ab00d04e573f35d1?pvs=21">No.68</a></td><td class="cell-AcGw"><time>@2025/08/21</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K"></td></tr><tr id="24b46f9b-8afe-8081-a1f4-d13fd7319b9f"><td class="cell-title"><a href="https://www.notion.so/No-69-24b46f9b8afe8081a1f4d13fd7319b9f?pvs=21">No.69</a></td><td class="cell-AcGw"><time>@2025/08/23</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-blue">隔日</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="24b46f9b-8afe-8056-bdda-e81d5e83509e"><td class="cell-title"><a href="https://www.notion.so/No-70-24b46f9b8afe8056bddae81d5e83509e?pvs=21">No.70</a></td><td class="cell-AcGw"><time>@2025/08/28</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K"></td></tr><tr id="24b46f9b-8afe-8063-8010-f0689b6d1f45"><td class="cell-title"><a href="https://www.notion.so/No-71-24b46f9b8afe80638010f0689b6d1f45?pvs=21">No.71</a></td><td class="cell-AcGw"><time>@2025/08/29</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="24b46f9b-8afe-8095-b976-c1b6b62964d7"><td class="cell-title"><a href="https://www.notion.so/No-72-24b46f9b8afe8095b976c1b6b62964d7?pvs=21">No.72</a></td><td class="cell-AcGw"><time>@2025/08/30</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-blue">隔日</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K"></td></tr><tr id="24b46f9b-8afe-801a-a506-c6fa96be9bcb"><td class="cell-title"><a href="https://www.notion.so/No-73-24b46f9b8afe801aa506c6fa96be9bcb?pvs=21">No.73</a></td><td class="cell-AcGw"><time>@2025/08/31</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="24b46f9b-8afe-8007-b960-c06434c04fca"><td class="cell-title"><a href="https://www.notion.so/No-74-24b46f9b8afe8007b960c06434c04fca?pvs=21">No.74</a></td><td class="cell-AcGw"><time>@2025/08/31</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K"></td></tr><tr id="25d46f9b-8afe-80e4-a556-c533deded6c2"><td class="cell-title"><a href="https://www.notion.so/No-75-25d46f9b8afe80e4a556c533deded6c2?pvs=21">No.75</a></td><td class="cell-AcGw"><time>@2025/09/03</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K">又是极限止盈</td></tr><tr id="25d46f9b-8afe-809a-94cc-e988c1994211"><td class="cell-title"><a href="https://www.notion.so/No-76-25d46f9b8afe809a94cce988c1994211?pvs=21">No.76</a></td><td class="cell-AcGw"><time>@2025/09/06</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K"></td></tr><tr id="25d46f9b-8afe-8063-a18c-df37924f0e2c"><td class="cell-title"><a href="https://www.notion.so/No-77-25d46f9b8afe8063a18cdf37924f0e2c?pvs=21">No.77</a></td><td class="cell-AcGw"><time>@2025/09/06</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-blue">隔日</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K">资金历史新高</td></tr><tr id="25d46f9b-8afe-80ca-a26b-dc7810285336"><td class="cell-title"><a href="https://www.notion.so/No-78-25d46f9b8afe80caa26bdc7810285336?pvs=21">No.78</a></td><td class="cell-AcGw"><time>@2025/10/09</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="25d46f9b-8afe-800b-97ef-cd26fc8b4f68"><td class="cell-title"><a href="https://www.notion.so/No-79-25d46f9b8afe800b97efcd26fc8b4f68?pvs=21">No.79</a></td><td class="cell-AcGw"><time>@2025/10/11</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K"></td></tr><tr id="25d46f9b-8afe-8044-b344-ded96a552df4"><td class="cell-title"><a href="https://www.notion.so/No-80-25d46f9b8afe8044b344ded96a552df4?pvs=21">No.80</a></td><td class="cell-AcGw"><time>@2025/10/12</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="25d46f9b-8afe-80ab-8221-c48d00f74860"><td class="cell-title"><a href="https://www.notion.so/No-81-25d46f9b8afe80ab8221c48d00f74860?pvs=21">No.81</a></td><td class="cell-AcGw"><time>@2025/10/16</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K"></td></tr><tr id="25d46f9b-8afe-8028-9607-c09dd72eba90"><td class="cell-title"><a href="https://www.notion.so/No-82-25d46f9b8afe80289607c09dd72eba90?pvs=21">No.82</a></td><td class="cell-AcGw"><time>@2025/10/21</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="25d46f9b-8afe-808d-bb34-f00a656c8c7b"><td class="cell-title"><a href="https://www.notion.so/No-83-25d46f9b8afe808dbb34f00a656c8c7b?pvs=21">No.83</a></td><td class="cell-AcGw"><time>@2025/10/22</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="25d46f9b-8afe-8061-a6d1-f72a4221dd47"><td class="cell-title"><a href="https://www.notion.so/No-84-25d46f9b8afe8061a6d1f72a4221dd47?pvs=21">No.84</a></td><td class="cell-AcGw"><time>@2025/10/29</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-blue">隔日</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K">新的里程碑、资金过百了</td></tr><tr id="28946f9b-8afe-80b5-af0b-e9cc7fb1f6d8"><td class="cell-title"><a href="https://www.notion.so/No-85-28946f9b8afe80b5af0be9cc7fb1f6d8?pvs=21">No.85</a></td><td class="cell-AcGw"><time>@2025/11/01</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K"></td></tr><tr id="28946f9b-8afe-806a-9080-c33dab320f24"><td class="cell-title"><a href="https://www.notion.so/No-86-28946f9b8afe806a9080c33dab320f24?pvs=21">No.86</a></td><td class="cell-AcGw"><time>@2025/11/01</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-blue">隔日</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K">运气单、大赚</td></tr><tr id="28946f9b-8afe-80b6-af98-ff32afaba005"><td class="cell-title"><a href="https://www.notion.so/No-87-28946f9b8afe80b6af98ff32afaba005?pvs=21">No.87</a></td><td class="cell-AcGw"><time>@2025/11/06</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K">又是平在最低点、狗屎运</td></tr><tr id="28946f9b-8afe-8006-a801-cbedf66db8b2"><td class="cell-title"><a href="https://www.notion.so/No-88-28946f9b8afe8006a801cbedf66db8b2?pvs=21">No.88</a></td><td class="cell-AcGw"><time>@2025/11/08</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-blue">隔日</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="28946f9b-8afe-8082-afc9-d5ab771b5722"><td class="cell-title"><a href="https://www.notion.so/No-89-28946f9b8afe8082afc9d5ab771b5722?pvs=21">No.89</a></td><td class="cell-AcGw"><time>@2025/11/09</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K">感觉单、在上班没看技术、直开自动止盈</td></tr><tr id="28946f9b-8afe-8046-b62a-d23b81005ba9"><td class="cell-title"><a href="https://www.notion.so/No-90-28946f9b8afe8046b62ad23b81005ba9?pvs=21">No.90</a></td><td class="cell-AcGw"><time>@2025/11/09</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="2a646f9b-8afe-800d-92ae-ef08e1dab1c1"><td class="cell-title"><a href="https://www.notion.so/No-91-2a646f9b8afe800d92aeef08e1dab1c1?pvs=21">No.91</a></td><td class="cell-AcGw"><time>@2025/11/10</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K">打损就开始跌、无所谓了</td></tr><tr id="2a646f9b-8afe-80e1-bf50-d7e4199b370c"><td class="cell-title"><a href="https://www.notion.so/No-92-2a646f9b8afe80e1bf50d7e4199b370c?pvs=21">No.92</a></td><td class="cell-AcGw"><time>@2025/11/11</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K"></td></tr><tr id="2a646f9b-8afe-8043-9d7a-c14555e5d301"><td class="cell-title"><a href="https://www.notion.so/No-93-2a646f9b8afe80439d7ac14555e5d301?pvs=21">No.93</a></td><td class="cell-AcGw"><time>@2025/11/11</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="2a646f9b-8afe-8054-8901-d8da5a600cbc"><td class="cell-title"><a href="https://www.notion.so/No-94-2a646f9b8afe80548901d8da5a600cbc?pvs=21">No.94</a></td><td class="cell-AcGw"><time>@2025/11/12</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-blue">隔日</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="2a646f9b-8afe-800d-bc85-dcee3fad8863"><td class="cell-title"><a href="https://www.notion.so/No-95-2a646f9b8afe800dbc85dcee3fad8863?pvs=21">No.95</a></td><td class="cell-AcGw"><time>@2025/11/15</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-blue">隔日</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K">方向对了，但是反弹时扛单了</td></tr><tr id="2a646f9b-8afe-80f8-a476-ede4e687ac1b"><td class="cell-title"><a href="https://www.notion.so/No-96-2a646f9b8afe80f8a476ede4e687ac1b?pvs=21">No.96</a></td><td class="cell-AcGw"><time>@2025/11/19</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K"></td></tr><tr id="2a646f9b-8afe-8036-b4f5-dd062691c93b"><td class="cell-title"><a href="https://www.notion.so/No-97-2a646f9b8afe8036b4f5dd062691c93b?pvs=21">No.97</a></td><td class="cell-AcGw"><time>@2025/11/19</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="2a646f9b-8afe-800a-a593-ce74983de729"><td class="cell-title"><a href="https://www.notion.so/No-98-2a646f9b8afe800aa593ce74983de729?pvs=21">No.98</a></td><td class="cell-AcGw"><time>@2025/11/19</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K"></td></tr><tr id="2a646f9b-8afe-802a-8ac3-d7ee8fcd150b"><td class="cell-title"><a href="https://www.notion.so/No-99-2a646f9b8afe802a8ac3d7ee8fcd150b?pvs=21">No.99</a></td><td class="cell-AcGw"><time>@2025/11/20</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-yellow">日内</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-green">正常盈利</span></td><td class="cell-[;&gt;K"></td></tr><tr id="2a846f9b-8afe-8002-afcf-c5feda69bbb1"><td class="cell-title"><a href="https://www.notion.so/No-100-2a846f9b8afe8002afcfc5feda69bbb1?pvs=21">No.100</a></td><td class="cell-AcGw"><time>@2025/11/28</time></td><td class="cell-nUsj"><span class="selected-value select-value-color-blue">隔日</span></td><td class="cell-JIRs"><span class="selected-value select-value-color-red">正常止损</span></td><td class="cell-[;&gt;K"></td></tr></tbody></table><br/><br/></div></div><div style="display:contents" dir="auto"><hr id="1f646f9b-8afe-8031-bd24-fc28fa3a1b91"/></div><div style="display:contents" dir="auto"><h1 id="1f646f9b-8afe-80dd-86e3-eee707a2e0cc" class="block-color-red">实盘总结</h1></div><div style="display:contents" dir="auto"><ol type="1" id="20e46f9b-8afe-8012-b3be-daeae5e861c4" class="numbered-list" start="1"><li>No.20250424策略从2025年5月17日第一单开始算起到11月28日，这100单一共经历了整整半年时间，一共止损36单、保本损3单、盈利61单、胜率61%、数据上看还不错，金额从最初的20多到120多，成功用实盘验证了策略的可行性，同时这也是自去年爆仓后交易系统重构的第一条通过的策略，</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2c046f9b-8afe-802e-a014-cd07c16839a6" class="numbered-list" start="2"><li>定位：“分钟级别的剥头皮策略”</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="26046f9b-8afe-8011-8c7d-db58535e87cb" class="numbered-list" start="3"><li>快速涨跌不适用技术分析规则：如果行情出现暴涨暴跌行情，最好直接放弃。</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="20e46f9b-8afe-8049-b031-d4a83bc25986" class="numbered-list" start="4"><li>止损不可怕、也不可耻、止损保本金就是保住了继续玩这场游戏的门票，爆仓意味着彻底结束。</li></ol></div><div style="display:contents" dir="auto"><p id="1f646f9b-8afe-80b1-86dd-d35585331e76" class="">
+</p></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span>
+
+
+<script src="/JS/main.js"></script>
+</body></html>
