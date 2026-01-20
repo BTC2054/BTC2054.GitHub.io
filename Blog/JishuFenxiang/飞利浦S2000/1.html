@@ -1,0 +1,732 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>飞利浦S2000剃须刀自换电池维修记录</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="2ee46f9b-8afe-8031-bae3-c619af3b5087" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🪒</span></div><h1 class="page-title" dir="auto">飞利浦S2000剃须刀自换电池维修记录</h1><p class="page-description" dir="auto"></p><table class="properties"><tbody></tbody></table></header><div class="page-body"><div style="display:contents" dir="auto"><p id="2ee46f9b-8afe-8071-bac4-faeb39c39440" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2ee46f9b-8afe-80ae-a19d-da3f971f4338" class="">
+</p></div><div style="display:contents" dir="auto"><hr id="2ee46f9b-8afe-8033-bd6c-e9a872bf5239"/></div><div style="display:contents" dir="auto"><p id="2ee46f9b-8afe-804c-b870-d5db786e7359" class="">        故事起源2026年1月17日，那天发现自己用了五年的剃须刀电池彻底报销了，充一次电后刮一次都够呛，想着好歹也是理科毕业热衷于动手的人，于是就在网上买了电池和电络铁打算自己换</p></div><div style="display:contents" dir="ltr"><figure id="2ee46f9b-8afe-80f0-b130-fefd575f83f5" class="image"><a href="image.png"><img style="width:624px" src="image.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="2ee46f9b-8afe-8063-92f1-d2929ee25c70" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2ee46f9b-8afe-8052-821e-d473c42350e1" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="2ee46f9b-8afe-806c-a115-d918a8d7d902" class="">第一步：拧螺丝开盖</h1></div><div style="display:contents" dir="auto"><div id="2ee46f9b-8afe-8093-975c-c4dce9ad72f5" class="column-list"><div style="display:contents" dir="auto"><div id="2ee46f9b-8afe-8014-ac35-d3043a09e954" style="width:62.5%" class="column"><div style="display:contents" dir="auto"><p id="2ee46f9b-8afe-8077-a95a-cda063480952" class="">         2026年1月20日所有工具全部到货，带着激动的心颤抖的手开始折腾，第一步就是先把看得见的螺丝拧开，把盖子拿下来</p></div><div style="display:contents" dir="auto"><p id="2ee46f9b-8afe-80dd-8548-ca0a1e75d57a" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2ee46f9b-8afe-808c-afea-d88155417a77" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2ee46f9b-8afe-808f-bf85-f1b73e7f9e9c" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="2ee46f9b-8afe-80d5-af8b-df8bcedf2872" class="">第二步：拆外壳</h1></div><div style="display:contents" dir="auto"><ul id="2ee46f9b-8afe-80d9-a524-c0734c0ef898" class="bulleted-list"><li style="list-style-type:disc">第二步找到剃须刀的充电口，用一根根子使劲一捅就可以把整个塑料外壳全部捅开来。</li></ul></div><div style="display:contents" dir="auto"><ul id="2ee46f9b-8afe-8062-85e3-dbabfc1bdd96" class="bulleted-list"><li style="list-style-type:disc">捅开之后，就可以看到下图所示的电路板了，很简单的板子、我感觉但凡是个理科毕业的人都可以看出个简化大概来：电池正负极供电、然后正负极接出来马达，</li></ul></div></div></div><div style="display:contents" dir="auto"><div id="2ee46f9b-8afe-8029-98be-d9663831a9ba" style="width:37.50000000000001%" class="column"><div style="display:contents" dir="ltr"><figure id="2ee46f9b-8afe-8036-82c4-cb4b019f0d71" class="image"><a href="image%201.png"><img style="width:432px" src="image%201.png"/></a></figure></div><div style="display:contents" dir="ltr"><figure id="2ee46f9b-8afe-801c-adab-f28718aa57d3" class="image"><a href="image%202.png"><img style="width:709.9874877929688px" src="image%202.png"/></a></figure></div></div></div></div></div><div style="display:contents" dir="auto"><ul id="2ee46f9b-8afe-805e-b268-e6db93117652" class="bulleted-list"><li style="list-style-type:disc">等我拆到这里其实就感觉到有点不对劲了，这活应该可能会超出业余人士的能力之外啊，但都走到这一步了只能硬着头皮往下干了，其实难点有两个：<mark class="highlight-red"><strong>一个是</strong></mark>要用电烙铁把正负极的焊锡融掉，然后趁热把导线拔出来，因为是一个人操作焊的同时又要兼顾拔，关键点在于刚焊锡的凝固很快，只要电烙铁一拿开一秒不到就重新凝固了，所以很困难；<mark class="highlight-red"><strong>第二个更难是</strong></mark>电池、马达连接线好不容易融化拆下来后，还得重新接上去，因为没有额外的专业工具，此时电路板的孔洞已经被焊锡堵住了，理论上只能用电络铁先融开，然后快速怼进去，可惜啊快、准、狠三样我一样都不沾，尝试了很久只能无奈想放弃</li></ul></div><div style="display:contents" dir="auto"><div id="2ee46f9b-8afe-80bf-9bbb-cabdc20ad1ba" class="column-list"><div style="display:contents" dir="auto"><div id="2ee46f9b-8afe-80e5-8a40-f53046d7c1ba" style="width:68.75%" class="column"><div style="display:contents" dir="ltr"><figure id="2ee46f9b-8afe-80e1-bf45-eef8b0d0a447" class="image"><a href="6795a3f4-8227-4685-a41e-1953d23cd205.png"><img style="width:576px" src="6795a3f4-8227-4685-a41e-1953d23cd205.png"/></a></figure></div></div></div><div style="display:contents" dir="auto"><div id="2ee46f9b-8afe-8071-805f-d034fc692642" style="width:31.249999999999993%" class="column"><div style="display:contents" dir="ltr"><figure id="2ee46f9b-8afe-8060-a65e-d63c86e678a7" class="image"><a href="3f03bb7f-b3a1-4647-9058-b3a12c2e3e72.png"><img style="width:292.94117647058823px" src="3f03bb7f-b3a1-4647-9058-b3a12c2e3e72.png"/></a></figure></div></div></div></div></div><div style="display:contents" dir="auto"><p id="2ee46f9b-8afe-8081-89a3-febde7e38b83" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2ee46f9b-8afe-80fd-b66d-e7eb40a54845" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="2ee46f9b-8afe-806e-8355-c7904c914e5d" class="">第三步：装新电池</h1></div><div style="display:contents" dir="auto"><p id="2ee46f9b-8afe-80f9-a986-e5ab0d3b1483" class="">         第二步电池、马达拆下来后就要把新电池重新焊上去了，只可惜啊高估了自己的能力，这玩意确实要有点技术哦，直接按标准焊接在板子上已经是零概率了，只能灵机一动，用焊锡把电路板和正负极直接连起来了，经过好多个几分钟，终于换天不负苦心人把新电池和马达焊上去了，丑是丑了点，好在功能上不影响啊，想着后面还要套壳，反正眼不见心不烦对我来说能用就行。</p></div><div style="display:contents" dir="ltr"><figure id="2ee46f9b-8afe-8041-a801-fe0462f1a738" class="image"><a href="%E5%9B%BE%E7%89%87_20260120202826_1062_227.png"><img style="width:7463px" src="%E5%9B%BE%E7%89%87_20260120202826_1062_227.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="2ee46f9b-8afe-8012-9f75-ca68246d053f" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2ee46f9b-8afe-804f-b697-f645b6172c0c" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="2ee46f9b-8afe-8041-a2f7-df5ec5ac5b4b" class="">第三步：重装外壳</h1></div><div style="display:contents" dir="auto"><div id="2ee46f9b-8afe-8037-a716-cb97289fda2b" class="column-list"><div style="display:contents" dir="auto"><div id="2ee46f9b-8afe-80b5-aeef-fb4af8cefa6b" style="width:68.75%" class="column"><div style="display:contents" dir="auto"><p id="2ee46f9b-8afe-800a-acda-e0f8da8b8253" class="">         在经过反复捣鼓后、感叹一下真不容易啊，终于接上去了，心想着就这？也没难度啊？后面活就更简单了直接装回去把螺丝拧好就行了，然后就开始把电路板往套筒里面开装，刚扔进去我都还没对齐呢，就听见里面晃动一声，不对，好像有小东西掉下来了，倒出来一看，我的乖乖啊，怎么开关掉下来了？？？关键是这玩意就这么点我要往哪装啊？？？最关键的是这开关上面好像还有焊针引脚？？？我靠，这么一丁点让我怎么焊上去？？？前面的正负极接头好歹也挺大的，我慢慢焊终归是可以接上去，但这玩意的小实在超出我能力范围之外了，这个恨啊，电池都重新焊好了，功能也可以用，最后一步给我来个这玩意属实是绷不住啊，没办法只能宣布失败认输了，不过这东西也没啥沉默成本，东西本来电池就耗尽了，我不修也是要扔的，纯当自己折腾玩了，就额外付出了十几块买电池和工具的钱而已，如果狠心一点把电池和工具再退回去的话更是一分钱不花，但想想还是算了，人商家也不容易。</p></div></div></div><div style="display:contents" dir="auto"><div id="2ee46f9b-8afe-8077-b25a-c9d6889941d4" style="width:31.250000000000007%" class="column"><div style="display:contents" dir="ltr"><figure id="2ee46f9b-8afe-80c5-a979-e02603a33404" class="image"><a href="image%203.png"><img style="width:760px" src="image%203.png"/></a></figure></div></div></div></div></div><div style="display:contents" dir="auto"><p id="2ee46f9b-8afe-8089-84c8-c16443de255a" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2ee46f9b-8afe-800d-8465-ca51c5a7b48d" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="2ee46f9b-8afe-8031-9cf0-cd02ee60d00e" class="">第四步：失败认输</h1></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span>
+
+
+
+
+<script src="/JS/main.js"></script>
+</body></html>
