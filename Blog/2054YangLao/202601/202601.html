@@ -1,0 +1,740 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>2026年01月：定存第22/360期、4%</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="2da46f9b-8afe-80c1-852d-f6b9fe7e003f" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">💸</span></div><h1 class="page-title" dir="auto"><strong>2026年01月：定存第22/360期、4%</strong></h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="auto"><p id="2da46f9b-8afe-8116-91d0-dbb53223d416" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2da46f9b-8afe-8126-9e07-cfac09034587" class=""><strong>资金来源：</strong>01月按计划定存 171.91   USD，余额4354 +  171.91   =  4525.91  USD</p></div><div style="display:contents" dir="auto"><p id="2da46f9b-8afe-81ef-a492-ef37e10ef655" class=""><strong>月初金额：</strong>4525.91 USD（安全账户4285.91  USD、风险账户241.52 USD）</p></div><div style="display:contents" dir="auto"><p id="2da46f9b-8afe-817b-bea9-fe06e57940fa" class=""><strong>月末金额：</strong>4701.92 USD（安全账户4410.67  USD、风险账户291.25 USD）</p></div><div style="display:contents" dir="auto"><p id="2da46f9b-8afe-81e9-9f66-e2673701f934" class=""><strong>收益进度：</strong><strong><a href="https://www.btc2054.com/DanYe/ZijinQuxian.html">理论和实际收益进度对比图</a></strong></p></div><div style="display:contents" dir="auto"><p id="2da46f9b-8afe-8171-bba5-e08c9ce8ec66" class=""><strong>指导手册：</strong><strong><a href="https://www.btc2054.com/DanYe/ZhidaoShouce/V1_1.html">V1.1 版本</a></strong></p></div><div style="display:contents" dir="auto"><p id="2da46f9b-8afe-8176-a774-f9a150cf4448" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2e046f9b-8afe-80f2-9c6d-c343d89ddc3f" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2df46f9b-8afe-807c-9fc8-f99a14bbb4ee" class="">
+</p></div><div style="display:contents" dir="auto"><hr id="2da46f9b-8afe-819a-8f73-c242261f563e"/></div><div style="display:contents" dir="auto"><h3 id="2da46f9b-8afe-8126-bb5e-fe12a4abc09c" class="">05日操作</h3></div><div style="display:contents" dir="auto"><ul id="2da46f9b-8afe-814e-8dd5-f879058b9d05" class="bulleted-list"><li style="list-style-type:disc">机会难等啊，这个月的第一单、No.20250424信号开单后直接挂好止盈止损、38分钟后自动止盈；</li></ul></div><div style="display:contents" dir="auto"><p id="2da46f9b-8afe-8184-aed2-dc4f0d223e12" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="2da46f9b-8afe-81c4-8ad2-da92effeaaaf" class="">06日操作</h3></div><div style="display:contents" dir="auto"><ul id="2df46f9b-8afe-805f-b6c3-cd12c282614a" class="bulleted-list"><li style="list-style-type:disc">No.20250424信号开了一单、一个半小时后感觉不对劲就直接保本损跑了，不带一丝犹豫；</li></ul></div><div style="display:contents" dir="auto"><ul id="2e046f9b-8afe-8097-87fb-d60b12cb8c29" class="bulleted-list"><li style="list-style-type:disc">No.20250424信号跟第一单反向开、窄止损挂好，自动止损；</li></ul></div><div style="display:contents" dir="auto"><p id="2e046f9b-8afe-806e-ba8c-c85c9a14efc2" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="2e046f9b-8afe-80be-8918-da738eb9577a" class="">08日操作</h3></div><div style="display:contents" dir="auto"><ul id="2e046f9b-8afe-805e-b586-d0a447695d46" class="bulleted-list"><li style="list-style-type:disc">日线级别有个多信号，原本是想用风险资金去开合约的，但后面一想不对，这个信号属于左侧，不属于现在的系统内，关键是左侧直接上合约不好设止损啊，大概率插针打损，风险会远超我的承受范围，主要是这个位置一但跌破那就完了，不是扛单就是止损、胜算渺茫所以最终选择买了现货进去，涨就小赚、跌了被套就换赛道高卖双币赢理财，怎么算都不亏，符合现阶段<strong><a href="https://www.btc2054.com/DanYe/ZhidaoShouce/V1_1.html">安全优先，复利为本</a></strong><a href="https://www.btc2054.com/DanYe/ZhidaoShouce/V1_1.html">指导手册 V1.0</a>的约束，属于系统内。</li></ul></div><div style="display:contents" dir="auto"><div id="2e346f9b-8afe-8063-8f86-d0392e8fa6d8" class="column-list"><div style="display:contents" dir="auto"><div id="2e346f9b-8afe-80ef-9a9b-ef1415f86941" style="width:62.5%" class="column"><div style="display:contents" dir="auto"><ul id="2e346f9b-8afe-8021-a0f6-c5e4b4529453" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red"><strong>09日：</strong></mark>看了下盘面上下都有信号区、感觉最近都是震荡行情，上有压力位、下有支撑位，所以选择直接先高卖一波理财，如果没涨上去就纯拿利息币增涨、如果涨上去了就小赚一点U（收益大于一个月的定存利息）划得来；</li></ul></div><div style="display:contents" dir="auto"><ul id="2e446f9b-8afe-805f-ae4a-e29adca44811" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red"><strong>10日：</strong></mark>昨天的理财到期价格小于3125，赎回了币、完全不慌对比昨天的币增值了0.43%，同样的行权价今天接着高卖理财、同样的逻辑继续享受震荡行情。</li></ul></div><div style="display:contents" dir="auto"><ul id="2e546f9b-8afe-8069-8cee-e437c3900f33" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red"><strong>11日：</strong></mark>晚上就开始要拉盘了吗？狗庄家你能不能明天晚上在拉啊😂😂😂😂等我明天继续赎回币后然后直接起飞，想想都美滋滋、哟吼吼。</li></ul></div><div style="display:contents" dir="auto"><h3 id="2e546f9b-8afe-805f-89cd-ca1d6129aa0e" class="">12日操作</h3></div><div style="display:contents" dir="auto"><ul id="2e546f9b-8afe-801c-b110-c1f9c5bc7271" class="bulleted-list"><li style="list-style-type:disc">执行了一次No.20250424策略空单，44分钟后自动止盈</li></ul></div><div style="display:contents" dir="auto"><ul id="2e646f9b-8afe-80e4-92df-e8e62d40166e" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red"><strong>12日：</strong></mark>市场挺给面子先拉一小波让我赎回USD，小赚一点、比放10%的活期贴息理财强，下午又跌下去来了，重复这套逻辑继续低买理财。</li></ul></div><div style="display:contents" dir="auto"><ul id="2e746f9b-8afe-80ba-b946-db0689facd27" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red"><strong>13日：</strong></mark>昨天的理财顺利赎回U、这个位置继续看涨震荡偏上涨，同样的逻辑继续低买理财。</li></ul></div><div style="display:contents" dir="auto"><h3 id="2e546f9b-8afe-807a-8582-ee4938ba1090" class="">14日操作</h3></div><div style="display:contents" dir="auto"><ul id="2e846f9b-8afe-804f-bbe1-ff937cf0df5d" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red"><strong>14日：</strong></mark>很好昨天晚上直接拉盘，理财继续赎回U，这一波上涨看对了但没进现货导致“错过少赚”的原因很简单，因为有系统规则约束，虽然规则今天限制了我“少赚”，但同样规则就会保护我“明天”不大亏，慢慢致富、永远富有！资金继续转入欧意pay享受10%活期</li></ul></div><div style="display:contents" dir="auto"><ul id="2e846f9b-8afe-802c-9eaf-e08c4208033f" class="bulleted-list"><li style="list-style-type:disc">执行了一次No.20250424策略空单，1H36min后保本损</li></ul></div></div></div><div style="display:contents" dir="auto"><div id="2e346f9b-8afe-8040-9bf4-cab8beabb968" style="width:37.5%" class="column"><div style="display:contents" dir="ltr"><figure id="2e346f9b-8afe-8004-a18c-d7501703e556" class="image"><a href="3157baaa84ecf91ff55d50e25f201d73.jpg"><img style="width:576px" src="3157baaa84ecf91ff55d50e25f201d73.jpg"/></a></figure></div><div style="display:contents" dir="ltr"><figure id="2e446f9b-8afe-80d8-ba82-ea8d1b03c21a" class="image"><a href="e07af140d203078636db747d5404c10d.jpg"><img style="width:288px" src="e07af140d203078636db747d5404c10d.jpg"/></a></figure></div><div style="display:contents" dir="ltr"><figure id="2e646f9b-8afe-8007-a305-e4a2dced9511" class="image"><a href="146d8b57af1461fd93d639f2411b94a6.jpg"><img style="width:1170px" src="146d8b57af1461fd93d639f2411b94a6.jpg"/></a></figure></div><div style="display:contents" dir="ltr"><figure id="2e746f9b-8afe-805d-a357-e419f46c17c0" class="image"><a href="6b72a1f1337b998da1f3bfaf6add35b1.jpg"><img style="width:336px" src="6b72a1f1337b998da1f3bfaf6add35b1.jpg"/></a></figure></div></div></div></div></div><div style="display:contents" dir="auto"><ul id="2e846f9b-8afe-80bc-a10c-d9b6b9198b89" class="bulleted-list"><li style="list-style-type:disc">执行了一次No.20250424策略多单，2H后保本损、震荡行情就这样</li></ul></div><div style="display:contents" dir="auto"><p id="2ea46f9b-8afe-8054-b050-c4dcd8ce78a0" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2ea46f9b-8afe-8073-9e0c-fecf8d98283a" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="2ea46f9b-8afe-80ff-a794-f43a9e459180" class="">16日操作</h3></div><div style="display:contents" dir="auto"><ul id="2ea46f9b-8afe-80b4-a7d2-c9fe52243eab" class="bulleted-list"><li style="list-style-type:disc">执行了一次No.20250424策略多单，自动止损</li></ul></div><div style="display:contents" dir="auto"><p id="2ec46f9b-8afe-80f4-b0b4-fbdfaa5edbf6" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="2ec46f9b-8afe-8053-88af-d5177ab6091b" class="">18日操作</h3></div><div style="display:contents" dir="auto"><ul id="2ec46f9b-8afe-809b-806c-e3565f7d4eca" class="bulleted-list"><li style="list-style-type:disc">执行了一次No.20250424策略空单，自动止损、四连损了慌不？还行吧！！！不心疼是假，但没以前心态崩了，只是觉得这都在计划内，所以没啥好伤心的，继续等信号继续开</li></ul></div><div style="display:contents" dir="auto"><ul id="2ee46f9b-8afe-80b5-9bdb-e043b533ce88" class="bulleted-list"><li style="list-style-type:disc">哈哈哈说啥来着，14日那天还在写总结虽然规则让我少赚了，但同样规则会帮我避免大亏，没想到今天就行情开始大跌，满手U再手一点都不慌，一切按照自己的节奏走，甚至还有点小确幸，跌下来才有机会进场。</li></ul></div><div style="display:contents" dir="auto"><p id="2ee46f9b-8afe-80aa-b805-d57e957f2700" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="2ec46f9b-8afe-8028-8344-f08c980fcbe8" class="">19日操作</h3></div><div style="display:contents" dir="auto"><ul id="2ee46f9b-8afe-8006-9b57-fb53a1e4440e" class="bulleted-list"><li style="list-style-type:disc">执行了一次No.20250424策略空单，自动止盈</li></ul></div><div style="display:contents" dir="auto"><p id="2f046f9b-8afe-8083-9e4c-e7866a709ac5" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="2f046f9b-8afe-8073-bc40-c2bb71a7e40f" class="">22日操作</h3></div><div style="display:contents" dir="auto"><ul id="2f046f9b-8afe-8093-a8df-f226b34c721e" class="bulleted-list"><li style="list-style-type:disc">执行了一次No.20250424策略多单，自动止损</li></ul></div><div style="display:contents" dir="auto"><ul id="2f046f9b-8afe-8095-bb66-c764935a3cd0" class="bulleted-list"><li style="list-style-type:disc">执行了一次No.20250424策略空单，成功止盈（还好上一单严格止损了、要不然又是被迫扛单的一天，小亏=释放资金=捕捉新机会=新止盈，而一旦选择扛单就意味着承受双倍压力：一个是浮亏压力眼睁睁看着本金流失、另一个就是错失新机会的懊恼；严格遵守纪律啊这个策略在100实盘回测的时候就表现出要严格止盈、因为好多次就是刚止盈行情就开始反转，这次也一样，2915止盈、最低2905，然后快速反弹，还好跑得快）</li></ul></div><div style="display:contents" dir="auto"><p id="2f146f9b-8afe-8013-aec6-eeb2d473cdb2" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2f146f9b-8afe-803f-98e0-cc61d55f174e" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="2f146f9b-8afe-8041-b862-c3a851dba9a9" class="">23日操作</h3></div><div style="display:contents" dir="auto"><ul id="2f146f9b-8afe-8022-886e-e0fbba82c648" class="bulleted-list"><li style="list-style-type:disc">执行了一次运气空单、自动止盈，盘感就是要跌、开了一半仓位的空、怕猜错方向就留了一半资金补仓、因为这里再上去就是绝佳开空的位置、所以没啥好担心的。</li></ul></div><div style="display:contents" dir="auto"><ul id="2f346f9b-8afe-8015-b6cd-cc56008a5972" class="bulleted-list"><li style="list-style-type:disc">同样的逻辑又执行了一次运气单、自动止盈；这里简单回顾一下18日的四连损，止损不要怕，交易无非就盈亏两边走，这是铁定的规律，怕的是扛单到爆仓然后连赚回来的机会都没了，止损还可以继续玩，爆仓可就去真送快递了！</li></ul></div><div style="display:contents" dir="auto"><p id="2f446f9b-8afe-80f7-b447-d82c632a44b3" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2f446f9b-8afe-8048-8e32-dd6310520a52" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="2f446f9b-8afe-8019-9f56-e914e2f73983" class="">27日操作</h3></div><div style="display:contents" dir="auto"><ul id="2f546f9b-8afe-8029-8cb6-fd8026629f64" class="bulleted-list"><li style="list-style-type:disc">执行了一次No.20250424策略空单，扛单保本损，这单让我想起了刚入行接触技术分析之前那段时间，那是一段亏得迷茫、亏得心服口服、亏得独自一人抽自己耳光，这辈子都记得连续好几单都是开单就浮亏，真的就连浮盈的机会都没有，总是追涨杀跌、涨了开多就开始跌，跌了开空就开始反弹，非常难受，然后本能的想起追寻一些东西，就想以前的人们期待有神仙菩萨一样，希望通过追寻这些东西来拯救自己，不过最后我还是选择了技术分析这条路，其实在选择之前我是很犹豫的，觉得这玩意行吗？因为早一点的理论到现在都有上百年了啊、今天用起来还适用吗？你看现在科技多发达啊、量化多牛逼，直到这一单又一次验证了我当初的选择，因为我再次见识到了人性是永久不会变的，人性是永久不会过期，只要背后是个人再玩、那么我们交易的就是人性，为啥这么说，按道理来讲我都到这个阶段了，自认为会能很理性的“掌控”一切了吧，所有的交易都应该严格按照计划开单、止盈止损、继续开单、机械重复操作着下一步，而这单就莫名其妙的放弃了纪律，现在回想一下还是贪婪占据了主导，当时我记得盘感就应该跌，然后空单开完之后也没啥太多，设置了超宽止盈点没设止损，开完没多久行情就开始来回拉锯，看到这我自认为会跟前面一样晃晃荡荡就下去了，也没想太多、就关机睡觉去了，等第二天醒后人都傻了，行情居然直接拉上去了，这个时候又不甘心浮亏这么多平掉，依旧选择幻想会跌下去、继续当什么都不存在一样没关注了，直到第三天行情遇到日线级别的压力位，行情结构才让我看明白一点，然后顺势高位加了点仓位空，拉平了持仓成本，下午价格如我所愿就跌下来了，果断选择保本走，我清楚的明白这次是运气救了我，就是人性这东西不管你多厉害，理论多么扎实，技术多么娴熟，只要你还是一个人就会有人的弱点和情感，这些是躲不掉、逃不了的，目前我对此还没有合适的解决方案，不过这个经历我先记录下，后面的日子还长、也许不久的将来我会找到答案，但我希望这一天尽量不要太久。</li></ul></div><div style="display:contents" dir="auto"><p id="2f446f9b-8afe-8082-bac2-dfb82caf7b6b" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2f246f9b-8afe-80ea-929c-ca6cc3a5c8d9" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2f246f9b-8afe-80df-97f3-d1397f918bc4" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="2f246f9b-8afe-8044-8f45-decc680671cf" class="">月底总结</h1></div><div style="display:contents" dir="auto"><p id="2f246f9b-8afe-80f0-938b-ecea82f070bf" class="">
+</p></div><div style="display:contents" dir="auto"><ol type="1" id="2f246f9b-8afe-804b-88a2-e0a6e0df4859" class="numbered-list" start="1"><li>首先要恭喜自己，养老计划来到了第22个月，收益开始稳步破千了，虽然1000块放在当下来说并不是很多、也许一个月的房租都不够，也不够一个月生活费，但对于自己、和这个计划来说也算是一个小小里程碑了，这是个突破时刻，首先按照计划资金池的额度是会线性增长的，这个月有1000、那么就意味着后面会更高，越来越高，其次1000块在极端情况下也是勉强够支撑自己活下去的，说明项目开始有了自我造血能力，定存不到两年时间就可以开始自我养老了（），哈哈哈哈哈，计划开始逐步开始正偏离，目前01—&gt;22就有养活能力，那么剩下的23—&gt;360还有这么多期、我相信结果应该会很好，下一个小里程碑就是收益要超过每月的定存金额，以此实现可持续的造血能力，最后争取收益超过主业工资收入（我相信很快就会到来），慢既是快、慢慢致富、永久富有（他妈的吹起牛逼来感觉自己一套又一套的）</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2f746f9b-8afe-80a3-bc53-f8afaf57bb78" class="numbered-list" start="2"><li>这个月，安全账户和风险账户金额简单计算了一下，暂时不调整。</li></ol></div><div style="display:contents" dir="auto"><p id="2f246f9b-8afe-808c-802a-e58bdf798bfb" class="">
+</p></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span>
+
+
+
+
+
+<script src="/JS/main.js"></script>
+</body></html>
