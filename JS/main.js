@@ -2,7 +2,8 @@
     const scripts = [
         '/JS/TOC-and-Home.js',
         '/JS/Fuzhi-Daima.js',
-        '/JS/WeChat.js',
+    //    '/JS/WeChat.js',
+        '/JS/pinglun.js',
     ];
 
     scripts.forEach(src => {
