@@ -21,23 +21,45 @@
         
         /* 头部样式 */
         header { text-align: center; margin-bottom: 10px; }
-        .avatar { width: 108px; height: 108px; border-radius: 50%; border: 2px solid var(--border-color); margin-bottom: 8px; object-fit: cover; }
+        .avatar { width: 80px; height: 80px; border-radius: 50%; border: 2px solid var(--border-color); margin-bottom: 8px; object-fit: cover; }
         h1 { margin: 3px 0; font-size: 34px; font-weight: 800; letter-spacing: 1px; }
         .subtitle { color: var(--text-gray); font-size: 15px; margin-bottom: 10px; }
         
         /* 导航栏样式 */
-        nav { background: var(--highlight-bg); border-radius: 6px; position: relative; z-index: 100; padding: 0 20px; margin-bottom: 10px; }
+        nav { background: var(--highlight-bg); border-radius: 6px; position: relative; z-index: 100; padding: 0 20px; margin-bottom: 15px; }
         .nav-list { display: flex; justify-content: center; list-style: none; gap: 8px; padding: 8px 0; flex-wrap: wrap; }
         .nav-item { position: relative; }
         .nav-link { display: block; padding: 12px 20px; text-decoration: none; color: var(--text-dark); cursor: pointer; font-size: 16px; font-weight: bold; border-radius: 6px; }
         .nav-link:hover, .nav-link.active { color: var(--primary-color); background: rgba(255,255,255,0.8); }
-        .dropdown { position: absolute; top: 100%; left: 0; background: #fff; min-width: 180px; display: none; list-style: none; padding: 8px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-radius: 8px; margin-top: 4px; z-index: 99; }
-        .nav-item:hover > .dropdown { display: block; }
-        .dropdown a { display: block; padding: 10px 20px; text-decoration: none; color: var(--text-dark); font-size: 14px; cursor: pointer; }
-        .dropdown a:hover { background: var(--highlight-bg); color: var(--primary-color); padding-left: 20px; }
+        
+        /* 下拉菜单动画 */
+        .dropdown { 
+            position: absolute; top: 100%; left: 0; background: #fff; min-width: 180px; list-style: none; padding: 8px 0; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-radius: 8px; margin-top: 4px; z-index: 99; 
+            opacity: 0; visibility: hidden; transform: translateY(12px); pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .dropdown::before { content: ""; position: absolute; top: -12px; left: 0; width: 100%; height: 12px; background: transparent; }
+        .dropdown .dropdown { top: 0; left: 100%; margin-top: 0; margin-left: 2px; }
+        .nav-item:hover > .dropdown, .dropdown li:hover > .dropdown { opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto; }
+        .dropdown a { display: block; padding: 10px 20px; text-decoration: none; color: var(--text-dark); font-size: 14px; cursor: pointer; border-left: 3px solid transparent; }
+        .dropdown a:hover { background: var(--highlight-bg); color: var(--primary-color); padding-left: 25px; border-left-color: var(--primary-color); }
 
-        /* 文章列表样式 */
-        .post-count { text-align: center; font-size: 14px; color: var(--text-gray); margin-bottom: 20px; padding: 8px; background: var(--highlight-bg); border-radius: 8px; }
+        /* 【新位置样式】右下角统计 */
+        .post-count { 
+            display: flex;
+            justify-content: flex-end; /* 右对齐 */
+            align-items: center;
+            font-size: 11px; /* 再缩小一点点，显得更精致 */
+            color: var(--text-gray); 
+            margin-top: 10px; /* 放在下方，需要上边距 */
+            padding: 0 5px;
+            opacity: 0.6; /* 降低透明度，像水印一样 */
+            letter-spacing: 0.3px;
+        }
+        .post-count b { color: var(--text-dark); margin: 0 2px; }
+
+        /* 博文列表 */
         .post-list-wrapper { border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; min-height: 200px; }
         .post-item { display: flex; justify-content: space-between; align-items: center; padding: 7px 34px; border-bottom: 1px solid var(--border-color); text-decoration: none; color: inherit; }
         .post-item:last-child { border-bottom: none; }
@@ -48,14 +70,13 @@
         .post-date { color: var(--text-gray); font-size: 14px; font-family: monospace; }
         .post-top-tag { font-size: 12px; color: #dc2626; background: #fee2e2; padding: 3px 10px; border-radius: 12px; margin-left: 10px; }
         
-        /* 分页与底部 */
-        .pagination { display: flex; justify-content: center; align-items: center; gap: 12px; margin-top: 25px; }
+        /* 分页 */
+        .pagination { display: flex; justify-content: center; align-items: center; gap: 12px; margin-top: 15px; }
         .page-btn { padding: 8px 16px; border: 1px solid var(--border-color); background: #fff; cursor: pointer; border-radius: 8px; font-size: 14px; }
         .page-btn:hover:not(:disabled) { border-color: var(--primary-color); color: var(--primary-color); background: var(--primary-light); }
         .page-btn:disabled { opacity: 0.4; cursor: not-allowed; background: #f9fafb; }
         .empty-tip { text-align: center; padding: 40px 20px; color: var(--text-gray); font-size:15px; }
 
-        /* 返回顶部 */
         #back-to-top { position: fixed; bottom: 80px; right: 25px; background: var(--primary-color); color: white; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); opacity: 0; visibility: hidden; transition: all 0.3s ease; }
         #back-to-top.visible { opacity: 1; visibility: visible; }
     </style>
@@ -64,66 +85,49 @@
 <div class="container">
     <header id="blog-header"></header>
     <nav id="blog-nav"></nav>
-    <div id="post-count" class="post-count"></div>
+    
     <div id="blog-content-area">
         <div class="post-list-wrapper" id="post-list"></div>
+        
+        <div id="post-count" class="post-count"></div>
+        
         <div id="blog-pagination" class="pagination"></div>
     </div>
     <footer style="text-align: center; margin-top: 60px; color: #9ca3af; font-size: 13px; padding-bottom: 20px;">
-        <div id="footer-info">使用Notion编写博文、导出HTML格式后托管在<a href="https://github.com/BTC2054/BTC2054.github.io" target="_blank">GitHub</a></div>
+        <div id="footer-info">使用Notion编写博文、导出HTML格式后托管在<a href="https://github.com/BTC2054/BTC2054.github.io" target="_blank">GitHub V3.2.5</a></div>
         <div id="website-days" style="margin-top: 8px;"></div>
         <div style="margin-top:8px">博客用于记录个人的真实经历、想法、情绪表达以及投资过程，仅作记录与分享之用<br>投资理财相关内容仅为个人的长期理财计划和思考过程，不构成对他人的投资建议，读者应根据自身情况谨慎决策</div>
     </footer>
+
+<script src="/js/BuSuanZi.js"></script>
 </div>
 <div id="back-to-top" onclick="scrollToTop()">↑</div>
 
 <script>
-// 纯净版逻辑：只负责读取数据和展示
+// JS 部分保持不变，它会自动找到新的 #post-count 位置并填充内容
 let blogPage = 1;
 const blogPageSize = 50;
 let currentViewCatId = 'all';
 
 function init() { 
     if (typeof window.blogConfig === 'undefined') return document.body.innerHTML = "<h1>⚠️ 请确保 blog_data.js 在同目录下</h1>";
-    renderHeader();
-    renderNav();
-    displayBlogPosts();
-    
-    // 运行天数计算
+    renderHeader(); renderNav(); displayBlogPosts();
     const start = new Date('2024-03-15');
     const diff = Math.floor((new Date() - start) / (1000 * 60 * 60 * 24));
     document.getElementById('website-days').innerText = `博客已运行 ${diff} 天 ✨`;
-    
-    // 返回顶部
     const backToTopBtn = document.getElementById('back-to-top');
     window.addEventListener('scroll', () => window.scrollY > 300 ? backToTopBtn.classList.add('visible') : backToTopBtn.classList.remove('visible'));
 }
 
 function renderHeader() {
     const c = window.blogConfig;
-    
-    // 1. 修改浏览器标签页文字
-    if (c.browserTitle) {
-        document.title = c.browserTitle; 
-    }
-
-    // 2. 动态修改浏览器小图标 (Favicon)
+    if (c.browserTitle) document.title = c.browserTitle; 
     if (c.favicon) {
-        let link = document.querySelector("link[rel*='icon']"); // 寻找现有的 icon 标签
-        if (!link) {
-            link = document.createElement('link');
-            link.rel = 'shortcut icon';
-            document.getElementsByTagName('head')[0].appendChild(link);
-        }
+        let link = document.querySelector("link[rel*='icon']");
+        if (!link) { link = document.createElement('link'); link.rel = 'shortcut icon'; document.getElementsByTagName('head')[0].appendChild(link); }
         link.href = c.favicon;
     }
-
-    // 3. 渲染页面顶部的头像、标题和副标题
-    document.getElementById('blog-header').innerHTML = `
-        <img src="${c.avatar}" class="avatar">
-        <h1>${c.title}</h1>
-        <div class="subtitle">${c.subtitle}</div>
-    `;
+    document.getElementById('blog-header').innerHTML = `<img src="${c.avatar}" class="avatar"><h1>${c.title}</h1><div class="subtitle">${c.subtitle}</div>`;
 }
 
 function renderNav() {
@@ -145,7 +149,8 @@ function renderChildMenu(list) {
 function switchView(id) { currentViewCatId = id; blogPage = 1; renderNav(); displayBlogPosts(); }
 
 function displayBlogPosts() {
-    const filtered = currentViewCatId === 'all' ? window.postData : window.postData.filter(p => {
+    const isAllView = currentViewCatId === 'all';
+    const filtered = isAllView ? window.postData : window.postData.filter(p => {
         let ids = [currentViewCatId];
         const collect = (l) => l.forEach(m => { if(m.id===currentViewCatId){const getC=(c)=>c.forEach(i=>{ids.push(i.id);if(i.children)getC(i.children)}); getC(m.children||[]);} else if(m.children) collect(m.children)});
         collect(window.menuData);
@@ -153,28 +158,30 @@ function displayBlogPosts() {
     });
 
     const sorted = filtered.sort((a, b) => {
-        const aPri = a.globalTop ? 2 : a.categoryTop ? 1 : 0;
-        const bPri = b.globalTop ? 2 : b.categoryTop ? 1 : 0;
+        const aCatTop = !isAllView && a.categoryTop;
+        const bCatTop = !isAllView && b.categoryTop;
+        const aPri = a.globalTop ? 2 : aCatTop ? 1 : 0;
+        const bPri = b.globalTop ? 2 : bCatTop ? 1 : 0;
         if (aPri !== bPri) return bPri - aPri;
-        if (aPri > 0) return (a.globalTopTime||0) - (b.globalTopTime||0);
+        if (aPri === 2) return (b.globalTopTime || 0) - (a.globalTopTime || 0);
+        if (aPri === 1) return (b.categoryTopTime || 0) - (a.categoryTopTime || 0);
         return new Date(b.date) - new Date(a.date);
     });
 
     const total = sorted.length;
-    const catName = currentViewCatId === 'all' ? '全站' : getCategoryName(currentViewCatId);
-    document.getElementById('post-count').innerText = `${catName}共收录 ${total} 篇文章 | 按发布时间倒序排列`;
+    const catName = isAllView ? '全站' : getCategoryName(currentViewCatId);
+    
+    // 填充统计文字
+    document.getElementById('post-count').innerHTML = `<span>📂 <b>${catName}</b>共收录 <b>${total}</b> 篇文章</span><span style="margin-left:15px;opacity:0.8">| 倒序排列</span>`;
     
     const pageData = sorted.slice((blogPage-1)*blogPageSize, blogPage*blogPageSize);
-    document.getElementById('post-list').innerHTML = total===0 ? `<div class="empty-tip">📂 暂无文章</div>` : pageData.map(p => `
-        <a href="${p.url}" target="_blank" class="post-item">
-            <span class="post-title" title="${p.title}">${p.title}</span>
-            ${p.globalTop?'<span class="post-top-tag">全站置顶</span>':''}${p.categoryTop?'<span class="post-top-tag">分类置顶</span>':''}
-            <div class="post-meta"><span class="post-cat-tag">${getCategoryName(p.categoryId)}</span><span class="post-date">${p.date}</span></div>
-        </a>`).join('');
+    document.getElementById('post-list').innerHTML = total===0 ? `<div class="empty-tip">📂 暂无文章</div>` : pageData.map(p => {
+        const showCatTopTag = !isAllView && p.categoryTop;
+        return `<a href="${p.url}" target="_blank" class="post-item"><span class="post-title" title="${p.title}">${p.title}</span>${p.globalTop ? '<span class="post-top-tag">全站置顶</span>' : ''}${showCatTopTag ? '<span class="post-top-tag">分类置顶</span>' : ''}<div class="post-meta"><span class="post-cat-tag">${getCategoryName(p.categoryId)}</span><span class="post-date">${p.date}</span></div></a>`;
+    }).join('');
 
     const pages = Math.ceil(total/blogPageSize)||1;
-    document.getElementById('blog-pagination').innerHTML = total>blogPageSize ? 
-        `<button class="page-btn" onclick="blogPage--;displayBlogPosts()" ${blogPage===1?'disabled':''}>←</button><span style="font-size:14px;color:#666;margin:0 10px">${blogPage}/${pages}</span><button class="page-btn" onclick="blogPage++;displayBlogPosts()" ${blogPage===pages?'disabled':''}>→</button>` : '';
+    document.getElementById('blog-pagination').innerHTML = total>blogPageSize ? `<button class="page-btn" onclick="blogPage--;displayBlogPosts()" ${blogPage===1?'disabled':''}>←</button><span style="font-size:14px;color:#666;margin:0 10px">${blogPage}/${pages}</span><button class="page-btn" onclick="blogPage++;displayBlogPosts()" ${blogPage===pages?'disabled':''}>→</button>` : '';
 }
 
 function getCategoryName(id) { let n="未分类"; const f=l=>l.forEach(m=>{if(m.id===id)n=m.name;if(m.children)f(m.children)}); f(window.menuData); return n; }
