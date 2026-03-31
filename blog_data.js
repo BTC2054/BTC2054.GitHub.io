@@ -319,5 +319,15 @@ window.postData = [
         "categoryTop": false,
         "globalTopTime": null,
         "categoryTopTime": null
+    },
+    {
+        "title": "2026年03月：定存第24/360期、+17.9%、现货波动",
+        "url": "https://btc2054.com/Blog/2054YangLao/202603/202603.html",
+        "date": "2026-03-31",
+        "categoryId": "m1735640348731",
+        "globalTop": false,
+        "categoryTop": false,
+        "globalTopTime": null,
+        "categoryTopTime": null
     }
 ];
