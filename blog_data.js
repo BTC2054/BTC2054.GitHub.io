@@ -329,5 +329,15 @@ window.postData = [
         "categoryTop": false,
         "globalTopTime": null,
         "categoryTopTime": null
+    },
+    {
+        "title": "2026年04月：定存第25/360期、+13.4%、“首次真亏损”",
+        "url": "https://btc2054.com/Blog/2054YangLao/202604/202604.html",
+        "date": "2026-05-02",
+        "categoryId": "m1735640348731",
+        "globalTop": false,
+        "categoryTop": false,
+        "globalTopTime": null,
+        "categoryTopTime": null
     }
 ];
