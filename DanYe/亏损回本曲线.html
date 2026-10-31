@@ -204,7 +204,7 @@
                     const isInt = Math.abs(rawTimes - Math.round(rawTimes)) < 0.001;
                     const timesStr = isInt ? Math.round(rawTimes).toString() : rawTimes.toFixed(2);
                     
-                    td.innerHTML = `需要翻 <span class="blink-number">${timesStr}</span> 倍才能回本 💥`;
+                    td.innerHTML = `需要赚 <span class="blink-number">${timesStr}</span> 倍才能回本 💥`;
                 } else {
                     // 动态计算由绿到红的渐变色 (1%~100% 对应 t 从 0 到 1)
                     const gainNum = parseFloat(gainPercent);
