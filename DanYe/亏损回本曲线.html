@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>亏损回本曲线图</title>
+    <!-- 引入 Chart.js 用于绘制折线图 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        html, body {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden; /* 锁死页面，不允许出现滚动条 */
+            background-color: #0f172a;
+            color: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            height: 96vh;
+            display: flex;
+            flex-direction: column;
+            padding: 12px;
+        }
+        .card {
+            background-color: #1e293b;
+            border-radius: 16px;
+            padding: 20px 24px 16px 24px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            border: 1px solid #334155;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-header-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #334155;
+            flex-shrink: 0;
+        }
+        .card-header {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #38bdf8;
+        }
+        .toggle-btn {
+            background-color: #0284c7;
+            color: #ffffff;
+            border: none;
+            padding: 8px 18px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .toggle-btn:hover {
+            background-color: #0369a1;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            flex: 1;
+            min-height: 0;
+        }
+        .axis-label-bottom {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-top: 8px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        /* 数值闪烁报警动画 */
+        @keyframes pulse-red {
+            0% { color: #ef4444; transform: scale(1); text-shadow: 0 0 2px rgba(239, 68, 68, 0.4); }
+            50% { color: #ff3333; transform: scale(1.18); text-shadow: 0 0 10px rgba(255, 51, 51, 0.9); }
+            100% { color: #ef4444; transform: scale(1); text-shadow: 0 0 2px rgba(239, 68, 68, 0.4); }
+        }
+        .blink-number {
+            color: #ef4444;
+            font-size: 1.4em;
+            font-weight: 900;
+            display: inline-block;
+            animation: pulse-red 0.8s infinite ease-in-out;
+            padding: 0 2px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <div class="card-header-wrapper">
+            <div class="card-header">📉 亏损回本曲线图（所需涨幅都只为了回本、为回本、回本 &nbsp;&nbsp;&nbsp; 不是盈利！！！）</div>
+            <button id="toggleBtn" class="toggle-btn">🔍 切换至全部数据 (1-99%)</button>
+        </div>
+        <div class="chart-container">
+            <canvas id="recoveryChart"></canvas>
+        </div>
+        <div class="axis-label-bottom">账户亏损幅度 (%)</div>
+    </div>
+</div>
+
+<script>
+    // 完整 1 到 99 的数据序列[cite: 1]
+    const allSteps = Array.from({length: 99}, (_, i) => i + 1);
+
+    let myChart = null;
+    let showAllData = false; // 默认显示 1-50%[cite: 1]
+
+    function getChartData(isAll) {
+        const steps = isAll ? allSteps : allSteps.slice(0, 50);
+        const labels = steps.map(l => l.toString());
+        const gainData = steps.map(l => (l / (100 - l) * 100).toFixed(2));
+        return { labels, gainData };
+    }
+
+    // 自定义外部 Tooltip 处理器（含防溢出动态定位与渐变色计算）
+    const getOrCreateTooltip = (chart) => {
+        let tooltipEl = chart.canvas.parentNode.querySelector('div.chartjs-tooltip');
+        if (!tooltipEl) {
+            tooltipEl = document.createElement('div');
+            tooltipEl.className = 'chartjs-tooltip';
+            tooltipEl.style.background = 'rgba(15, 23, 42, 0.95)';
+            tooltipEl.style.borderRadius = '10px';
+            tooltipEl.style.color = 'white';
+            tooltipEl.style.opacity = 1;
+            tooltipEl.style.pointerEvents = 'none';
+            tooltipEl.style.position = 'absolute';
+            tooltipEl.style.whiteSpace = 'nowrap'; // 强制不换行
+            tooltipEl.style.transition = 'all .05s ease';
+            tooltipEl.style.padding = '12px 16px';
+            tooltipEl.style.border = '1px solid #334155';
+            tooltipEl.style.boxShadow = '0 6px 20px rgba(0,0,0,0.6)';
+            
+            const table = document.createElement('table');
+            table.style.margin = '0px';
+            tooltipEl.appendChild(table);
+            chart.canvas.parentNode.appendChild(tooltipEl);
+        }
+        return tooltipEl;
+    };
+
+    const externalTooltipHandler = (context) => {
+        const {chart, tooltip} = context;
+        const tooltipEl = getOrCreateTooltip(chart);
+
+        if (tooltip.opacity === 0) {
+            tooltipEl.style.opacity = 0;
+            return;
+        }
+
+        if (tooltip.body) {
+            const titleLines = tooltip.title;
+            const bodyLines = tooltip.body.map(b => b.lines);
+
+            const tableHead = document.createElement('thead');
+            titleLines.forEach(title => {
+                const tr = document.createElement('tr');
+                tr.style.borderWidth = '0';
+                const th = document.createElement('th');
+                th.style.fontSize = '13px';
+                th.style.fontWeight = 'bold';
+                th.style.textAlign = 'left';
+                th.style.color = '#94a3b8';
+                th.style.paddingBottom = '4px';
+                th.appendChild(document.createTextNode(`账户亏损: ${title}%`));
+                tr.appendChild(th);
+                tableHead.appendChild(tr);
+            });
+
+            const tableBody = document.createElement('tbody');
+            bodyLines.forEach((body, i) => {
+                const dataPoint = tooltip.dataPoints[i];
+                const lossPercent = parseFloat(dataPoint.label);
+                const gainPercent = parseFloat(dataPoint.raw);
+
+                const tr = document.createElement('tr');
+                tr.style.backgroundColor = 'inherit';
+                tr.style.borderWidth = '0';
+
+                const td = document.createElement('td');
+                td.style.fontSize = '14px';
+                td.style.fontWeight = 'bold';
+                td.style.padding = '0';
+
+                if (lossPercent > 50) {
+                    const rawTimes = gainPercent / 100;
+                    const isInt = Math.abs(rawTimes - Math.round(rawTimes)) < 0.001;
+                    const timesStr = isInt ? Math.round(rawTimes).toString() : rawTimes.toFixed(2);
+                    
+                    td.innerHTML = `需要翻 <span class="blink-number">${timesStr}</span> 倍才能回本 💥`;
+                } else {
+                    // 动态计算由绿到红的渐变色 (1%~100% 对应 t 从 0 到 1)
+                    const gainNum = parseFloat(gainPercent);
+                    const t = Math.min(Math.max((gainNum - 1) / 99, 0), 1);
+                    
+                    // 颜色起点：翠绿 RGB(74, 222, 128) -> 颜色终点：艳红 RGB(239, 68, 68)
+                    const r = Math.round(74 + (239 - 74) * t);
+                    const g = Math.round(222 + (68 - 222) * t);
+                    const b = Math.round(128 + (68 - 128) * t);
+                    const dynamicColor = `rgb(${r}, ${g}, ${b})`;
+
+                    td.innerHTML = `回本需涨: <span style="color: ${dynamicColor}; font-size: 1.15em; font-weight: 900;">+${gainPercent}%</span>`;
+                }
+
+                tr.appendChild(td);
+                tableBody.appendChild(tr);
+            });
+
+            const table = tooltipEl.querySelector('table');
+            while (table.firstChild) {
+                table.firstChild.remove();
+            }
+
+            table.appendChild(tableHead);
+            table.appendChild(tableBody);
+        }
+
+        const {offsetLeft: positionX, offsetTop: positionY} = chart.canvas;
+        const chartWidth = chart.width;
+        const caretX = tooltip.caretX;
+
+        // 动态智能判断：根据光标位置调整横向偏移，防止在极左或极右时超出容器被遮挡
+        let transformX = '-50%';
+        if (caretX < 120) {
+            transformX = '0%';      // 靠近左侧时，左对齐
+        } else if (caretX > chartWidth - 120) {
+            transformX = '-100%';   // 靠近右侧时，右对齐
+        }
+
+        tooltipEl.style.opacity = 1;
+        tooltipEl.style.left = positionX + caretX + 'px';
+        tooltipEl.style.top = positionY + tooltip.caretY + 15 + 'px';
+        tooltipEl.style.transform = `translate(${transformX}, 0)`;
+    };
+
+    window.onload = function() {
+        const ctx = document.getElementById('recoveryChart').getContext('2d');
+        const toggleBtn = document.getElementById('toggleBtn');
+        
+        const initialData = getChartData(showAllData);
+
+        myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: initialData.labels,
+                datasets: [{
+                    label: '回本难度',
+                    data: initialData.gainData,
+                    borderColor: '#4ade80',
+                    backgroundColor: 'rgba(74, 222, 128, 0.12)',
+                    fill: true,
+                    tension: 0.3,
+                    borderWidth: 3,
+                    pointRadius: 0, 
+                    pointHoverRadius: 6 
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: { intersect: false, mode: 'index' },
+                plugins: {
+                    legend: { 
+                        display: false 
+                    },
+                    tooltip: {
+                        enabled: false, 
+                        external: externalTooltipHandler
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { 
+                            color: 'rgba(255, 255, 255, 0.04)',
+                            drawBorder: false 
+                        },
+                        ticks: { 
+                            color: '#94a3b8', 
+                            font: { size: 11 },
+                            autoSkip: false,
+                            maxRotation: 0,
+                            callback: function(val, index) {
+                                const labelVal = parseInt(this.getLabelForValue(val));
+                                return labelVal % 5 === 0 ? labelVal : '';
+                            }
+                        }
+                    },
+                    y: {
+                        grid: { 
+                            color: 'rgba(255, 255, 255, 0.05)' 
+                        },
+                        ticks: { 
+                            color: '#94a3b8',
+                            font: { size: 12 },
+                            callback: function(value) {
+                                if (value >= 1000) {
+                                    return (value / 100) + '倍';
+                                }
+                                return value + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // 按钮切换事件[cite: 1]
+        toggleBtn.addEventListener('click', function() {
+            showAllData = !showAllData;
+            
+            const newChartData = getChartData(showAllData);
+            myChart.data.labels = newChartData.labels;
+            myChart.data.datasets[0].data = newChartData.gainData;
+            myChart.update();
+
+            if (showAllData) {
+                toggleBtn.innerText = "🔍 切换精细视图 (亏 1-50% )";
+            } else {
+                toggleBtn.innerText = "🔍 切换全部数据 (亏 1-99% )";
+            }
+        });
+    };
+</script>
+
+</body>
+</html>
