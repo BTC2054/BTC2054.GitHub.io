@@ -107,7 +107,7 @@
     <div class="card">
         <div class="card-header-wrapper">
             <div class="card-header">📉 亏损回本曲线图（所需涨幅都只为了回本、为回本、回本 &nbsp;&nbsp;&nbsp; 不是盈利！！！）</div>
-            <button id="toggleBtn" class="toggle-btn">🔍 切换全部数据 (亏 1-99% )</button>
+            <button id="toggleBtn" class="toggle-btn">🔍 切换全部视图 (亏 99% + )</button>
         </div>
         <div class="chart-container">
             <canvas id="recoveryChart"></canvas>
@@ -117,21 +117,18 @@
 </div>
 
 <script>
-    // 完整 1 到 99 的数据序列[cite: 1]
     const allSteps = Array.from({length: 99}, (_, i) => i + 1);
 
     let myChart = null;
     let showAllData = false; // 默认显示 1-90%
 
     function getChartData(isAll) {
-        // 修改默认显示范围为 1-90%
         const steps = isAll ? allSteps : allSteps.slice(0, 90);
         const labels = steps.map(l => l.toString());
         const gainData = steps.map(l => (l / (100 - l) * 100).toFixed(2));
         return { labels, gainData };
     }
 
-    // 自定义外部 Tooltip 处理器（含防溢出动态定位与渐变色计算）
     const getOrCreateTooltip = (chart) => {
         let tooltipEl = chart.canvas.parentNode.querySelector('div.chartjs-tooltip');
         if (!tooltipEl) {
@@ -143,7 +140,7 @@
             tooltipEl.style.opacity = 1;
             tooltipEl.style.pointerEvents = 'none';
             tooltipEl.style.position = 'absolute';
-            tooltipEl.style.whiteSpace = 'nowrap'; // 强制不换行
+            tooltipEl.style.whiteSpace = 'nowrap';
             tooltipEl.style.transition = 'all .05s ease';
             tooltipEl.style.padding = '12px 16px';
             tooltipEl.style.border = '1px solid #334155';
@@ -207,11 +204,9 @@
                     
                     td.innerHTML = `需要赚 <span class="blink-number">${timesStr}</span> 倍才能回本 💥`;
                 } else {
-                    // 动态计算由绿到红的渐变色 (1%~100% 对应 t 从 0 到 1)
                     const gainNum = parseFloat(gainPercent);
                     const t = Math.min(Math.max((gainNum - 1) / 99, 0), 1);
                     
-                    // 颜色起点：翠绿 RGB(74, 222, 128) -> 颜色终点：艳红 RGB(239, 68, 68)
                     const r = Math.round(74 + (239 - 74) * t);
                     const g = Math.round(222 + (68 - 222) * t);
                     const b = Math.round(128 + (68 - 128) * t);
@@ -237,12 +232,11 @@
         const chartWidth = chart.width;
         const caretX = tooltip.caretX;
 
-        // 动态智能判断：根据光标位置调整横向偏移，防止在极左或极右时超出容器被遮挡
         let transformX = '-50%';
         if (caretX < 120) {
-            transformX = '0%';      // 靠近左侧时，左对齐
+            transformX = '0%';
         } else if (caretX > chartWidth - 120) {
-            transformX = '-100%';   // 靠近右侧时，右对齐
+            transformX = '-100%';
         }
 
         tooltipEl.style.opacity = 1;
@@ -276,6 +270,11 @@
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                // 动画时长设为 2000ms (2秒)，使用平滑的 easeInOutQuad 确保不会出现先下后上的抖动
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutQuad'
+                },
                 interaction: { intersect: false, mode: 'index' },
                 plugins: {
                     legend: { 
@@ -297,9 +296,8 @@
                             font: { size: 11 },
                             autoSkip: false,
                             maxRotation: 0,
-                            callback: function(val, index) {
+                            callback: function(val) {
                                 const labelVal = parseInt(this.getLabelForValue(val));
-                                // 调整 X 轴刻度展示间隔（可以按 5 或 10 显示，这里维持 5 的倍数）
                                 return labelVal % 5 === 0 ? labelVal : '';
                             }
                         }
@@ -323,7 +321,7 @@
             }
         });
 
-        // 按钮切换事件[cite: 1]
+        // 按钮切换事件
         toggleBtn.addEventListener('click', function() {
             showAllData = !showAllData;
             
@@ -332,10 +330,11 @@
             myChart.data.datasets[0].data = newChartData.gainData;
             myChart.update();
 
+            // 保持原有的提示文案
             if (showAllData) {
                 toggleBtn.innerText = "🔍 切换精细视图 (亏 1-90% )";
             } else {
-                toggleBtn.innerText = "🔍 切换全部数据 (亏 1-99% )";
+                toggleBtn.innerText = "🔍 切换全部视图 (亏 99% + )";
             }
         });
     };
