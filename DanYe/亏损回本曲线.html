@@ -121,10 +121,11 @@
     const allSteps = Array.from({length: 99}, (_, i) => i + 1);
 
     let myChart = null;
-    let showAllData = false; // 默认显示 1-50%[cite: 1]
+    let showAllData = false; // 默认显示 1-90%
 
     function getChartData(isAll) {
-        const steps = isAll ? allSteps : allSteps.slice(0, 50);
+        // 修改默认显示范围为 1-90%
+        const steps = isAll ? allSteps : allSteps.slice(0, 90);
         const labels = steps.map(l => l.toString());
         const gainData = steps.map(l => (l / (100 - l) * 100).toFixed(2));
         return { labels, gainData };
@@ -298,6 +299,7 @@
                             maxRotation: 0,
                             callback: function(val, index) {
                                 const labelVal = parseInt(this.getLabelForValue(val));
+                                // 调整 X 轴刻度展示间隔（可以按 5 或 10 显示，这里维持 5 的倍数）
                                 return labelVal % 5 === 0 ? labelVal : '';
                             }
                         }
@@ -331,7 +333,7 @@
             myChart.update();
 
             if (showAllData) {
-                toggleBtn.innerText = "🔍 切换精细视图 (亏 1-50% )";
+                toggleBtn.innerText = "🔍 切换精细视图 (亏 1-90% )";
             } else {
                 toggleBtn.innerText = "🔍 切换全部数据 (亏 1-99% )";
             }
